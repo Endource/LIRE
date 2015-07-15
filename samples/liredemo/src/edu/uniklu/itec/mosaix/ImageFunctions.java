@@ -303,9 +303,9 @@ public class ImageFunctions {
     /**
      * This method assembles two bufferedImages to one new Image! the extending image needs to
      * provide enough space for the extender (second) image.
-     * <p/>
+     * <p>
      * posX and posY defines the position of the extender image in an imaginary raster
-     * <p/>
+     * <p>
      * rasternr defines the number of elements in one row (column)
      *
      * @param extending the image which will be extanded

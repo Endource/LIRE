@@ -72,7 +72,7 @@ import java.util.*;
 public class TestSimple extends TestCase {
     //myDatabase
     private String indexPath = "myDatabase-index";
-//    private final String indexPath = "myDatabase-index-000000000";
+    //    private final String indexPath = "myDatabase-index-000000000";
     private final String collectionPath = "C:\\myDatabase";
     private final String queriesOutsideCollectionPath = "C:\\qimages";
     private final String queriesFile = "queriesFile.txt";
@@ -138,8 +138,7 @@ public class TestSimple extends TestCase {
         // Read queries tha are not included in the collection
         outsideQueries = new LinkedList<Document>();
         outsideQueries.clear();
-        if (queriesOutsideCollectionPath != null)
-        {
+        if (queriesOutsideCollectionPath != null) {
             SimpleFeatureBOVWBuilder sCEDDBuilderforQueries = new SimpleFeatureBOVWBuilder(DirectoryReader.open(FSDirectory.open(new File(indexPath))), new CEDD(), SimpleBuilder.KeypointDetector.Random);
 //            SimpleFeatureBOVWBuilder sFCTHBuilderforQueries = new SimpleFeatureBOVWBuilder(DirectoryReader.open(FSDirectory.open(new File(indexPath))), new FCTH(), SimpleBuilder.KeypointDetector.Random);
 //            SimpleFeatureBOVWBuilder sJCDBuilderforQueries = new SimpleFeatureBOVWBuilder(DirectoryReader.open(FSDirectory.open(new File(indexPath))), new JCD(), SimpleBuilder.KeypointDetector.Random);
@@ -175,8 +174,7 @@ public class TestSimple extends TestCase {
 
     }
 
-    public void performWSs (String fieldName, String prefix, IndexReader reader) throws IOException
-    {
+    public void performWSs(String fieldName, String prefix, IndexReader reader) throws IOException {
 //        doSearch(new ImageSearcherUsingWSs(30, GenericDoubleLireFeature.class, fieldName, true, reader, false, false, false), prefix, reader);
 //        doSearch(new ImageSearcherUsingWSs(30, GenericDoubleLireFeature.class, fieldName, true, reader, false, false, true), prefix, reader);
 //        doSearch(new ImageSearcherUsingWSs(30, GenericDoubleLireFeature.class, fieldName, true, reader, false, true, false), prefix, reader);

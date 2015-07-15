@@ -162,7 +162,7 @@ public class Cluster implements Comparable<Object> {
 
     public static void writeClusters(Cluster[] clusters, String path) throws IOException {
         File file = new File(path);
-        if(file.exists()) {
+        if (file.exists()) {
             System.out.println("File " + path + " already exists and will be overwritten!!");
         }
         FileOutputStream fout = new FileOutputStream(file);

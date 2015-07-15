@@ -149,7 +149,7 @@ public class ParallelKMeans extends KMeans {
         double result;
 
         private ComputeStress() {
-            this.result  = 0.0;
+            this.result = 0.0;
             this.locallyEnded = false;
         }
 
@@ -158,7 +158,7 @@ public class ParallelKMeans extends KMeans {
             while (!locallyEnded) {
                 try {
                     tmp = queue.take();
-                    if (tmp.getNum() == -1)  locallyEnded = true;
+                    if (tmp.getNum() == -1) locallyEnded = true;
                     if (!locallyEnded) {    // && tmp != -1
 //                        for (Integer member : tmp.getCluster().members) {
 //                            for (int j = 0; j < length; j++) {
@@ -228,7 +228,7 @@ public class ParallelKMeans extends KMeans {
                             System.arraycopy(features.get((int) Math.floor(Math.random() * features.size())), 0, mean, 0, mean.length);
                         }
 
-                        stress  = 0.0;
+                        stress = 0.0;
                         for (Integer member : cluster.members) {
                             f = features.get(member);
                             for (int j = 0; j < length; j++) {
@@ -289,7 +289,7 @@ public class ParallelKMeans extends KMeans {
 
         public void run() {
             int counter = 0;
-            for(Cluster cluster : clusters){
+            for (Cluster cluster : clusters) {
                 try {
                     queue.put(new Item(counter, cluster));
                 } catch (InterruptedException e) {
@@ -298,7 +298,7 @@ public class ParallelKMeans extends KMeans {
                 counter++;
             }
             Cluster cluster = null;
-            for (int i = 0; i < numThreads * 3; i++)  {
+            for (int i = 0; i < numThreads * 3; i++) {
                 try {
                     queue.put(new Item(-1, cluster));
                 } catch (InterruptedException e) {
@@ -324,7 +324,7 @@ public class ParallelKMeans extends KMeans {
                 counter++;
             }
             double[] tmp = null;
-            for (int i = 0; i < numThreads * 3; i++)  {
+            for (int i = 0; i < numThreads * 3; i++) {
                 try {
                     queue.put(new Item(-1, tmp));
                 } catch (InterruptedException e) {
@@ -349,11 +349,17 @@ public class ParallelKMeans extends KMeans {
             this.cluster = cluster;
         }
 
-        private int getNum() { return num; }
+        private int getNum() {
+            return num;
+        }
 
-        private Cluster getCluster() { return cluster; }
+        private Cluster getCluster() {
+            return cluster;
+        }
 
-        private double[] getArray() { return array; }
+        private double[] getArray() {
+            return array;
+        }
     }
 
 }

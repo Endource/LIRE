@@ -125,7 +125,7 @@ public class Tamura implements GlobalFeature {
     public double differencesBetweenNeighborhoodsHorizontal(int x, int y, int k) {
         double result = 0;
         result = Math.abs(this.averageOverNeighborhoods(x + (int) Math.pow(2, k - 1), y, k) -
-                this.averageOverNeighborhoods(x - (int) Math.pow(2, k - 1), y, k));
+            this.averageOverNeighborhoods(x - (int) Math.pow(2, k - 1), y, k));
         return result;
     }
 
@@ -140,7 +140,7 @@ public class Tamura implements GlobalFeature {
     public double differencesBetweenNeighborhoodsVertical(int x, int y, int k) {
         double result = 0;
         result = Math.abs(this.averageOverNeighborhoods(x, y + (int) Math.pow(2, k - 1), k) -
-                this.averageOverNeighborhoods(x, y - (int) Math.pow(2, k - 1), k));
+            this.averageOverNeighborhoods(x, y - (int) Math.pow(2, k - 1), k));
         return result;
     }
 
@@ -157,7 +157,7 @@ public class Tamura implements GlobalFeature {
 
         for (int k = 0; k < 3; k++) {
             tmp = Math.max(this.differencesBetweenNeighborhoodsHorizontal(x, y, k),
-                    this.differencesBetweenNeighborhoodsVertical(x, y, k));
+                this.differencesBetweenNeighborhoodsVertical(x, y, k));
             if (result < tmp) {
                 maxK = k;
                 result = tmp;
@@ -279,8 +279,8 @@ public class Tamura implements GlobalFeature {
         histogram = new double[18];
         double[] directionality;
         ColorConvertOp op = new ColorConvertOp(image.getColorModel().getColorSpace(),
-                ColorSpace.getInstance(ColorSpace.CS_GRAY),
-                new RenderingHints(RenderingHints.KEY_COLOR_RENDERING, RenderingHints.VALUE_COLOR_RENDER_QUALITY));
+            ColorSpace.getInstance(ColorSpace.CS_GRAY),
+            new RenderingHints(RenderingHints.KEY_COLOR_RENDERING, RenderingHints.VALUE_COLOR_RENDER_QUALITY));
         BufferedImage bimg = op.filter(image, null);
         bimg = ImageUtils.scaleImage(bimg, MAX_IMG_HEIGHT);
         Raster raster = bimg.getRaster();

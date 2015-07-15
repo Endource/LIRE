@@ -43,7 +43,7 @@ import java.util.HashMap;
 
 /**
  * Boundary Pixel for boundary following algorithm.
- * <p/>
+ * <p>
  * User: Shotty
  * Date: 01.05.11
  * Time: 11:04

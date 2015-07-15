@@ -511,40 +511,40 @@ public class LireDemoFrame extends javax.swing.JFrame {
         javax.swing.GroupLayout indexPanelLayout = new javax.swing.GroupLayout(indexPanel);
         indexPanel.setLayout(indexPanelLayout);
         indexPanelLayout.setHorizontalGroup(
-                indexPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel6)
+            indexPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel6)
+                .addGroup(indexPanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(indexPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE)
+                        .addComponent(progressBarIndexing, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE)
                         .addGroup(indexPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(indexPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE)
-                                        .addComponent(progressBarIndexing, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE)
-                                        .addGroup(indexPanelLayout.createSequentialGroup()
-                                                .addComponent(textfieldImageDirectoryToIndex, javax.swing.GroupLayout.DEFAULT_SIZE, 629, Short.MAX_VALUE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(buttonOpenDir, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, indexPanelLayout.createSequentialGroup()
-                                                .addComponent(checkBoxAddToExisintgIndex)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(buttonStartIndexing, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap())
+                            .addComponent(textfieldImageDirectoryToIndex, javax.swing.GroupLayout.DEFAULT_SIZE, 629, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(buttonOpenDir, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, indexPanelLayout.createSequentialGroup()
+                            .addComponent(checkBoxAddToExisintgIndex)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(buttonStartIndexing, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addContainerGap())
         );
         indexPanelLayout.setVerticalGroup(
-                indexPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(indexPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(indexPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(buttonOpenDir)
-                                        .addComponent(textfieldImageDirectoryToIndex, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(progressBarIndexing, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(indexPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(buttonStartIndexing, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(checkBoxAddToExisintgIndex))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(288, 288, 288))
+            indexPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(indexPanelLayout.createSequentialGroup()
+                    .addComponent(jLabel6)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(indexPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(buttonOpenDir)
+                        .addComponent(textfieldImageDirectoryToIndex, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(progressBarIndexing, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(indexPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(buttonStartIndexing, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(checkBoxAddToExisintgIndex))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(288, 288, 288))
         );
 
         cardPanel.add(indexPanel, "card3");
@@ -582,37 +582,37 @@ public class LireDemoFrame extends javax.swing.JFrame {
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
         searchPanelLayout.setHorizontalGroup(
-                searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel5)
+            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel5)
+                .addGroup(searchPanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(progressSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE)
                         .addGroup(searchPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(progressSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE)
-                                        .addGroup(searchPanelLayout.createSequentialGroup()
-                                                .addComponent(textfieldSearchImage, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(buttonOpenImage))
-                                        .addComponent(buttonStartSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(searchPanelLayout.createSequentialGroup()
-                                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 212, Short.MAX_VALUE)))
-                                .addContainerGap())
+                            .addComponent(textfieldSearchImage, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(buttonOpenImage))
+                        .addComponent(buttonStartSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(searchPanelLayout.createSequentialGroup()
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 212, Short.MAX_VALUE)))
+                    .addContainerGap())
         );
         searchPanelLayout.setVerticalGroup(
-                searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(searchPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(textfieldSearchImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(buttonOpenImage))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(progressSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonStartSearch)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(288, Short.MAX_VALUE))
+            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(searchPanelLayout.createSequentialGroup()
+                    .addComponent(jLabel5)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(textfieldSearchImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonOpenImage))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(progressSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(buttonStartSearch)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(288, Short.MAX_VALUE))
         );
 
         cardPanel.add(searchPanel, "card2");
@@ -643,34 +643,34 @@ public class LireDemoFrame extends javax.swing.JFrame {
         javax.swing.GroupLayout browsePanelLayout = new javax.swing.GroupLayout(browsePanel);
         browsePanel.setLayout(browsePanelLayout);
         browsePanelLayout.setHorizontalGroup(
-                browsePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            browsePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(browsePanelLayout.createSequentialGroup()
+                    .addGroup(browsePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel11)
                         .addGroup(browsePanelLayout.createSequentialGroup()
-                                .addGroup(browsePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel11)
-                                        .addGroup(browsePanelLayout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addComponent(jLabel10)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(labelDocCount)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(spinnerCurrentDocNum, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(buttonSearchFromBrowse)))
-                                .addGap(354, 354, 354))
-                        .addComponent(browseImageContainerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 762, Short.MAX_VALUE)
+                            .addContainerGap()
+                            .addComponent(jLabel10)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(labelDocCount)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(spinnerCurrentDocNum, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(buttonSearchFromBrowse)))
+                    .addGap(354, 354, 354))
+                .addComponent(browseImageContainerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 762, Short.MAX_VALUE)
         );
         browsePanelLayout.setVerticalGroup(
-                browsePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(browsePanelLayout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(browsePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel10)
-                                        .addComponent(spinnerCurrentDocNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(buttonSearchFromBrowse)
-                                        .addComponent(labelDocCount))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(browseImageContainerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE))
+            browsePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(browsePanelLayout.createSequentialGroup()
+                    .addComponent(jLabel11)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(browsePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel10)
+                        .addComponent(spinnerCurrentDocNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonSearchFromBrowse)
+                        .addComponent(labelDocCount))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(browseImageContainerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE))
         );
 
         cardPanel.add(browsePanel, "card5");
@@ -735,12 +735,12 @@ public class LireDemoFrame extends javax.swing.JFrame {
         javax.swing.GroupLayout panelMosaicOptionsHiddenLayout = new javax.swing.GroupLayout(panelMosaicOptionsHidden);
         panelMosaicOptionsHidden.setLayout(panelMosaicOptionsHiddenLayout);
         panelMosaicOptionsHiddenLayout.setHorizontalGroup(
-                panelMosaicOptionsHiddenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 244, Short.MAX_VALUE)
+            panelMosaicOptionsHiddenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 244, Short.MAX_VALUE)
         );
         panelMosaicOptionsHiddenLayout.setVerticalGroup(
-                panelMosaicOptionsHiddenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 191, Short.MAX_VALUE)
+            panelMosaicOptionsHiddenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 191, Short.MAX_VALUE)
         );
 
         mosaicAdvanceOptionsPanel.add(panelMosaicOptionsHidden, "card2");
@@ -763,30 +763,30 @@ public class LireDemoFrame extends javax.swing.JFrame {
         javax.swing.GroupLayout panelMosaicOptionsShownLayout = new javax.swing.GroupLayout(panelMosaicOptionsShown);
         panelMosaicOptionsShown.setLayout(panelMosaicOptionsShownLayout);
         panelMosaicOptionsShownLayout.setHorizontalGroup(
-                panelMosaicOptionsShownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            panelMosaicOptionsShownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelMosaicOptionsShownLayout.createSequentialGroup()
+                    .addGroup(panelMosaicOptionsShownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(panelMosaicOptionsShownLayout.createSequentialGroup()
-                                .addGroup(panelMosaicOptionsShownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(panelMosaicOptionsShownLayout.createSequentialGroup()
-                                                .addGap(6, 6, 6)
-                                                .addComponent(mosaicOptionsColorLayout))
-                                        .addGroup(panelMosaicOptionsShownLayout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addComponent(mosaicOptionsAutocolorcorrelogram))
-                                        .addGroup(panelMosaicOptionsShownLayout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addComponent(mosaicOptionsCedd)))
-                                .addContainerGap(105, Short.MAX_VALUE))
+                            .addGap(6, 6, 6)
+                            .addComponent(mosaicOptionsColorLayout))
+                        .addGroup(panelMosaicOptionsShownLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(mosaicOptionsAutocolorcorrelogram))
+                        .addGroup(panelMosaicOptionsShownLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(mosaicOptionsCedd)))
+                    .addContainerGap(105, Short.MAX_VALUE))
         );
         panelMosaicOptionsShownLayout.setVerticalGroup(
-                panelMosaicOptionsShownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(panelMosaicOptionsShownLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(mosaicOptionsColorLayout)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(mosaicOptionsAutocolorcorrelogram)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(mosaicOptionsCedd)
-                                .addContainerGap(109, Short.MAX_VALUE))
+            panelMosaicOptionsShownLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelMosaicOptionsShownLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(mosaicOptionsColorLayout)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(mosaicOptionsAutocolorcorrelogram)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(mosaicOptionsCedd)
+                    .addContainerGap(109, Short.MAX_VALUE))
         );
 
         mosaicAdvanceOptionsPanel.add(panelMosaicOptionsShown, "card3");
@@ -817,65 +817,65 @@ public class LireDemoFrame extends javax.swing.JFrame {
         javax.swing.GroupLayout mosaicPanelLayout = new javax.swing.GroupLayout(mosaicPanel);
         mosaicPanel.setLayout(mosaicPanelLayout);
         mosaicPanelLayout.setHorizontalGroup(
-                mosaicPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(labelMosaicTitle)
+            mosaicPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(labelMosaicTitle)
+                .addGroup(mosaicPanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(mosaicPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(mosaicPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(mosaicPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(mosaicPanelLayout.createSequentialGroup()
-                                                .addGroup(mosaicPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addComponent(mosaicImageLable, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
-                                                        .addComponent(textfieldMosaicImage, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                .addGroup(mosaicPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(mosaicPanelLayout.createSequentialGroup()
-                                                .addComponent(jLabel12)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(labelMosaicSliderValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addComponent(buttonStartMosaicing, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(buttonOpenMosaicImage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(mosaicTileCountSlider, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(checkboxAvoidDuplicates)
-                                        .addComponent(checkboxMosaicAdvanceOptions)
-                                        .addComponent(buttonMosaicSave, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(progressMosaic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(mosaicAdvanceOptionsPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addContainerGap())
+                            .addGroup(mosaicPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(mosaicImageLable, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
+                                .addComponent(textfieldMosaicImage, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                    .addGroup(mosaicPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(mosaicPanelLayout.createSequentialGroup()
+                            .addComponent(jLabel12)
+                            .addGap(18, 18, 18)
+                            .addComponent(labelMosaicSliderValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(buttonStartMosaicing, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonOpenMosaicImage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(mosaicTileCountSlider, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(checkboxAvoidDuplicates)
+                        .addComponent(checkboxMosaicAdvanceOptions)
+                        .addComponent(buttonMosaicSave, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(progressMosaic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(mosaicAdvanceOptionsPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addContainerGap())
         );
         mosaicPanelLayout.setVerticalGroup(
-                mosaicPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            mosaicPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(mosaicPanelLayout.createSequentialGroup()
+                    .addGroup(mosaicPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(mosaicPanelLayout.createSequentialGroup()
-                                .addGroup(mosaicPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(mosaicPanelLayout.createSequentialGroup()
-                                                .addComponent(labelMosaicTitle)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(textfieldMosaicImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(mosaicImageLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGroup(mosaicPanelLayout.createSequentialGroup()
-                                                .addGap(28, 28, 28)
-                                                .addComponent(buttonOpenMosaicImage)
-                                                .addGap(12, 12, 12)
-                                                .addGroup(mosaicPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(jLabel12)
-                                                        .addComponent(labelMosaicSliderValue))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(mosaicTileCountSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(buttonStartMosaicing)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(progressMosaic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(checkboxAvoidDuplicates)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(checkboxMosaicAdvanceOptions)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(mosaicAdvanceOptionsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(buttonMosaicSave)))
-                                .addGap(6, 6, 6)
-                                .addComponent(jLabel13))
+                            .addComponent(labelMosaicTitle)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(textfieldMosaicImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(mosaicImageLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(mosaicPanelLayout.createSequentialGroup()
+                            .addGap(28, 28, 28)
+                            .addComponent(buttonOpenMosaicImage)
+                            .addGap(12, 12, 12)
+                            .addGroup(mosaicPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel12)
+                                .addComponent(labelMosaicSliderValue))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(mosaicTileCountSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(buttonStartMosaicing)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(progressMosaic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(checkboxAvoidDuplicates)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(checkboxMosaicAdvanceOptions)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(mosaicAdvanceOptionsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(buttonMosaicSave)))
+                    .addGap(6, 6, 6)
+                    .addComponent(jLabel13))
         );
 
         cardPanel.add(mosaicPanel, "card2");
@@ -915,52 +915,52 @@ public class LireDemoFrame extends javax.swing.JFrame {
         javax.swing.GroupLayout optionsPanelLayout = new javax.swing.GroupLayout(optionsPanel);
         optionsPanel.setLayout(optionsPanelLayout);
         optionsPanelLayout.setHorizontalGroup(
-                optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(optionsPanelLayout.createSequentialGroup()
+                    .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel4)
                         .addGroup(optionsPanelLayout.createSequentialGroup()
-                                .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel4)
-                                        .addGroup(optionsPanelLayout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jLabel1)
-                                                        .addComponent(jLabel2)
-                                                        .addComponent(jLabel3)
-                                                        .addComponent(jLabel17)
-                                                        .addComponent(jLabel14))
-                                                .addGap(14, 14, 14)
-                                                .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addComponent(selectboxRerankFeature, 0, 604, Short.MAX_VALUE)
-                                                        .addComponent(textfieldNumSearchResults, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
-                                                        .addComponent(selectboxDocumentBuilder, javax.swing.GroupLayout.Alignment.LEADING, 0, 604, Short.MAX_VALUE)
-                                                        .addComponent(textfieldIndexName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
-                                                        .addComponent(textFieldFlickrDownloadMax, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE))))
-                                .addContainerGap())
+                            .addContainerGap()
+                            .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel17)
+                                .addComponent(jLabel14))
+                            .addGap(14, 14, 14)
+                            .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(selectboxRerankFeature, 0, 604, Short.MAX_VALUE)
+                                .addComponent(textfieldNumSearchResults, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
+                                .addComponent(selectboxDocumentBuilder, javax.swing.GroupLayout.Alignment.LEADING, 0, 604, Short.MAX_VALUE)
+                                .addComponent(textfieldIndexName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
+                                .addComponent(textFieldFlickrDownloadMax, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE))))
+                    .addContainerGap())
         );
         optionsPanelLayout.setVerticalGroup(
-                optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(optionsPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(selectboxDocumentBuilder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel2)
-                                        .addComponent(textfieldIndexName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(textfieldNumSearchResults, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel17)
-                                        .addComponent(textFieldFlickrDownloadMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(selectboxRerankFeature, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel14))
-                                .addContainerGap(307, Short.MAX_VALUE))
+            optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(optionsPanelLayout.createSequentialGroup()
+                    .addComponent(jLabel4)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(selectboxDocumentBuilder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(textfieldIndexName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(textfieldNumSearchResults, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel17)
+                        .addComponent(textFieldFlickrDownloadMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(selectboxRerankFeature, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel14))
+                    .addContainerGap(307, Short.MAX_VALUE))
         );
 
         cardPanel.add(optionsPanel, "card4");
@@ -1305,12 +1305,12 @@ public class LireDemoFrame extends javax.swing.JFrame {
         try {
             if (!DirectoryReader.indexExists(open(Paths.get(textfieldIndexName.getText())))) {
                 JOptionPane.showMessageDialog(this, "Did not find existing index!\n"
-                        + "Use the \"Index\" function to create a new one.", "Error", JOptionPane.ERROR_MESSAGE);
+                    + "Use the \"Index\" function to create a new one.", "Error", JOptionPane.ERROR_MESSAGE);
             } else if (textfieldMosaicImage.getText().length() > 4) {
                 mosaicImage();
             } else {
                 JOptionPane.showMessageDialog(this, "Please select an image to create mosaic first.\n"
-                        + "Use the \"Open image ...\" button to do this.", "Error", JOptionPane.ERROR_MESSAGE);
+                    + "Use the \"Open image ...\" button to do this.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (IOException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
@@ -1321,7 +1321,7 @@ public class LireDemoFrame extends javax.swing.JFrame {
         JFileChooser jfc = new JFileChooser(".");
         jfc.setDialogTitle("Select image to create mosaic ...");
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
-                "JPG, PNG & GIF Images", "jpg", "gif", "png");
+            "JPG, PNG & GIF Images", "jpg", "gif", "png");
         jfc.setFileFilter(filter);
         if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             try {
@@ -1519,11 +1519,11 @@ public class LireDemoFrame extends javax.swing.JFrame {
                     }
                     ImageFunctions iFunc = new ImageFunctions();
                     BufferedImage mosaic = iFunc.getMosaic(javax.imageio.ImageIO.read(new java.io.FileInputStream(textfieldMosaicImage.getText())),
-                            new java.awt.Dimension(320, 320), new java.awt.Dimension(numTiles, numTiles),
-                            colorhist,
-                            colordist,
-                            texture, textfieldIndexName.getText(),
-                            progressMonitor);
+                        new java.awt.Dimension(320, 320), new java.awt.Dimension(numTiles, numTiles),
+                        colorhist,
+                        colordist,
+                        texture, textfieldIndexName.getText(),
+                        progressMonitor);
                     mosaicImageLable.setIcon(new ImageIcon(ImageUtils.scaleImage(mosaic, Math.min(mosaicImageLable.getSize().width, mosaicImageLable.getSize().height))));
                     ImageIO.write(mosaic, "png", new FileOutputStream("result.png"));
                     progressMosaic.setString("Finished");
@@ -1576,7 +1576,7 @@ public class LireDemoFrame extends javax.swing.JFrame {
                     resultsPane.getViewport().setViewPosition(bounds.getLocation());
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "An error occurred while searching: " + e.getMessage() + "\nIf you tried to search for local features (SURF) then please \n" +
-                            "make sure you used the menu item Developer -> Bag of Visual Words -> Index All first ", "Error while searching", JOptionPane.ERROR_MESSAGE);
+                        "make sure you used the menu item Developer -> Bag of Visual Words -> Index All first ", "Error while searching", JOptionPane.ERROR_MESSAGE);
 
                 } finally {
                     resultsTable.setRowHeight(220);
@@ -1609,7 +1609,7 @@ public class LireDemoFrame extends javax.swing.JFrame {
 
         } else {
             JOptionPane.showMessageDialog(this, "Please select a query image first.\n"
-                    + "Use the \"Open image ...\" button to do this.", "Error", JOptionPane.ERROR_MESSAGE);
+                + "Use the \"Open image ...\" button to do this.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_buttonStartSearchActionPerformed
 
@@ -1620,8 +1620,8 @@ public class LireDemoFrame extends javax.swing.JFrame {
             t.start();
         } else {
             int result = JOptionPane.showConfirmDialog(this, "You did not specify images to index.\n"
-                    + "Should LireDemo download random Flickr images for indexing?.\n"
-                    + "Note that this is rather slow an consumes a lot of bandwidth.");
+                + "Should LireDemo download random Flickr images for indexing?.\n"
+                + "Note that this is rather slow an consumes a lot of bandwidth.");
             if (result == JOptionPane.OK_OPTION) {
                 FlickrIndexingThread t = new FlickrIndexingThread(this, Integer.parseInt(textFieldFlickrDownloadMax.getText()));
                 buttonStartIndexing.setEnabled(false);
@@ -1649,18 +1649,18 @@ public class LireDemoFrame extends javax.swing.JFrame {
 
     private void helpMenuAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpMenuAboutActionPerformed
         JOptionPane.showMessageDialog(this, "<html><center><b>Simple demo for Lucene Image Retrieval (LIRE) library.</b><br>"
-                        + "<br>Visit http://lire-project.net for more information.<br>"
-                        + "<br>&copy; 2007-2015 by Mathias Lux<br>"
-                        + "mathias@juggle.at<br></center></html>",
-                "About LIRe demo", JOptionPane.PLAIN_MESSAGE);
+                + "<br>Visit http://lire-project.net for more information.<br>"
+                + "<br>&copy; 2007-2015 by Mathias Lux<br>"
+                + "mathias@juggle.at<br></center></html>",
+            "About LIRe demo", JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_helpMenuAboutActionPerformed
 
     private void showAbout() {
         JOptionPane.showMessageDialog(this, "<html><center><b>Simple demo for<br>Lucene Image Retrieval (LIRe) library.</b><br>"
-                        + "<br>Visit http://lire-project.net<br>for more information.<br>"
-                        + "<br>&copy; 2007-2015 by Mathias Lux<br>"
-                        + "mathias@juggle.at<br></center></html>",
-                "About LIRe demo", JOptionPane.PLAIN_MESSAGE);
+                + "<br>Visit http://lire-project.net<br>for more information.<br>"
+                + "<br>&copy; 2007-2015 by Mathias Lux<br>"
+                + "mathias@juggle.at<br></center></html>",
+            "About LIRe demo", JOptionPane.PLAIN_MESSAGE);
     }
 
     private void fileMenuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileMenuExitActionPerformed
@@ -1671,7 +1671,7 @@ public class LireDemoFrame extends javax.swing.JFrame {
         JFileChooser jfc = new JFileChooser(".");
         jfc.setDialogTitle("Select image to search for ...");
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
-                "JPG, PNG & GIF Images", "jpg", "gif", "png");
+            "JPG, PNG & GIF Images", "jpg", "gif", "png");
         jfc.setFileFilter(filter);
         if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             try {

@@ -17,7 +17,7 @@
  * We kindly ask you to refer the any or one of the following publications in
  * any publication mentioning or employing Lire:
  *
- * Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval –
+ * Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval ï¿½
  * An Extensible Java CBIR Library. In proceedings of the 16th ACM International
  * Conference on Multimedia, pp. 1085-1088, Vancouver, Canada, 2008
  * URL: http://doi.acm.org/10.1145/1459359.1459577
@@ -60,9 +60,9 @@ import java.util.Arrays;
  * Created by Nektarios on 28/5/2015.
  *
  * @author Nektarios Anagnostopoulos, nek.anag@gmail.com
- * (c) 2015 by Nektarios Anagnostopoulos
+ *         (c) 2015 by Nektarios Anagnostopoulos
  */
-public class TestExtraction extends TestCase{
+public class TestExtraction extends TestCase {
     Class<? extends GlobalFeature> globalFeatureClass = CEDD.class;
     Class<? extends LocalFeatureExtractor> localFeatureClass = CvSurfExtractor.class;
     SimpleExtractor.KeypointDetector keypointDetector = SimpleExtractor.KeypointDetector.CVSURF;
@@ -99,9 +99,9 @@ public class TestExtraction extends TestCase{
             totalTime += ms;
             featureVector = globalFeature.getFeatureVector();
 
-            System.out.println(String.format("%.2f",  (double) ms ) + " ms. ~ " + path.substring(path.lastIndexOf('\\') + 1) + " ~ " + Arrays.toString(featureVector));
+            System.out.println(String.format("%.2f", (double) ms) + " ms. ~ " + path.substring(path.lastIndexOf('\\') + 1) + " ~ " + Arrays.toString(featureVector));
         }
-        System.out.println(globalFeature.getFeatureName() + " " + String.format("%.2f",  totalTime / (double) images.size()) + " ms each.");
+        System.out.println(globalFeature.getFeatureName() + " " + String.format("%.2f", totalTime / (double) images.size()) + " ms each.");
         System.out.println();
     }
 
@@ -130,9 +130,9 @@ public class TestExtraction extends TestCase{
             totalTime += ms;
             featureVector = aggregator.getVectorRepresentation();
 
-            System.out.println(String.format("%.2f",  (double) ms ) + " ms. ~ " + path.substring(path.lastIndexOf('\\') + 1) + " ~ " + Arrays.toString(featureVector));
+            System.out.println(String.format("%.2f", (double) ms) + " ms. ~ " + path.substring(path.lastIndexOf('\\') + 1) + " ~ " + Arrays.toString(featureVector));
         }
-        System.out.println(localFeatureExtractor.getClassOfFeatures().newInstance().getFeatureName() + " " + String.format("%.2f",  totalTime / (double) images.size()) + " ms each.");
+        System.out.println(localFeatureExtractor.getClassOfFeatures().newInstance().getFeatureName() + " " + String.format("%.2f", totalTime / (double) images.size()) + " ms each.");
         System.out.println();
     }
 
@@ -161,9 +161,9 @@ public class TestExtraction extends TestCase{
             totalTime += ms;
             featureVector = aggregator.getVectorRepresentation();
 
-            System.out.println(String.format("%.2f",  (double) ms ) + " ms. ~ " + path.substring(path.lastIndexOf('\\') + 1) + " ~ " + Arrays.toString(featureVector));
+            System.out.println(String.format("%.2f", (double) ms) + " ms. ~ " + path.substring(path.lastIndexOf('\\') + 1) + " ~ " + Arrays.toString(featureVector));
         }
-        System.out.println(simpleExtractor.getFeatureName() + " " + String.format("%.2f",  totalTime / (double) images.size()) + " ms each.");
+        System.out.println(simpleExtractor.getFeatureName() + " " + String.format("%.2f", totalTime / (double) images.size()) + " ms each.");
         System.out.println();
     }
 }

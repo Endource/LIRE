@@ -53,7 +53,7 @@ package net.semanticmetadata.lire.imageanalysis.filters;
 //  sub-sampling to increase the overall speed.
 //  This implementation is initially based on the C code available at http://www.cs.cityu.edu.hk/~qiyang/
 //
-public final class FastBilateralFilter{
+public final class FastBilateralFilter {
 
     /*
         // Use this class like this ...
@@ -261,7 +261,7 @@ public final class FastBilateralFilter{
         final int offs0 = y0 * w;
         final int offst = offs0 + w;
         return ((d00 * image[offs0 + x0]) + (d0t * image[offs0 + xt]) +
-                (dt0 * image[offst + x0]) + (dtt * image[offst + xt]));
+            (dt0 * image[offst + x0]) + (dtt * image[offst + xt]));
     }
 
     private static float interpolateLinearXY2(float[] image1, float[] image2, float alpha, float x, float y, int w) {
@@ -279,9 +279,9 @@ public final class FastBilateralFilter{
         final int offs0 = y0 * w;
         final int offst = offs0 + w;
         float res1 = ((d00 * image1[offs0 + x0]) + (d0t * image1[offs0 + xt]) +
-                (dt0 * image1[offst + x0]) + (dtt * image1[offst + xt]));
+            (dt0 * image1[offst + x0]) + (dtt * image1[offst + xt]));
         float res2 = ((d00 * image2[offs0 + x0]) + (d0t * image2[offs0 + xt]) +
-                (dt0 * image2[offst + x0]) + (dtt * image2[offst + xt]));
+            (dt0 * image2[offst + x0]) + (dtt * image2[offst + xt]));
         return alpha * res1 + (1.0f - alpha) * res2;
     }
 
@@ -306,7 +306,7 @@ public final class FastBilateralFilter{
             final int ww = (this.width + xx < this.stride) ? this.width : this.stride - xx;
             final int hh = ((this.height + yy) * this.stride <= len) ? this.height : this.height - yy;
             DecimateDownSampler sampler = new DecimateDownSampler(ww, hh,
-                    this.stride, srcIdx, 1 << ds);
+                this.stride, srcIdx, 1 << ds);
             sampler.subSample(src, buf2);
         } else if ((srcIdx != 0) || (this.stride != this.width)) {
             buf2 = this.buffer2;

@@ -209,13 +209,13 @@ public class BinaryPatternsPyramid implements GlobalFeature {
         System.arraycopy(getHistogram(0, 0, width, height, imgEdges, imgGray, gd), 0, histogram, 0, bins);
         //level1
         System.arraycopy(getHistogram(0, 0, width / 2, height / 2, imgEdges, imgGray, gd),
-                0, histogram, bins, bins);
+            0, histogram, bins, bins);
         System.arraycopy(getHistogram(width / 2, 0, width / 2, height / 2, imgEdges, imgGray, gd),
-                0, histogram, 2 * bins, bins);
+            0, histogram, 2 * bins, bins);
         System.arraycopy(getHistogram(0, height / 2, width / 2, height / 2, imgEdges, imgGray, gd),
-                0, histogram, 3 * bins, bins);
+            0, histogram, 3 * bins, bins);
         System.arraycopy(getHistogram(width / 2, height / 2, width / 2, height / 2, imgEdges, imgGray, gd),
-                0, histogram, 4 * bins, bins);
+            0, histogram, 4 * bins, bins);
         // level 2
         int wstep = width / 4;
         int hstep = height / 4;
@@ -223,7 +223,7 @@ public class BinaryPatternsPyramid implements GlobalFeature {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 System.arraycopy(getHistogram(i * wstep, j * hstep, wstep, hstep, imgEdges, imgGray, gd),
-                        0, histogram, binPos * bins, bins);
+                    0, histogram, binPos * bins, bins);
                 binPos++;
             }
         }
@@ -243,7 +243,7 @@ public class BinaryPatternsPyramid implements GlobalFeature {
 
     @Override
     public byte[] getByteArrayRepresentation() {
-        byte[] result = new byte[histogram.length/2];
+        byte[] result = new byte[histogram.length / 2];
         int tmp;
         // stuffing two values in one byte.
         for (int i = 0; i < result.length; i++) {
@@ -263,9 +263,9 @@ public class BinaryPatternsPyramid implements GlobalFeature {
     public void setByteArrayRepresentation(byte[] in, int offset, int length) {
         int tmp;
         for (int i = offset; i < length; i++) {
-            tmp = in[i]+128;
-            histogram[((i-offset) << 1) + 1] = ((double) (tmp & 0x000F));
-            histogram[(i-offset) << 1] = ((double) (tmp >> 4));
+            tmp = in[i] + 128;
+            histogram[((i - offset) << 1) + 1] = ((double) (tmp & 0x000F));
+            histogram[(i - offset) << 1] = ((double) (tmp >> 4));
         }
     }
 

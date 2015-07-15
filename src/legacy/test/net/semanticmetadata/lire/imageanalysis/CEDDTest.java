@@ -164,7 +164,7 @@ public class CEDDTest extends TestCase {
         IndexReader ir = DirectoryReader.open(FSDirectory.open(new File("test-idx")));
         CEDD tmp = new CEDD();
         CEDD idx = new CEDD();
-        for (int i=0; i< ir.maxDoc(); i++) {
+        for (int i = 0; i < ir.maxDoc(); i++) {
             Document d = ir.document(i);
             BytesRef ref = d.getBinaryValue(new CEDD().getFieldName());
             idx.setByteArrayRepresentation(ref.bytes, ref.offset, ref.length);
@@ -196,6 +196,7 @@ public class CEDDTest extends TestCase {
 
     /**
      * Storing zeros run length coded: one zero is "8", two zeros are "9", ... etc.
+     *
      * @throws IOException
      */
     public void testRLE() throws IOException {
@@ -217,7 +218,7 @@ public class CEDDTest extends TestCase {
                     if (count == 0) rep[actualLength] = 0;
                     else {
                         rep[actualLength] = 7 + count;
-                        i += count-1;
+                        i += count - 1;
                     }
                 } else {
                     rep[actualLength] = (int) hist[i];

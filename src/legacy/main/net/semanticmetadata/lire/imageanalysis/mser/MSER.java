@@ -54,7 +54,7 @@ import java.util.Stack;
  * Calculates Maximally stable extremal regions
  * Algorithm based on Linear Time Maximally Stable Extremal Regions
  * by David Nist_r and Henrik Stew_nius (2008)
- * <p/>
+ * <p>
  * User: Shotty
  * Date: 28.06.2010
  * Time: 09:48:00
@@ -87,7 +87,7 @@ public class MSER {
                 int maxEvolution, double areaThreshold,
                 double minMargin, int edgeBlurSize) {
         params = new MSERParameter(delta, minArea, maxArea, maxVariation, minDiversity,
-                maxEvolution, areaThreshold, minMargin, edgeBlurSize);
+            maxEvolution, areaThreshold, minMargin, edgeBlurSize);
     }
 
     /**
@@ -164,7 +164,7 @@ public class MSER {
             currentPixel = heap.pop();
 
             if (currentPixel != null &&
-                    imageMask.getValue(currentPixel.getIndex()) > currentLevel) {
+                imageMask.getValue(currentPixel.getIndex()) > currentLevel) {
                 // process all components on the component stack until we reach the higher gray level
                 processStack(imageMask.getValue(currentPixel.getIndex()));
                 // afterwards, this grey level is the current one
@@ -421,7 +421,7 @@ public class MSER {
             ImagePoint[] border = mser.getBorderPoints(width, height);
             // so the last point is omitted
             double[][] coarsedPoly = coarsenPoly(
-                    pointToMatrix(border, border.length - 1), COARSE_ANGLE);
+                pointToMatrix(border, border.length - 1), COARSE_ANGLE);
 
             // TODO: check if there is a problem with coarsenPoly
             // calculate the Fourier descriptors
@@ -445,7 +445,7 @@ public class MSER {
 
         for (int i = 0; i < n; i++) {
             points[i] = new Point2D.Double(coarsedPoly[0][i % mod],
-                    coarsedPoly[1][i % mod]);
+                coarsedPoly[1][i % mod]);
         }
 
         return points;
@@ -458,8 +458,8 @@ public class MSER {
      * @param m      Shift in y-Direction = first matrix-dimension!
      * @param n      Shift in x-Direction = second matrix-dimension!
      * @return cyclic translated matrix, e.g.
-     *         cycltrans([1 2 3; 4 5 6; 7 8 9], 1,1)
-     *         = [5 6 4; 8 9 7 ; 2 3 1]
+     * cycltrans([1 2 3; 4 5 6; 7 8 9], 1,1)
+     * = [5 6 4; 8 9 7 ; 2 3 1]
      */
     protected double[][] cycltrans(double[][] matrix, int m, int n) {
         int ys = matrix.length;
@@ -565,7 +565,7 @@ public class MSER {
         // if last of cq equals last of q then shift is necessary
         // else cq is result;
         if (cq[0][cq[0].length - 1] == q[0][q[0].length - 1] &&
-                cq[1][cq[1].length - 1] == q[1][q[1].length - 1]) {
+            cq[1][cq[1].length - 1] == q[1][q[1].length - 1]) {
             return cycltrans(cq, 0, -1);
 
         } else {
@@ -793,7 +793,7 @@ public class MSER {
     }
 
     @SuppressWarnings("unused")
-	private void printArray(String name, double[] array) {
+    private void printArray(String name, double[] array) {
         System.out.println("ARRAY " + name + ":");
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i]);

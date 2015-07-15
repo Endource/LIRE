@@ -72,7 +72,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class TestImageSearcher extends TestCase {
     private String[] testFiles = new String[]{"img01.JPG", "img02.JPG", "img03.JPG", "img04.JPG", "img05.JPG",
-            "img06.JPG", "img07.JPG", "img08.JPG", "img08a.JPG"};
+        "img06.JPG", "img07.JPG", "img08.JPG", "img08a.JPG"};
     private String testFilesPath = "src/test/resources/images/";
     private String indexPath = "test-index-small";
     private int numsearches = 25;
@@ -262,8 +262,8 @@ public class TestImageSearcher extends TestCase {
     private void saveToHtml(String prefix, ImageSearchHits hits, String queryImage) throws IOException {
         BufferedWriter bw = new BufferedWriter(new FileWriter("results-" + prefix + ".html"));
         bw.write("<html>\n" +
-                "<head><title>Search Results</title></head>\n" +
-                "<body bgcolor=\"#FFFFFF\">\n");
+            "<head><title>Search Results</title></head>\n" +
+            "<body bgcolor=\"#FFFFFF\">\n");
         bw.write("<h3>query</h3>\n");
         bw.write("<a href=\"file://" + queryImage + "\"><img src=\"file://" + queryImage + "\"></a><p>\n");
         bw.write("<h3>results</h3>\n");
@@ -271,7 +271,7 @@ public class TestImageSearcher extends TestCase {
             bw.write(hits.score(i) + " - <a href=\"file://" + hits.doc(i).get("descriptorImageIdentifier") + "\"><img src=\"file://" + hits.doc(i).get("descriptorImageIdentifier") + "\"></a><p>\n");
         }
         bw.write("</body>\n" +
-                "</html>");
+            "</html>");
         bw.close();
     }
 

@@ -53,10 +53,10 @@ public class Fuzzy24Bin {
     public boolean KeepPreviusValues = false;
 
     protected double[] SaturationMembershipValues = {0, 0, 68, 188,
-            68, 188, 255, 255};
+        68, 188, 255, 255};
 
     protected double[] ValueMembershipValues = {0, 0, 68, 188,
-            68, 188, 255, 255};
+        68, 188, 255, 255};
 
     public FuzzyRules[] Fuzzy24BinRules = new FuzzyRules[4];
 
@@ -64,10 +64,10 @@ public class Fuzzy24Bin {
     public double[] ValueActivation = new double[2];
 
     public int[][] Fuzzy24BinRulesDefinition = {
-            {1, 1, 1},
-            {0, 0, 2},
-            {0, 1, 0},
-            {1, 0, 2}
+        {1, 1, 1},
+        {0, 0, 2},
+        {0, 1, 0},
+        {1, 0, 2}
     };
 
 

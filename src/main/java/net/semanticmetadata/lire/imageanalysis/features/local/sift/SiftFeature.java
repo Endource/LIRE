@@ -101,7 +101,7 @@ public class SiftFeature implements Comparable<SiftFeature>, Serializable, Local
             max = Math.max(max, Math.abs(descriptor[i]));
         }
         for (int i = 0; i < descriptor.length; i++) {
-            descriptor[i] = Math.sqrt(Math.abs(descriptor[i])/max);
+            descriptor[i] = Math.sqrt(Math.abs(descriptor[i]) / max);
         }
     }
 

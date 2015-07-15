@@ -62,7 +62,7 @@ public class LuminanceLayout implements GlobalFeature {
     double[] histogram;
     int tmp;
     static ColorConvertOp grayscale = new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY),
-            new RenderingHints(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR));
+        new RenderingHints(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR));
     private int sideLength = 8;
 
     @Override
@@ -137,7 +137,7 @@ public class LuminanceLayout implements GlobalFeature {
     public void setByteArrayRepresentation(byte[] in, int offset, int length) {
         histogram = new double[length];
         for (int i = 0; i < length; i++) {
-            histogram[i] = (double) in[i+offset];
+            histogram[i] = (double) in[i + offset];
         }
     }
 
@@ -162,8 +162,8 @@ public class LuminanceLayout implements GlobalFeature {
     // just a 8x8 jpeg dct ...
     @SuppressWarnings("unused")
     private double[] jpgDct(double[] histogram) {
-        int[] zickzack = new int[]    { 0,  1,  8, 16,  9,  2,  3, 10, 17, 24, 32, 25, 18, 11,  4,  5, 12, 19, 26, 33, 40, 48, 41, 34, 27, 20, 13,  6,  7, 14, 21, 28, 35, 42, 49, 56};
-        double[] quant = new double[] {16, 5, 6, 7, 6, 5, 8, 7, 7, 7, 9, 8, 8, 9, 12, 20, 13, 12, 11, 11, 12, 25, 18, 18, 15, 20, 28, 25, 30, 30, 28, 25, 28, 27, 32, 36};
+        int[] zickzack = new int[]{0, 1, 8, 16, 9, 2, 3, 10, 17, 24, 32, 25, 18, 11, 4, 5, 12, 19, 26, 33, 40, 48, 41, 34, 27, 20, 13, 6, 7, 14, 21, 28, 35, 42, 49, 56};
+        double[] quant = new double[]{16, 5, 6, 7, 6, 5, 8, 7, 7, 7, 9, 8, 8, 9, 12, 20, 13, 12, 11, 11, 12, 25, 18, 18, 15, 20, 28, 25, 30, 30, 28, 25, 28, 27, 32, 36};
 //        double[] quant = new double[] {16, 11, 12, 14, 12, 10, 16, 14, 13, 14, 18, 17, 16, 19, 24, 40, 26, 24, 22, 22, 24, 49, 35, 37, 29, 40, 58, 51, 61, 60, 57, 51, 56, 55, 64, 72};
         double[] coeffs = new double[histogram.length];
         int u, v;
@@ -171,14 +171,14 @@ public class LuminanceLayout implements GlobalFeature {
         for (int i = 0; i < coeffs.length; i++) {
             u = i % 8;
             v = i / 8;
-            au = Math.sqrt(2d/6d);
-            av = Math.sqrt(2d/6d);
-            if (u==0) au = Math.sqrt(1d/6d);
-            if (v==0) av = Math.sqrt(1d/6d);
+            au = Math.sqrt(2d / 6d);
+            av = Math.sqrt(2d / 6d);
+            if (u == 0) au = Math.sqrt(1d / 6d);
+            if (v == 0) av = Math.sqrt(1d / 6d);
             coeffs[i] = 0;
             for (int x = 0; x < 8; x++) {
                 for (int y = 0; y < 8; y++) {
-                    coeffs[i] += au*av*(histogram[i]-127)*Math.cos((Math.PI/8d)*(x+0.5)*u)*Math.cos((Math.PI/8d)*(y+0.5)*v);
+                    coeffs[i] += au * av * (histogram[i] - 127) * Math.cos((Math.PI / 8d) * (x + 0.5) * u) * Math.cos((Math.PI / 8d) * (y + 0.5) * v);
                 }
             }
 //            coeffs[i] = Math.floor(coeffs[i]);
@@ -186,7 +186,7 @@ public class LuminanceLayout implements GlobalFeature {
         double[] result = new double[zickzack.length];
         for (int i = 0; i < zickzack.length; i++) {
 //            result[i] = Math.round(coeffs[zickzack[i]]] / quant[i]);
-            result[i] = Math.round(coeffs[zickzack[i]] );
+            result[i] = Math.round(coeffs[zickzack[i]]);
 
         }
         return result;

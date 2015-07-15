@@ -116,7 +116,7 @@ public class FilterTest extends TestCase {
     }
 
     @SuppressWarnings("unused")
-	private Document indexFiles() throws IOException {
+    private Document indexFiles() throws IOException {
         System.out.println("---< indexing >-------------------------");
         int count = 0;
         DocumentBuilder builder = getDocumentBuilder();

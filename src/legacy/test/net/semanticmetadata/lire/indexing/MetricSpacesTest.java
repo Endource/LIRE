@@ -97,7 +97,7 @@ public class MetricSpacesTest extends TestCase {
         for (int i = 0; i < docs.scoreDocs.length; i++) {
             ScoreDoc scoreDoc = docs.scoreDocs[i];
             bw.write("<img title=\"ID: " + scoreDoc.doc + ", " +
-                    "Score: " + scoreDoc.score + "\" src=\"file:///" + reader.document(scoreDoc.doc).getValues("descriptorImageIdentifier")[0] + "\"> ");
+                "Score: " + scoreDoc.score + "\" src=\"file:///" + reader.document(scoreDoc.doc).getValues("descriptorImageIdentifier")[0] + "\"> ");
         }
         bw.write("</body></html>");
         bw.close();

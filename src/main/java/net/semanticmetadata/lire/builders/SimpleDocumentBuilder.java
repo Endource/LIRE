@@ -17,7 +17,7 @@
  * We kindly ask you to refer the any or one of the following publications in
  * any publication mentioning or employing Lire:
  *
- * Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval –
+ * Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval ï¿½
  * An Extensible Java CBIR Library. In proceedings of the 16th ACM International
  * Conference on Multimedia, pp. 1085-1088, Vancouver, Canada, 2008
  * URL: http://doi.acm.org/10.1145/1459359.1459577
@@ -48,7 +48,7 @@ import java.util.*;
  * Created by Nektarios on 03/06/2015.
  *
  * @author Nektarios Anagnostopoulos, nek.anag@gmail.com
- * (c) 2015 by Nektarios Anagnostopoulos
+ *         (c) 2015 by Nektarios Anagnostopoulos
  */
 public class SimpleDocumentBuilder extends AbstractLocalDocumentBuilder {
 
@@ -60,7 +60,7 @@ public class SimpleDocumentBuilder extends AbstractLocalDocumentBuilder {
     }
 
     public SimpleDocumentBuilder(Class<? extends GlobalFeature> globalFeatureClass, SimpleExtractor.KeypointDetector keypointDetector, LinkedList<Cluster[]> listOfCodebooks) {
-        addExtractor(globalFeatureClass,keypointDetector, listOfCodebooks);
+        addExtractor(globalFeatureClass, keypointDetector, listOfCodebooks);
     }
 
     public SimpleDocumentBuilder(ExtractorItem extractorItem, Cluster[] codebook) {
@@ -127,12 +127,14 @@ public class SimpleDocumentBuilder extends AbstractLocalDocumentBuilder {
 
     /**
      * Can be used to add a global extractor with a {@link SimpleExtractor.KeypointDetector}.
+     *
      * @param globalFeatureClass
      * @param keypointDetector
      * @param codebook
      */
     public void addExtractor(Class<? extends GlobalFeature> globalFeatureClass, SimpleExtractor.KeypointDetector keypointDetector, Cluster[] codebook) {
-        if ((!(codebook.length>0))||(codebook == null)) throw new UnsupportedOperationException("Codebook cannot be empty or null!!");
+        if ((!(codebook.length > 0)) || (codebook == null))
+            throw new UnsupportedOperationException("Codebook cannot be empty or null!!");
         LinkedList<Cluster[]> listOfCodebooks = new LinkedList<Cluster[]>();
         listOfCodebooks.add(codebook);
         addExtractor(new ExtractorItem(globalFeatureClass, keypointDetector), listOfCodebooks);
@@ -140,11 +142,13 @@ public class SimpleDocumentBuilder extends AbstractLocalDocumentBuilder {
 
     /**
      * Can be used to add a global extractor with a {@link SimpleExtractor.KeypointDetector}.
+     *
      * @param extractorItem
      * @param codebook
      */
     public void addExtractor(ExtractorItem extractorItem, Cluster[] codebook) {
-        if ((!(codebook.length>0))||(codebook == null)) throw new UnsupportedOperationException("Codebook cannot be empty or null!!");
+        if ((!(codebook.length > 0)) || (codebook == null))
+            throw new UnsupportedOperationException("Codebook cannot be empty or null!!");
         LinkedList<Cluster[]> listOfCodebooks = new LinkedList<Cluster[]>();
         listOfCodebooks.add(codebook);
         addExtractor(extractorItem, listOfCodebooks);
@@ -152,24 +156,29 @@ public class SimpleDocumentBuilder extends AbstractLocalDocumentBuilder {
 
     /**
      * Can be used to add a global extractor with a {@link SimpleExtractor.KeypointDetector}.
+     *
      * @param globalFeatureClass
      * @param keypointDetector
      * @param listOfCodebooks
      */
     public void addExtractor(Class<? extends GlobalFeature> globalFeatureClass, SimpleExtractor.KeypointDetector keypointDetector, LinkedList<Cluster[]> listOfCodebooks) {
-        if ((!(listOfCodebooks.size()>0))||(listOfCodebooks == null)) throw new UnsupportedOperationException("List of codebooks cannot be empty or null!!");
+        if ((!(listOfCodebooks.size() > 0)) || (listOfCodebooks == null))
+            throw new UnsupportedOperationException("List of codebooks cannot be empty or null!!");
         addExtractor(new ExtractorItem(globalFeatureClass, keypointDetector), listOfCodebooks);
     }
 
     /**
      * Can be used to add a global extractor with a {@link SimpleExtractor.KeypointDetector}.
+     *
      * @param extractorItem
      * @param listOfCodebooks
      */
     public void addExtractor(ExtractorItem extractorItem, LinkedList<Cluster[]> listOfCodebooks) {
-        if (docsCreated) throw new UnsupportedOperationException("Cannot modify builder after documents have been created!");
+        if (docsCreated)
+            throw new UnsupportedOperationException("Cannot modify builder after documents have been created!");
         if (!extractorItem.isSimple()) throw new UnsupportedOperationException("ExtractorItem must be SIMPLE");
-        if ((!(listOfCodebooks.size()>0))||(listOfCodebooks == null)) throw new UnsupportedOperationException("List of codebooks cannot be empty or null!!");
+        if ((!(listOfCodebooks.size() > 0)) || (listOfCodebooks == null))
+            throw new UnsupportedOperationException("List of codebooks cannot be empty or null!!");
 
         HashMap<Integer, String[]> mapOfFieldNames = new HashMap<Integer, String[]>(listOfCodebooks.size());
         String fieldName = extractorItem.getFieldName() + aggregator.getFieldName();

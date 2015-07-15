@@ -48,7 +48,7 @@ import java.util.Arrays;
  * "Image Indexing Using Color Correlograms", CVPR1997. J Huang, S. R Kumar, M. Mitra, W. Zhu, R. Zabih
  *
  * @author Rodrigo Carvalho Rezende <rcrezende@gmail.com> http://www.rodrigorezende.net/
- *         <p/>
+ *         <p>
  *         I noticed that although this approach has teoretical complexity O(|I|*d) lower than a naive method O(|I|*d²),
  *         in practice is slower and consumes more memory.
  *         It is recomended to use only one object for each thread. So, it is recomended to change the way of instance this class.
@@ -192,9 +192,9 @@ public class DynamicProgrammingAutoCorrelogramExtraction implements IAutoCorrelo
                 final int x = Ic[c][i][0];
                 final int y = Ic[c][i][1];
                 A[c][0] += ((y - 1 >= 0) ? ((x - 1 >= 0) ? ah[0][x - 1][y - 1][c] : 0) + ah[0][x][y - 1][c] : 0) +
-                        ((y + 1 < H) ? ((x - 1 >= 0) ? ah[0][x - 1][y + 1][c] : 0) + ah[0][x][y + 1][c] : 0) +
-                        ((x - 1 >= 0) ? av0[x - 1][y][c] + av0[x - 1][y][c] : 0) +
-                        ((x + 1 < W) ? av0[x + 1][y][c] + av0[x + 1][y][c] : 0);
+                    ((y + 1 < H) ? ((x - 1 >= 0) ? ah[0][x - 1][y + 1][c] : 0) + ah[0][x][y + 1][c] : 0) +
+                    ((x - 1 >= 0) ? av0[x - 1][y][c] + av0[x - 1][y][c] : 0) +
+                    ((x + 1 < W) ? av0[x + 1][y][c] + av0[x + 1][y][c] : 0);
 
                 totalComplexity++;
             }
@@ -209,9 +209,9 @@ public class DynamicProgrammingAutoCorrelogramExtraction implements IAutoCorrelo
                     final int y = Ic[c][i][1];
 
                     A[c][di] += ((y - d >= 0) ? ((x - d >= 0) ? ah[d - 1][x - d][y - d][c] : 0) + ah[d - 1][x][y - d][c] : 0) +
-                            ((y + d < H) ? ((x - d >= 0) ? ah[d - 1][x - d][y + d][c] : 0) + ah[d - 1][x][y + d][c] : 0) +
-                            ((x - d >= 0) ? ((y - d + 1 >= 0) ? av[d - 2][x - d][y - d + 1][c] : 0) + av[d - 2][x - d][y][c] : 0) +
-                            ((x + d < W) ? ((y - d + 1 >= 0) ? av[d - 2][x + d][y - d + 1][c] : 0) + av[d - 2][x + d][y][c] : 0);
+                        ((y + d < H) ? ((x - d >= 0) ? ah[d - 1][x - d][y + d][c] : 0) + ah[d - 1][x][y + d][c] : 0) +
+                        ((x - d >= 0) ? ((y - d + 1 >= 0) ? av[d - 2][x - d][y - d + 1][c] : 0) + av[d - 2][x - d][y][c] : 0) +
+                        ((x + d < W) ? ((y - d + 1 >= 0) ? av[d - 2][x + d][y - d + 1][c] : 0) + av[d - 2][x + d][y][c] : 0);
 
                     totalComplexity++;
                 }

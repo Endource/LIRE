@@ -102,7 +102,7 @@ public class UCIDBenchmark extends TestCase {
     };
 
     LireFeature[] simpleFeaturesToTest = new LireFeature[]{
-            new CEDD()
+        new CEDD()
 //            new ScalableColor()
 //            new OpponentHistogram()
     };

@@ -24,7 +24,6 @@ public class SimpleCentrist implements GlobalFeature {
     double[] histogram;
 
 
-
     @Override
     public void extract(BufferedImage image) {
         histogram = new double[256];
@@ -55,6 +54,7 @@ public class SimpleCentrist implements GlobalFeature {
 
     /**
      * Applies max norm to the histogram.
+     *
      * @param in
      */
     private void normalize(double[] in) {

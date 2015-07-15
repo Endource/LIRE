@@ -62,9 +62,9 @@ public class ArffGeneratorTest extends TestCase {
         ArrayList<File> images = FileUtils.getAllImageFiles(new File("W:\\Forschung\\Intention_Test_Data\\data\\images"), true);
         // print header
         System.out.println("% generated automatically by LIRe\n" +
-                "@relation content_based_features\n" +
-                "\n" +
-                "@attribute image_filename String");
+            "@relation content_based_features\n" +
+            "\n" +
+            "@attribute image_filename String");
         System.out.println("@attribute faces numeric");
         System.out.println("@attribute cedd relational");
         for (int i = 0; i < 144; i++) {

@@ -17,7 +17,7 @@
  * We kindly ask you to refer the any or one of the following publications in
  * any publication mentioning or employing Lire:
  *
- * Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval –
+ * Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval ï¿½
  * An Extensible Java CBIR Library. In proceedings of the 16th ACM International
  * Conference on Multimedia, pp. 1085-1088, Vancouver, Canada, 2008
  * URL: http://doi.acm.org/10.1145/1459359.1459577
@@ -48,7 +48,7 @@ import net.semanticmetadata.lire.imageanalysis.features.LocalFeatureExtractor;
  * Created by Nektarios on 6/5/2015.
  *
  * @author Nektarios Anagnostopoulos, nek.anag@gmail.com
- * (c) 2015 by Nektarios Anagnostopoulos
+ *         (c) 2015 by Nektarios Anagnostopoulos
  */
 public class ExtractorItem {
     private Class<? extends Extractor> extractorClass;
@@ -61,7 +61,7 @@ public class ExtractorItem {
     private boolean local = false;
     private boolean simple = false;
 
-    public ExtractorItem(Class<? extends Extractor> extractorClass){
+    public ExtractorItem(Class<? extends Extractor> extractorClass) {
         if (extractorClass == null) throw new UnsupportedOperationException("extractorClass cannot be null");
 
         this.extractorClass = extractorClass;
@@ -73,12 +73,11 @@ public class ExtractorItem {
             e.printStackTrace();
         }
 
-        if ((GlobalFeature.class).isAssignableFrom(extractorClass)){
+        if ((GlobalFeature.class).isAssignableFrom(extractorClass)) {
             this.global = true;
             this.fieldName = ((GlobalFeature) extractorInstance).getFieldName();
             this.featureInstance = (GlobalFeature) extractorInstance;
-        }
-        else if ((LocalFeatureExtractor.class).isAssignableFrom(extractorClass)){
+        } else if ((LocalFeatureExtractor.class).isAssignableFrom(extractorClass)) {
             this.local = true;
             try {
                 this.featureInstance = ((LocalFeatureExtractor) extractorInstance).getClassOfFeatures().newInstance();
@@ -88,14 +87,14 @@ public class ExtractorItem {
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
-        }
-        else throw new UnsupportedOperationException("Error");
+        } else throw new UnsupportedOperationException("Error");
 
         this.keypointDetector = null;
     }
 
-    public ExtractorItem(Class<? extends GlobalFeature> globalFeatureClass, SimpleExtractor.KeypointDetector keypointDetector){
-        if ((globalFeatureClass == null)||(keypointDetector == null)) throw new UnsupportedOperationException("globalFeature or detector cannot be null");
+    public ExtractorItem(Class<? extends GlobalFeature> globalFeatureClass, SimpleExtractor.KeypointDetector keypointDetector) {
+        if ((globalFeatureClass == null) || (keypointDetector == null))
+            throw new UnsupportedOperationException("globalFeature or detector cannot be null");
 
         this.extractorClass = globalFeatureClass;   //GlobalFeature!!
         try {
@@ -111,31 +110,39 @@ public class ExtractorItem {
         this.simple = true;
     }
 
-    public Class<? extends Extractor> getExtractorClass(){
+    public Class<? extends Extractor> getExtractorClass() {
         return extractorClass;
     }
 
-    public Extractor getExtractorInstance(){
+    public Extractor getExtractorInstance() {
         return extractorInstance;
     }
 
-    public LireFeature getFeatureInstance(){
+    public LireFeature getFeatureInstance() {
         return featureInstance;
     }
 
-    public SimpleExtractor.KeypointDetector getKeypointDetector(){
+    public SimpleExtractor.KeypointDetector getKeypointDetector() {
         return keypointDetector;
     }
 
-    public String getFieldName() { return fieldName; }
+    public String getFieldName() {
+        return fieldName;
+    }
 
-    public boolean isGlobal(){ return global; }
+    public boolean isGlobal() {
+        return global;
+    }
 
-    public boolean isLocal(){ return local; }
+    public boolean isLocal() {
+        return local;
+    }
 
-    public boolean isSimple(){ return simple; }
+    public boolean isSimple() {
+        return simple;
+    }
 
-    public ExtractorItem clone(){
+    public ExtractorItem clone() {
         ExtractorItem clone;
 
         if (simple)

@@ -17,7 +17,7 @@
  * We kindly ask you to refer the any or one of the following publications in
  * any publication mentioning or employing Lire:
  *
- * Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval –
+ * Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval ï¿½
  * An Extensible Java CBIR Library. In proceedings of the 16th ACM International
  * Conference on Multimedia, pp. 1085-1088, Vancouver, Canada, 2008
  * URL: http://doi.acm.org/10.1145/1459359.1459577
@@ -44,7 +44,7 @@ import net.semanticmetadata.lire.utils.SerializationUtils;
  * Created by Nektarios on 25/3/2015.
  *
  * @author Nektarios Anagnostopoulos, nek.anag@gmail.com
- * (c) 2015 by Nektarios Anagnostopoulos
+ *         (c) 2015 by Nektarios Anagnostopoulos
  */
 public class SimpleFeature implements LocalFeature {
     double[] data = null;
@@ -54,11 +54,11 @@ public class SimpleFeature implements LocalFeature {
     private String fieldName = "GenericSF";
     private Class<? extends GlobalFeature> ExtractorClass;
 
-    public SimpleFeature(){
+    public SimpleFeature() {
 
     }
 
-    public SimpleFeature(double[] data, double x, double y, double size, String fieldName, String featureName, Class<? extends GlobalFeature> ExtractorClass){
+    public SimpleFeature(double[] data, double x, double y, double size, String fieldName, String featureName, Class<? extends GlobalFeature> ExtractorClass) {
         this.data = data;
         this.X = x;
         this.Y = y;
@@ -102,7 +102,7 @@ public class SimpleFeature implements LocalFeature {
     @Override
     public double getDistance(LireFeature feature) {
         // it is assumed that the histograms are of equal length.
-        assert(feature.getFeatureVector().length == data.length);
+        assert (feature.getFeatureVector().length == data.length);
         return MetricsUtils.distL2(feature.getFeatureVector(), data);
     }
 

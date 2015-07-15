@@ -80,28 +80,28 @@ public class TestTruthFile extends TestCase {
     private File dataSet = new File("D:\\DataSets\\Labels\\dir.txt");
     private File answerSet = new File(path + "results.txt");
     private Class[] testFeatures = new Class[]{
-            AutoColorCorrelogram.class,
-            BinaryPatternsPyramid.class,
-            CEDD.class,
-            ColorLayout.class,
-            EdgeHistogram.class,
-            FCTH.class,
-            FuzzyColorHistogram.class,
-            Gabor.class,
-            JCD.class,
-            JointHistogram.class,
-            JpegCoefficientHistogram.class,
-            LocalBinaryPatterns.class,
-            LuminanceLayout.class,
-            OpponentHistogram.class,
-            PHOG.class,
-            RotationInvariantLocalBinaryPatterns.class,
-            SPACC.class,
-            SPCEDD.class,
-            SPLBP.class,
-            ScalableColor.class,
-            SimpleColorHistogram.class,
-            Tamura.class,
+        AutoColorCorrelogram.class,
+        BinaryPatternsPyramid.class,
+        CEDD.class,
+        ColorLayout.class,
+        EdgeHistogram.class,
+        FCTH.class,
+        FuzzyColorHistogram.class,
+        Gabor.class,
+        JCD.class,
+        JointHistogram.class,
+        JpegCoefficientHistogram.class,
+        LocalBinaryPatterns.class,
+        LuminanceLayout.class,
+        OpponentHistogram.class,
+        PHOG.class,
+        RotationInvariantLocalBinaryPatterns.class,
+        SPACC.class,
+        SPCEDD.class,
+        SPLBP.class,
+        ScalableColor.class,
+        SimpleColorHistogram.class,
+        Tamura.class,
     };
 
     public void testAll() throws Exception {
@@ -123,13 +123,13 @@ public class TestTruthFile extends TestCase {
         pin.run();
         // index answers
         pin = new ParallelIndexer(16, indexPath, answerSet, false) {
-                    @Override
-                    public void addBuilders(ChainedDocumentBuilder builder) {
-                        for (int i = 0; i < testFeatures.length; i++) {
-                            builder.addBuilder(new GenericDocumentBuilder(testFeatures[i], false));
-                        }
-                    }
-                };
+            @Override
+            public void addBuilders(ChainedDocumentBuilder builder) {
+                for (int i = 0; i < testFeatures.length; i++) {
+                    builder.addBuilder(new GenericDocumentBuilder(testFeatures[i], false));
+                }
+            }
+        };
         pin.run();
     }
 
@@ -137,7 +137,7 @@ public class TestTruthFile extends TestCase {
         System.out.printf("%s\t%s\t%s\t%s\t%s\t%s\n", "Test", "recall@5", "recall@10", "recall@20", "recall@30", "recall@50");
         IndexReader reader = DirectoryReader.open(MMapDirectory.open(new File(indexPath)));
         for (int i = 0; i < testFeatures.length; i++) {
-            getRecall(testFeatures[i].getName().substring(testFeatures[i].getName().lastIndexOf('.')+1), new GenericFastImageSearcher(250, testFeatures[i], true, reader), reader);
+            getRecall(testFeatures[i].getName().substring(testFeatures[i].getName().lastIndexOf('.') + 1), new GenericFastImageSearcher(250, testFeatures[i], true, reader), reader);
         }
 
     }
@@ -181,7 +181,7 @@ public class TestTruthFile extends TestCase {
             for (int i = 0; i < Math.min(50, hits.length()); i++) {
                 Document d = hits.doc(i);
                 String fileName = d.getValues(DocumentBuilder.FIELD_NAME_IDENTIFIER)[0];
-                if (topicResults.contains(fileName.substring(fileName.lastIndexOf('\\')+1))) {
+                if (topicResults.contains(fileName.substring(fileName.lastIndexOf('\\') + 1))) {
                     sum += 1;
                     sb.append('*');
                 } else sb.append('.');
@@ -205,7 +205,7 @@ public class TestTruthFile extends TestCase {
 
 
         System.out.printf("%s\t%3.2f\t%3.2f\t%3.2f\t%3.2f\t%3.2f\n", prefix, ap5 / (double) topics.size(), ap10 / (double) topics.size(),
-                ap20 / (double) topics.size(), ap30 / (double) topics.size(), ap50 / (double) topics.size());
+            ap20 / (double) topics.size(), ap30 / (double) topics.size(), ap50 / (double) topics.size());
 
     }
 }

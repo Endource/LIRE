@@ -17,7 +17,7 @@
  * We kindly ask you to refer the any or one of the following publications in
  * any publication mentioning or employing Lire:
  *
- * Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval –
+ * Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval ï¿½
  * An Extensible Java CBIR Library. In proceedings of the 16th ACM International
  * Conference on Multimedia, pp. 1085-1088, Vancouver, Canada, 2008
  * URL: http://doi.acm.org/10.1145/1459359.1459577
@@ -54,7 +54,7 @@ import java.util.*;
  * Created by Nektarios on 28/5/2015.
  *
  * @author Nektarios Anagnostopoulos, nek.anag@gmail.com
- * (c) 2015 by Nektarios Anagnostopoulos
+ *         (c) 2015 by Nektarios Anagnostopoulos
  */
 public class TestProperties extends TestCase {
 
@@ -68,14 +68,14 @@ public class TestProperties extends TestCase {
     private HashMap<ExtractorItem, LinkedList<Cluster[]>> LocalExtractorsAndCodebooks = new HashMap<ExtractorItem, LinkedList<Cluster[]>>(10); // default size (16)
     private HashMap<ExtractorItem, LinkedList<Cluster[]>> SimpleExtractorsAndCodebooks = new HashMap<ExtractorItem, LinkedList<Cluster[]>>(10); // default size (16)
 
-    public void testWriteLoadProperties(){
+    public void testWriteLoadProperties() {
         writePropertiesFileTest();
         loadPropertiesFile("testxml.xml");
         testPrintSetUp();
     }
 
-    public void writePropertiesFileTest(){
-        try{
+    public void writePropertiesFileTest() {
+        try {
             Properties props = new Properties();
 
             props.setProperty("0", "info");
@@ -111,8 +111,8 @@ public class TestProperties extends TestCase {
         }
     }
 
-    private void writePropertiesFile(){
-        try{
+    private void writePropertiesFile() {
+        try {
             Properties props = new Properties();
 
             props.setProperty("0", "info");
@@ -160,8 +160,8 @@ public class TestProperties extends TestCase {
         }
     }
 
-    private void loadPropertiesFile(String path){
-        try{
+    private void loadPropertiesFile(String path) {
+        try {
             Properties prop = new Properties();
             FileInputStream fis = new FileInputStream(path);
             prop.loadFromXML(fis);
@@ -172,35 +172,35 @@ public class TestProperties extends TestCase {
             SimpleExtractor.KeypointDetector detector;
             LinkedList<Cluster[]> tmpListOfCodebooks;
             String extractorType;
-            while(prop.getProperty(String.valueOf(counter)) != null){
+            while (prop.getProperty(String.valueOf(counter)) != null) {
                 extractorType = prop.getProperty(String.valueOf(counter));
-                if (extractorType.equals("global")){
-                    tmpGlobalClass = (Class<? extends GlobalFeature>)Class.forName(prop.getProperty(String.valueOf(counter) + ".extractor"));
+                if (extractorType.equals("global")) {
+                    tmpGlobalClass = (Class<? extends GlobalFeature>) Class.forName(prop.getProperty(String.valueOf(counter) + ".extractor"));
                     addExtractor(tmpGlobalClass);
-                } else if (extractorType.equals("local")){
+                } else if (extractorType.equals("local")) {
                     codebookCounter = 1;
                     tmpListOfCodebooks = new LinkedList<Cluster[]>();
-                    while(prop.getProperty(String.valueOf(counter) + ".codebook." + String.valueOf(codebookCounter)) != null){
+                    while (prop.getProperty(String.valueOf(counter) + ".codebook." + String.valueOf(codebookCounter)) != null) {
                         tmpListOfCodebooks.add(Cluster.readClusters(prop.getProperty(String.valueOf(counter) + ".codebook." + String.valueOf(codebookCounter))));
                         codebookCounter++;
                     }
-                    tmpLocalClass = (Class<? extends LocalFeatureExtractor>)Class.forName(prop.getProperty(String.valueOf(counter) + ".extractor"));
+                    tmpLocalClass = (Class<? extends LocalFeatureExtractor>) Class.forName(prop.getProperty(String.valueOf(counter) + ".extractor"));
                     addExtractor(tmpLocalClass, tmpListOfCodebooks);
-                } else if (extractorType.equals("simple")){
+                } else if (extractorType.equals("simple")) {
                     codebookCounter = 1;
                     tmpListOfCodebooks = new LinkedList<Cluster[]>();
-                    while(prop.getProperty(String.valueOf(counter) + ".codebook." + String.valueOf(codebookCounter)) != null){
+                    while (prop.getProperty(String.valueOf(counter) + ".codebook." + String.valueOf(codebookCounter)) != null) {
                         tmpListOfCodebooks.add(Cluster.readClusters(prop.getProperty(String.valueOf(counter) + ".codebook." + String.valueOf(codebookCounter))));
                         codebookCounter++;
                     }
-                    tmpGlobalClass = (Class<? extends GlobalFeature>)Class.forName(prop.getProperty(String.valueOf(counter) + ".extractor"));
+                    tmpGlobalClass = (Class<? extends GlobalFeature>) Class.forName(prop.getProperty(String.valueOf(counter) + ".extractor"));
                     detector = SimpleExtractor.getDetector(prop.getProperty(String.valueOf(counter) + ".detector"));
                     addExtractor(tmpGlobalClass, detector, tmpListOfCodebooks);
-                } else if (extractorType.equals("info")){
-                    this.aggregator = (Class<? extends AbstractAggregator>)Class.forName(prop.getProperty(String.valueOf(counter) + ".info.0"));
+                } else if (extractorType.equals("info")) {
+                    this.aggregator = (Class<? extends AbstractAggregator>) Class.forName(prop.getProperty(String.valueOf(counter) + ".info.0"));
                     codebookCounter = 1;
                     LinkedList<Integer> tmpListOfNumOfClusters = new LinkedList<Integer>();
-                    while(prop.getProperty(String.valueOf(counter) + ".info." + String.valueOf(codebookCounter)) != null){
+                    while (prop.getProperty(String.valueOf(counter) + ".info." + String.valueOf(codebookCounter)) != null) {
                         tmpListOfNumOfClusters.add(Integer.valueOf(prop.getProperty(String.valueOf(counter) + ".info." + String.valueOf(codebookCounter))));
                         codebookCounter++;
                     }
@@ -223,13 +223,14 @@ public class TestProperties extends TestCase {
     }
 
     public void addExtractor(Class<? extends Extractor> extractorClass) {
-        if (docsCreated) throw new UnsupportedOperationException("Cannot add extractors after documents have been created!");
+        if (docsCreated)
+            throw new UnsupportedOperationException("Cannot add extractors after documents have been created!");
         ExtractorItem extractorItem = new ExtractorItem(extractorClass);
         boolean flag = true;
-        if (extractorItem.isGlobal()){
+        if (extractorItem.isGlobal()) {
             for (Iterator<ExtractorItem> iterator = GlobalExtractors.iterator(); iterator.hasNext(); ) {
                 ExtractorItem next = iterator.next();
-                if (next.getExtractorClass().equals(extractorClass)){
+                if (next.getExtractorClass().equals(extractorClass)) {
                     flag = false;
                 }
             }
@@ -238,11 +239,10 @@ public class TestProperties extends TestCase {
             } else {
                 throw new UnsupportedOperationException(extractorClass.getSimpleName() + " already exists!!");
             }
-        }
-        else if (extractorItem.isLocal()) {
+        } else if (extractorItem.isLocal()) {
             for (Iterator<Map.Entry<ExtractorItem, LinkedList<Cluster[]>>> iterator = LocalExtractorsAndCodebooks.entrySet().iterator(); iterator.hasNext(); ) {
                 Map.Entry<ExtractorItem, LinkedList<Cluster[]>> next = iterator.next();
-                if (next.getKey().getExtractorClass().equals(extractorClass)){
+                if (next.getKey().getExtractorClass().equals(extractorClass)) {
                     flag = false;
                 }
             }
@@ -256,13 +256,14 @@ public class TestProperties extends TestCase {
     }
 
     public void addExtractor(Class<? extends LocalFeatureExtractor> localFeatureExtractor, LinkedList<Cluster[]> codebooks) {
-        if (docsCreated) throw new UnsupportedOperationException("Cannot add extractors after documents have been created!");
+        if (docsCreated)
+            throw new UnsupportedOperationException("Cannot add extractors after documents have been created!");
         ExtractorItem extractorItem = new ExtractorItem(localFeatureExtractor);
         boolean found, flag = true;
 
         for (Iterator<Map.Entry<ExtractorItem, LinkedList<Cluster[]>>> iterator = LocalExtractorsAndCodebooks.entrySet().iterator(); iterator.hasNext(); ) {
             Map.Entry<ExtractorItem, LinkedList<Cluster[]>> next = iterator.next();
-            if (next.getKey().getExtractorClass().equals(localFeatureExtractor)){
+            if (next.getKey().getExtractorClass().equals(localFeatureExtractor)) {
                 flag = false;
             }
         }
@@ -272,8 +273,7 @@ public class TestProperties extends TestCase {
             for (int i = 0; i < numOfClusters.length; i++) {
                 found = false;
                 for (int j = 0; j < codebooks.size(); j++) {
-                    if (codebooks.get(j).length == numOfClusters[i])
-                    {
+                    if (codebooks.get(j).length == numOfClusters[i]) {
                         found = true;
                     }
                 }
@@ -286,11 +286,12 @@ public class TestProperties extends TestCase {
     }
 
     public void addExtractor(Class<? extends GlobalFeature> globalFeatureClass, SimpleExtractor.KeypointDetector detector, LinkedList<Cluster[]> codebooks) {
-        if (docsCreated) throw new UnsupportedOperationException("Cannot add extractors after documents have been created!");
+        if (docsCreated)
+            throw new UnsupportedOperationException("Cannot add extractors after documents have been created!");
         boolean found, flag = true;
         for (Iterator<Map.Entry<ExtractorItem, LinkedList<Cluster[]>>> iterator = SimpleExtractorsAndCodebooks.entrySet().iterator(); iterator.hasNext(); ) {
             Map.Entry<ExtractorItem, LinkedList<Cluster[]>> next = iterator.next();
-            if ((next.getKey().getExtractorClass().equals(globalFeatureClass))&&(next.getKey().getKeypointDetector()==detector)){
+            if ((next.getKey().getExtractorClass().equals(globalFeatureClass)) && (next.getKey().getKeypointDetector() == detector)) {
                 flag = false;
             }
         }
@@ -300,8 +301,7 @@ public class TestProperties extends TestCase {
             for (int i = 0; i < numOfClusters.length; i++) {
                 found = false;
                 for (int j = 0; j < codebooks.size(); j++) {
-                    if (codebooks.get(j).length == numOfClusters[i])
-                    {
+                    if (codebooks.get(j).length == numOfClusters[i]) {
                         found = true;
                     }
                 }
@@ -313,10 +313,10 @@ public class TestProperties extends TestCase {
         }
     }
 
-    public void testPrintSetUp(){
+    public void testPrintSetUp() {
         System.out.println("===================================================================================");
         System.out.println("SetUp:");
-        if (((LocalExtractorsAndCodebooks.size() > 0)||(SimpleExtractorsAndCodebooks.size() > 0))&&(numOfClusters.length > 0)){
+        if (((LocalExtractorsAndCodebooks.size() > 0) || (SimpleExtractorsAndCodebooks.size() > 0)) && (numOfClusters.length > 0)) {
             System.out.println("numOfDocsForCodebooks: " + numOfDocsForCodebooks);
             System.out.print("Set of codebooks: " + numOfClusters[0]);
             for (int i = 1; i < numOfClusters.length; i++) {

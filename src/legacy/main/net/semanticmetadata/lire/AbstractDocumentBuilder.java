@@ -54,7 +54,7 @@ import java.io.InputStream;
 /**
  * Abstract DocumentBuilder, which uses javax.imageio.ImageIO to create a BufferedImage
  * from an InputStream.
- * <p/>
+ * <p>
  * This file is part of the Caliph and Emir project: http://www.SemanticMetadata.net
  * <br>Date: 31.01.2006
  * <br>Time: 23:07:39

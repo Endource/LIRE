@@ -60,11 +60,12 @@ public class EdgeHistogram extends EdgeHistogramImplementation implements Global
     /**
      * Creates a 40 byte array from an edge histogram descriptor.
      * Stuffs 2 numbers into one byte.
+     *
      * @return
      */
     @Override
     public byte[] getByteArrayRepresentation() {
-        byte[] result = new byte[edgeHistogram.length/2];
+        byte[] result = new byte[edgeHistogram.length / 2];
         for (int i = 0; i < result.length; i++) {
             tmp = ((int) (edgeHistogram[(i << 1)])) << 4;
             tmp = (tmp | ((int) (edgeHistogram[(i << 1) + 1])));
@@ -87,7 +88,7 @@ public class EdgeHistogram extends EdgeHistogramImplementation implements Global
     @Override
     public void setByteArrayRepresentation(byte[] in, int offset, int length) {
         for (int i = 0; i < length; i++) {
-            tmp = in[offset+i] + 128;
+            tmp = in[offset + i] + 128;
             edgeHistogram[(i << 1) + 1] = ((tmp & 0x000F));
             edgeHistogram[i << 1] = ((tmp >> 4));
         }

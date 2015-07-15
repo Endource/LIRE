@@ -65,30 +65,33 @@ public class CannyEdgeDetector {
 
     BufferedImage bimg;
 
-     /**
-      * Create a Canny Edge Detector for the given image. Set the thresholds yourself. Use {@link CannyEdgeDetector#filter} to create
-      * the edge image.
-      * @param image the input image.
-      * @param thresholdHigh higher of the thresholds
-      * @param thresholdLow lower of the thresholds
-      */
+    /**
+     * Create a Canny Edge Detector for the given image. Set the thresholds yourself. Use {@link CannyEdgeDetector#filter} to create
+     * the edge image.
+     *
+     * @param image         the input image.
+     * @param thresholdHigh higher of the thresholds
+     * @param thresholdLow  lower of the thresholds
+     */
     public CannyEdgeDetector(BufferedImage image, double thresholdHigh, double thresholdLow) {
         this.bimg = image;
         this.thresholdHigh = thresholdHigh;
         this.thresholdLow = thresholdLow;
     }
 
-     /**
-      * Create a Canny Edge Detector for the given image. Set the thresholds yourself. Use {@link CannyEdgeDetector#filter} to create
-      * the edge image.
-      * @param bimg
-      */
+    /**
+     * Create a Canny Edge Detector for the given image. Set the thresholds yourself. Use {@link CannyEdgeDetector#filter} to create
+     * the edge image.
+     *
+     * @param bimg
+     */
     public CannyEdgeDetector(BufferedImage bimg) {
         this.bimg = bimg;
     }
 
     /**
      * Returns the edge image in grayscale. Edges are black (int 0) all other pixels are white (int 255)
+     *
      * @return the filtered image.
      */
     public BufferedImage filter() {
@@ -201,6 +204,7 @@ public class CannyEdgeDetector {
 
     /**
      * Distinguishes between weak and strong edge points based on the thresholds given.
+     *
      * @param x
      * @param y
      * @param gray

@@ -17,7 +17,7 @@
  * We kindly ask you to refer the any or one of the following publications in
  * any publication mentioning or employing Lire:
  *
- * Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval –
+ * Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval ï¿½
  * An Extensible Java CBIR Library. In proceedings of the 16th ACM International
  * Conference on Multimedia, pp. 1085-1088, Vancouver, Canada, 2008
  * URL: http://doi.acm.org/10.1145/1459359.1459577
@@ -52,10 +52,11 @@ import java.util.*;
  * Created by Nektarios on 03/06/2015.
  *
  * @author Nektarios Anagnostopoulos, nek.anag@gmail.com
- * (c) 2015 by Nektarios Anagnostopoulos
+ *         (c) 2015 by Nektarios Anagnostopoulos
  */
 public class GlobalDocumentBuilder implements DocumentBuilder {
     public enum HashingMode {BitSampling, LSH}
+
     private HashingMode hashingMode = HashingMode.BitSampling;
     private boolean hashingEnabled = false;
 
@@ -73,6 +74,7 @@ public class GlobalDocumentBuilder implements DocumentBuilder {
     public GlobalDocumentBuilder(Class<? extends GlobalFeature> globalFeatureClass) {
         addExtractor(globalFeatureClass);
     }
+
     public GlobalDocumentBuilder(Class<? extends GlobalFeature> globalFeatureClass, boolean hashing) {
         addExtractor(globalFeatureClass);
         this.hashingEnabled = hashing;
@@ -86,6 +88,7 @@ public class GlobalDocumentBuilder implements DocumentBuilder {
 
     /**
      * Can be used to add global extractors.
+     *
      * @param globalFeatureClass
      */
     public void addExtractor(Class<? extends GlobalFeature> globalFeatureClass) {
@@ -94,17 +97,20 @@ public class GlobalDocumentBuilder implements DocumentBuilder {
 
     /**
      * Can be used to add global extractors.
+     *
      * @param extractorItem
      */
     public void addExtractor(ExtractorItem extractorItem) {
-        if (docsCreated) throw new UnsupportedOperationException("Cannot modify builder after documents have been created!");
-        if (!extractorItem.isGlobal()) throw new UnsupportedOperationException("ExtractorItem must contain GlobalFeature");
+        if (docsCreated)
+            throw new UnsupportedOperationException("Cannot modify builder after documents have been created!");
+        if (!extractorItem.isGlobal())
+            throw new UnsupportedOperationException("ExtractorItem must contain GlobalFeature");
 
         String fieldName = extractorItem.getFieldName();
         extractorItems.put(extractorItem, new String[]{fieldName, fieldName + DocumentBuilder.HASH_FIELD_SUFFIX});
     }
 
-    private static void testHashes(){
+    private static void testHashes() {
 //        Let's try to read the hash functions right here and we don't have to care about it right now.
         try {
             BitSampling.readHashFunctions();
@@ -118,7 +124,8 @@ public class GlobalDocumentBuilder implements DocumentBuilder {
     /**
      * Images are resized so as not to exceed the {@link DocumentBuilder#MAX_IMAGE_DIMENSION}, after that
      * the feature is extracted using the given globalFeature.
-     * @param image is the image
+     *
+     * @param image         is the image
      * @param globalFeature selected global feature
      * @return the input globalFeature
      */
@@ -136,7 +143,8 @@ public class GlobalDocumentBuilder implements DocumentBuilder {
 
     /**
      * Extracts the global feature and returns the Lucene Fields for the selected image.
-     * @param image is the selected image.
+     *
+     * @param image         is the selected image.
      * @param extractorItem is the extractor to be used to extract the features.
      * @return Lucene Fields.
      */
@@ -189,7 +197,7 @@ public class GlobalDocumentBuilder implements DocumentBuilder {
     }
 
     /**
-     * @param image the image to index. Cannot be NULL.
+     * @param image      the image to index. Cannot be NULL.
      * @param identifier an id for the image, for instance the filename or a URL. Can be NULL.
      * @return a Lucene Document.
      */

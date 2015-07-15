@@ -53,14 +53,15 @@ import java.util.Arrays;
 
 /**
  * A simple implementation of the rotation invariant local binary pattern feature.
+ *
  * @author Mathias Lux, mathias@juggle.at
- * Time: 21.06.13 13:51
+ *         Time: 21.06.13 13:51
  */
 public class LocalBinaryPatternsAndOpponent implements GlobalFeature {
     final static double sq2 = Math.sqrt(2d);
     final static double sq6 = Math.sqrt(3d);
     final static double sq3 = Math.sqrt(6d);
-    double[] histogram = new double[36*8];
+    double[] histogram = new double[36 * 8];
     // used to find the right bin for the class of rotated LBP features.
     static int[] binTranslate = new int[256];
 
@@ -113,10 +114,11 @@ public class LocalBinaryPatternsAndOpponent implements GlobalFeature {
 
     /**
      * Extracts the classical, radius = 1 version.
+     *
      * @param image
      */
     private void extractWithRadiusOne(BufferedImage image) {
-        double o1,o2,o3;
+        double o1, o2, o3;
         int colorPos = 0;
         // first convert to intensity only.
         WritableRaster raster = ImageUtils.getGrayscaleImage(image).getRaster();
@@ -139,7 +141,7 @@ public class LocalBinaryPatternsAndOpponent implements GlobalFeature {
                 if (pixel[6] >= pixel[4]) pattern[6] = 1;
                 if (pixel[3] >= pixel[4]) pattern[7] = 1;
 
-                rasterColor.getPixel(x,y,px);
+                rasterColor.getPixel(x, y, px);
                 o1 = (double) (px[0] - px[1]) / sq2;
                 o2 = (double) (px[0] + px[1] - 2 * px[2]) / sq6;
                 o3 = (double) (px[0] + px[1] + px[2]) / sq3;
@@ -148,8 +150,8 @@ public class LocalBinaryPatternsAndOpponent implements GlobalFeature {
                 o2 = (o2 + 510d / sq6) / (1020d / sq6);
                 o3 = o3 / (3d * 255d / sq3);
                 // get the array position.
-                colorPos = (int) Math.min(Math.floor(o1 * 2d), 1d) + (int) Math.min(Math.floor(o2 * 2d), 1d) * 2 + (int) Math.min(Math.floor(o3 * 2d), 1d) * 2* 2;
-                histogram[colorPos*36+getBin(pattern)]++;
+                colorPos = (int) Math.min(Math.floor(o1 * 2d), 1d) + (int) Math.min(Math.floor(o2 * 2d), 1d) * 2 + (int) Math.min(Math.floor(o3 * 2d), 1d) * 2 * 2;
+                histogram[colorPos * 36 + getBin(pattern)]++;
             }
         }
         // normalize & quantize histogram.
@@ -169,8 +171,8 @@ public class LocalBinaryPatternsAndOpponent implements GlobalFeature {
             min = Math.min(getNumber(pattern), min);
             // rotate:
             int tmp = pattern[7];
-            for (int j = pattern.length-1; j > 0; j--) {
-                pattern[j] = pattern[j-1];
+            for (int j = pattern.length - 1; j > 0; j--) {
+                pattern[j] = pattern[j - 1];
             }
             pattern[0] = tmp;
         }
@@ -181,8 +183,8 @@ public class LocalBinaryPatternsAndOpponent implements GlobalFeature {
         int result = 0;
         int current = 1;
         for (int i = 0; i < pattern.length; i++) {
-            if (pattern[i]>0) result+=current;
-            current*=2;
+            if (pattern[i] > 0) result += current;
+            current *= 2;
         }
         return result;
     }

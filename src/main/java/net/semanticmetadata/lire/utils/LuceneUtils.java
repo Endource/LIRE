@@ -164,6 +164,7 @@ public class LuceneUtils {
 
     /**
      * Optimizes an index.
+     *
      * @param iw
      * @throws IOException
      */
@@ -178,8 +179,6 @@ public class LuceneUtils {
     public static void closeWriter(IndexWriter iw) throws IOException {
         iw.close();
     }
-
-
 
 
     public static IndexReader openIndexReader(String indexPath) throws IOException {
@@ -210,13 +209,9 @@ public class LuceneUtils {
     }
 
 
-    public static IndexSearcher openIndexSearcher(IndexReader reader){
+    public static IndexSearcher openIndexSearcher(IndexReader reader) {
         return new IndexSearcher(reader);
     }
-
-
-
-
 
 
     /**

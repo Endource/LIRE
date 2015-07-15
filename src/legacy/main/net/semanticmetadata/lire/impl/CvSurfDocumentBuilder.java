@@ -16,7 +16,7 @@ import java.util.LinkedList;
 /**
  * Created by Nektarios on 2/10/2014.
  */
-public class CvSurfDocumentBuilder extends AbstractDocumentBuilder{
+public class CvSurfDocumentBuilder extends AbstractDocumentBuilder {
 
     @Override
     public Field[] createDescriptorFields(BufferedImage image) {

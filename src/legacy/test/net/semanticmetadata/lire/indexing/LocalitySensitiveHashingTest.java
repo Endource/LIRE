@@ -206,8 +206,8 @@ public class LocalitySensitiveHashingTest extends TestCase {
         float maxScore = 0f;
         for (int i = 0; i < docs.scoreDocs.length; i++) {
             tmp.setByteArrayRepresentation(reader.document(docs.scoreDocs[i].doc).getField(DocumentBuilder.FIELD_NAME_CEDD).binaryValue().bytes,
-                    reader.document(docs.scoreDocs[i].doc).getField(DocumentBuilder.FIELD_NAME_CEDD).binaryValue().offset,
-                    reader.document(docs.scoreDocs[i].doc).getField(DocumentBuilder.FIELD_NAME_CEDD).binaryValue().length);
+                reader.document(docs.scoreDocs[i].doc).getField(DocumentBuilder.FIELD_NAME_CEDD).binaryValue().offset,
+                reader.document(docs.scoreDocs[i].doc).getField(DocumentBuilder.FIELD_NAME_CEDD).binaryValue().length);
             maxScore = Math.max(1 / tmp.getDistance(feature), maxScore);
             res.add(new ScoreDoc(docs.scoreDocs[i].doc, 1 / tmp.getDistance(feature)));
         }

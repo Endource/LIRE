@@ -70,7 +70,7 @@ public class PHOG implements GlobalFeature {
     // And now for PHOG:
     public static int bins = 30;
     double[] tmpHistogram;
-    byte[] histogram = new byte[bins + 4*bins + 4*4*bins];
+    byte[] histogram = new byte[bins + 4 * bins + 4 * 4 * bins];
     //    double[] histogram = new double[5 * bins + 4*4*bins + 4*4*4*bins];
     // used to quantize bins to [0, quantizationFactor]
     // Note that a quantization factor of 127d has better precision, but is not supported by the current serialization method.
@@ -105,7 +105,7 @@ public class PHOG implements GlobalFeature {
                 } else {
                     gd[x][y] = Math.PI / 2d;
                 }
-                gm[x][y] = Math.sqrt(gy[x][y]*gy[x][y] + gx[x][y]*gx[x][y]);
+                gm[x][y] = Math.sqrt(gy[x][y] * gy[x][y] + gx[x][y] * gx[x][y]);
 //                gm[x][y] = Math.hypot(gy[x][y], gx[x][y]);
             }
         }
@@ -165,28 +165,28 @@ public class PHOG implements GlobalFeature {
         }
 
         // Canny Edge Detection over ... lets go for the PHOG ...
-        tmpHistogram = new double[bins + 4*bins + 4*4*bins];
+        tmpHistogram = new double[bins + 4 * bins + 4 * 4 * bins];
         // for level 3:
 //        histogram = new double[5 * bins + 4*4*bins + 4*4*4*bins];
         //level0
         System.arraycopy(getHistogram(0, 0, width, height, gray, gd), 0, tmpHistogram, 0, bins);
         //level1
         System.arraycopy(getHistogram(0, 0, width / 2, height / 2, gray, gd),
-                0, tmpHistogram, bins, bins);
+            0, tmpHistogram, bins, bins);
         System.arraycopy(getHistogram(width / 2, 0, width / 2, height / 2, gray, gd),
-                0, tmpHistogram, 2 * bins, bins);
+            0, tmpHistogram, 2 * bins, bins);
         System.arraycopy(getHistogram(0, height / 2, width / 2, height / 2, gray, gd),
-                0, tmpHistogram, 3 * bins, bins);
+            0, tmpHistogram, 3 * bins, bins);
         System.arraycopy(getHistogram(width / 2, height / 2, width / 2, height / 2, gray, gd),
-                0, tmpHistogram, 4 * bins, bins);
+            0, tmpHistogram, 4 * bins, bins);
         // level 2
         int wstep = width / 4;
         int hstep = height / 4;
         int binPos = 5; // the next free section in the histogram
-        for (int i = 0; i< 4; i++) {
-            for (int j=0; j<4; j++) {
-                System.arraycopy(getHistogram(i*wstep, j*hstep, wstep, hstep, gray, gd),
-                        0, tmpHistogram, binPos*bins, bins);
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                System.arraycopy(getHistogram(i * wstep, j * hstep, wstep, hstep, gray, gd),
+                    0, tmpHistogram, binPos * bins, bins);
                 binPos++;
             }
         }
@@ -289,7 +289,7 @@ public class PHOG implements GlobalFeature {
 
     private static void sobelFilter(BufferedImage gray, double[][] gx, double[][] gy) {
         int[] tmp = new int[4];
-        int tmpSumX = 0, tmpSumY =0, pix;
+        int tmpSumX = 0, tmpSumY = 0, pix;
         for (int x = 1; x < gray.getWidth() - 1; x++) {
             for (int y = 1; y < gray.getHeight() - 1; y++) {
                 tmpSumX = 0;
@@ -313,8 +313,8 @@ public class PHOG implements GlobalFeature {
                 tmpSumY -= pix;
                 gx[x][y] = tmpSumX;
 
-                tmpSumY += 2 * gray.getRaster().getPixel(x    , y - 1, tmp)[0];
-                tmpSumY -= 2 * gray.getRaster().getPixel(x    , y + 1, tmp)[0];
+                tmpSumY += 2 * gray.getRaster().getPixel(x, y - 1, tmp)[0];
+                tmpSumY -= 2 * gray.getRaster().getPixel(x, y + 1, tmp)[0];
                 gy[x][y] = tmpSumY;
 
             }
@@ -353,7 +353,7 @@ public class PHOG implements GlobalFeature {
     @Override
     public void setByteArrayRepresentation(byte[] in, int offset, int length) {
         for (int i = 0; i < length; i++) {
-            tmp = in[i+offset] + 128;
+            tmp = in[i + offset] + 128;
             histogram[(i << 1) + 1] = (byte) (tmp & 0x000F);
             histogram[i << 1] = (byte) (tmp >> 4);
         }

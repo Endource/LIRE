@@ -42,7 +42,7 @@ package net.semanticmetadata.lire.searchers;
 /**
  * This class simulates the original Lucene Hits object.
  * Please note the only a certain number of results are returned.<br>
- * <p/>
+ * <p>
  * This file is part of the Caliph and Emir project: http://www.SemanticMetadata.net
  * <br>Date: 02.02.2006
  * <br>Time: 23:45:20
@@ -79,6 +79,7 @@ public interface ImageSearchHits {
 
     /**
      * This returns the actual document number within the IndexReader. You can get the document from indexReader.document(hits.documentID(pos))
+     *
      * @param position
      * @return
      */

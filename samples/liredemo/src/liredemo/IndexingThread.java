@@ -89,8 +89,8 @@ public class IndexingThread extends Thread {
         try {
             parent.progressBarIndexing.setValue(0);
             java.util.ArrayList<java.lang.String> images =
-                    getAllImages(
-                            new java.io.File(parent.textfieldImageDirectoryToIndex.getText()), true);
+                getAllImages(
+                    new java.io.File(parent.textfieldImageDirectoryToIndex.getText()), true);
             if (images == null) {
                 JOptionPane.showMessageDialog(parent, "Could not find any files in " + parent.textfieldImageDirectoryToIndex.getText(), "No files found", JOptionPane.WARNING_MESSAGE);
                 return;

@@ -50,7 +50,7 @@ import java.awt.image.BufferedImage;
 
 /**
  * Feature describing an MSER
- * <p/>
+ * <p>
  * Date: 27.03.2011
  * Time: 10:00:08
  *

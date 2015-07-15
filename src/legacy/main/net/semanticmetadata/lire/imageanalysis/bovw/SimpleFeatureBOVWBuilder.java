@@ -79,13 +79,12 @@ public class SimpleFeatureBOVWBuilder extends BOVWBuilder {
     }
 
 
-
     @Override
     protected void init() {
         String fname = (new SimpleBuilder()).getFieldName(detector, getFeatureInstance());
         localFeatureFieldName = fname;
         visualWordsFieldName = fname + DocumentBuilder.FIELD_NAME_BOVW;
         localFeatureHistFieldName = fname + DocumentBuilder.FIELD_NAME_BOVW_VECTOR;
-        clusterFile = "./clusters-simpleBovw" + lireFeature.getFeatureName() + (new SimpleBuilder()).getDetector(detector).replace("det","") + ".dat";
+        clusterFile = "./clusters-simpleBovw" + lireFeature.getFeatureName() + (new SimpleBuilder()).getDetector(detector).replace("det", "") + ".dat";
     }
 }

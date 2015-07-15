@@ -65,7 +65,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class CreateIndexTest extends TestCase {
     private String[] testFiles = new String[]{"img01.JPG", "img02.JPG", "img03.JPG", "img04.JPG", "img05.JPG",
-            "img06.JPG", "img07.JPG", "img08.JPG", "img08a.JPG", "error.jpg"};
+        "img06.JPG", "img07.JPG", "img08.JPG", "img08a.JPG", "error.jpg"};
     private String testFilesPath = "./src/test/resources/images/";
     private String indexPath = "test-index";
     private String testExtensive = "./wang-1000";
@@ -133,10 +133,10 @@ public class CreateIndexTest extends TestCase {
         ArrayList<String> images = FileUtils.getAllImages(new File(testExtensive), true);
         indexFiles(images, getDocumentBuilder(), indexPath + "-big-index");
     }
-    
+
     public void testParallelIndexing() {
-        
-        
+
+
     }
 
     private void indexFiles(ArrayList<String> images, DocumentBuilder builder, String indexPath) throws IOException {
@@ -171,7 +171,7 @@ public class CreateIndexTest extends TestCase {
     }
 
     @SuppressWarnings("unused")
-	private void indexFilesMultithreaded(ArrayList<String> images, DocumentBuilder builder, String indexPath) throws IOException {
+    private void indexFilesMultithreaded(ArrayList<String> images, DocumentBuilder builder, String indexPath) throws IOException {
         System.out.println(">> Indexing " + images.size() + " files.");
         IndexWriter iw = LuceneUtils.createIndexWriter(indexPath, true);
         SynchronizedWriter sw = new SynchronizedWriter(iw);

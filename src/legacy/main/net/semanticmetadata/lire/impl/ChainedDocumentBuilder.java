@@ -54,6 +54,7 @@ import java.util.LinkedList;
 /**
  * Chaining of DocumentBuilder. If you need several different feature, create a ChainedDocumentBuilder and add
  * different DocumentBuilder instances with {@link ChainedDocumentBuilder#addBuilder(net.semanticmetadata.lire.DocumentBuilder)}
+ *
  * @author Mathias Lux, mathias@juggle.at, 20.02.2007
  */
 public class ChainedDocumentBuilder extends AbstractDocumentBuilder {
@@ -71,6 +72,7 @@ public class ChainedDocumentBuilder extends AbstractDocumentBuilder {
      * Adds DocumentBuilder instances to the ChainedDocumentBuilder. Note that after Document instances have been
      * created with {@link ChainedDocumentBuilder#createDocument(java.awt.image.BufferedImage, String)} no new
      * DocumentBuilder instances can be added.
+     *
      * @param builder the DocumentBuilder instance to add.
      */
     public void addBuilder(DocumentBuilder builder) {

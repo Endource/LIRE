@@ -48,7 +48,7 @@ import java.util.zip.GZIPOutputStream;
 /**
  * Provides a simple way to hashing. It's bit sampling and can be put into the
  * locality sensitive hashing family of hashing functions.
- * <p/>
+ * <p>
  * Created: 24.02.12, 14:00
  *
  * @author Mathias Lux, mathias@juggle.at

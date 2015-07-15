@@ -96,7 +96,7 @@ public class GenericFastImageSearcherForEvaluation extends AbstractImageSearcher
         this.extractorItem = new ExtractorItem(globalFeature);
         this.fieldName = extractorItem.getFieldName();
         try {
-            this.cachedInstance = (GlobalFeature)extractorItem.getExtractorInstance().getClass().newInstance();
+            this.cachedInstance = (GlobalFeature) extractorItem.getExtractorInstance().getClass().newInstance();
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -111,7 +111,7 @@ public class GenericFastImageSearcherForEvaluation extends AbstractImageSearcher
         this.extractorItem = new ExtractorItem(localFeatureExtractor);
         this.fieldName = extractorItem.getFieldName() + aggregator.getFieldName() + codebookSize;
         try {
-            this.cachedInstance = ((LocalFeatureExtractor)extractorItem.getExtractorInstance()).getClassOfFeatures().newInstance();
+            this.cachedInstance = ((LocalFeatureExtractor) extractorItem.getExtractorInstance()).getClassOfFeatures().newInstance();
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -127,7 +127,7 @@ public class GenericFastImageSearcherForEvaluation extends AbstractImageSearcher
         this.extractorItem = new ExtractorItem(globalFeatureClass, detector);
         this.fieldName = extractorItem.getFieldName() + aggregator.getFieldName() + codebookSize;
         try {
-            this.cachedInstance = ((SimpleExtractor)extractorItem.getExtractorInstance()).getClassOfFeatures().newInstance();
+            this.cachedInstance = ((SimpleExtractor) extractorItem.getExtractorInstance()).getClassOfFeatures().newInstance();
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -142,7 +142,7 @@ public class GenericFastImageSearcherForEvaluation extends AbstractImageSearcher
         this.extractorItem = new ExtractorItem(globalFeature);
         this.fieldName = extractorItem.getFieldName();
         try {
-            this.cachedInstance = (GlobalFeature)extractorItem.getExtractorInstance().getClass().newInstance();
+            this.cachedInstance = (GlobalFeature) extractorItem.getExtractorInstance().getClass().newInstance();
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -160,7 +160,7 @@ public class GenericFastImageSearcherForEvaluation extends AbstractImageSearcher
         this.fieldName = extractorItem.getFieldName() + aggregator.getFieldName() + codebookSize;
         this.codebookName = extractorItem.getFieldName() + codebookSize;
         try {
-            this.cachedInstance = ((LocalFeatureExtractor)extractorItem.getExtractorInstance()).getClassOfFeatures().newInstance();
+            this.cachedInstance = ((LocalFeatureExtractor) extractorItem.getExtractorInstance()).getClassOfFeatures().newInstance();
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -179,7 +179,7 @@ public class GenericFastImageSearcherForEvaluation extends AbstractImageSearcher
         this.fieldName = extractorItem.getFieldName() + aggregator.getFieldName() + codebookSize;
         this.codebookName = extractorItem.getFieldName() + codebookSize;
         try {
-            this.cachedInstance = ((SimpleExtractor)extractorItem.getExtractorInstance()).getClassOfFeatures().newInstance();
+            this.cachedInstance = ((SimpleExtractor) extractorItem.getExtractorInstance()).getClassOfFeatures().newInstance();
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -196,7 +196,7 @@ public class GenericFastImageSearcherForEvaluation extends AbstractImageSearcher
         this.extractorItem = new ExtractorItem(globalFeature);
         this.fieldName = extractorItem.getFieldName();
         try {
-            this.cachedInstance = (GlobalFeature)extractorItem.getExtractorInstance().getClass().newInstance();
+            this.cachedInstance = (GlobalFeature) extractorItem.getExtractorInstance().getClass().newInstance();
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -215,7 +215,7 @@ public class GenericFastImageSearcherForEvaluation extends AbstractImageSearcher
         this.fieldName = extractorItem.getFieldName() + aggregator.getFieldName() + codebookSize;
         this.codebookName = extractorItem.getFieldName() + codebookSize;
         try {
-            this.cachedInstance = ((LocalFeatureExtractor)extractorItem.getExtractorInstance()).getClassOfFeatures().newInstance();
+            this.cachedInstance = ((LocalFeatureExtractor) extractorItem.getExtractorInstance()).getClassOfFeatures().newInstance();
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -235,7 +235,7 @@ public class GenericFastImageSearcherForEvaluation extends AbstractImageSearcher
         this.fieldName = extractorItem.getFieldName() + aggregator.getFieldName() + codebookSize;
         this.codebookName = extractorItem.getFieldName() + codebookSize;
         try {
-            this.cachedInstance = ((SimpleExtractor)extractorItem.getExtractorInstance()).getClassOfFeatures().newInstance();
+            this.cachedInstance = ((SimpleExtractor) extractorItem.getExtractorInstance()).getClassOfFeatures().newInstance();
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -336,7 +336,7 @@ public class GenericFastImageSearcherForEvaluation extends AbstractImageSearcher
             for (Consumer task : tasks) {
                 tmpDocs = task.getResult();
                 flag = true;
-                while (flag && (tmpDocs.size() > 0)){
+                while (flag && (tmpDocs.size() > 0)) {
                     simpleResult = tmpDocs.pollFirst();
                     if (this.docs.size() < maxHits) {
                         this.docs.add(simpleResult);
@@ -368,7 +368,7 @@ public class GenericFastImageSearcherForEvaluation extends AbstractImageSearcher
                 }
             }
             LinkedHashMap<Integer, SearchItemForEvaluation> tmpMap = new LinkedHashMap<Integer, SearchItemForEvaluation>(numThreads * 3);
-            for (int i = 1; i < numThreads * 3; i++)  {
+            for (int i = 1; i < numThreads * 3; i++) {
                 tmpMap.put(-i, null);
             }
             for (Map.Entry<Integer, SearchItemForEvaluation> documentEntry : tmpMap.entrySet()) {
@@ -383,7 +383,7 @@ public class GenericFastImageSearcherForEvaluation extends AbstractImageSearcher
 
     private class Consumer implements Runnable {
         private boolean locallyEnded = false;
-        private TreeSet<SimpleResultForEvaluation> localDocs  = new TreeSet<SimpleResultForEvaluation>();
+        private TreeSet<SimpleResultForEvaluation> localDocs = new TreeSet<SimpleResultForEvaluation>();
         private LireFeature localCachedInstance;
         private LireFeature localLireFeature;
 
@@ -406,7 +406,7 @@ public class GenericFastImageSearcherForEvaluation extends AbstractImageSearcher
             while (!locallyEnded) {
                 try {
                     tmp = queue.take();
-                    if (tmp.getKey() < 0 ) locallyEnded = true;
+                    if (tmp.getKey() < 0) locallyEnded = true;
                     if (!locallyEnded) {    // && tmp != -1
                         localCachedInstance.setByteArrayRepresentation(tmp.getValue().getBuffer());
                         tmpDistance = localLireFeature.getDistance(localCachedInstance);
@@ -482,7 +482,7 @@ public class GenericFastImageSearcherForEvaluation extends AbstractImageSearcher
         logger.finer("Starting extraction.");
         ImageSearchHitsForEvaluation searchHits = null;
 
-        if (extractorItem.isGlobal()){
+        if (extractorItem.isGlobal()) {
             GlobalDocumentBuilder globalDocumentBuilder = new GlobalDocumentBuilder();
             GlobalFeature globalFeature = globalDocumentBuilder.extractGlobalFeature(image, (GlobalFeature) extractorItem.getExtractorInstance());
 
@@ -492,7 +492,7 @@ public class GenericFastImageSearcherForEvaluation extends AbstractImageSearcher
             } else {
                 searchHits = new ImageSearchHitsForEvaluation(this.docs, maxDistance, useSimilarityScore);
             }
-        } else if (extractorItem.isLocal()){
+        } else if (extractorItem.isLocal()) {
             LocalDocumentBuilder localDocumentBuilder = new LocalDocumentBuilder();
             LocalFeatureExtractor localFeatureExtractor = localDocumentBuilder.extractLocalFeatures(image, (LocalFeatureExtractor) extractorItem.getExtractorInstance());
             aggregator.createVectorRepresentation(localFeatureExtractor.getFeatures(), Cluster.readClusters(codebooksDir + "\\" + codebookName));
@@ -504,7 +504,7 @@ public class GenericFastImageSearcherForEvaluation extends AbstractImageSearcher
             } else {
                 searchHits = new ImageSearchHitsForEvaluation(this.docs, maxDistance, useSimilarityScore);
             }
-        } else if (extractorItem.isSimple()){
+        } else if (extractorItem.isSimple()) {
             SimpleDocumentBuilder simpleDocumentBuilder = new SimpleDocumentBuilder();
             LocalFeatureExtractor localFeatureExtractor = simpleDocumentBuilder.extractLocalFeatures(image, (LocalFeatureExtractor) extractorItem.getExtractorInstance());
             aggregator.createVectorRepresentation(localFeatureExtractor.getFeatures(), Cluster.readClusters(codebooksDir + "\\" + codebookName));

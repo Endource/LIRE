@@ -282,18 +282,18 @@ public class TestWang extends TestCase {
             pr10cat[i] = 0d;
             pr10cnt[i] = 0d;
         }
-        long sum=0, ms=0;
+        long sum = 0, ms = 0;
         for (int i = 0; i < sampleQueries.length; i++) {
             int id = sampleQueries[i];
             String file = testExtensive + "/" + id + ".jpg";
             ms = System.currentTimeMillis();
             Document doc = findDoc(reader, id + ".jpg");
-            if (doc==null) {
+            if (doc == null) {
                 System.out.println("id = " + id);
                 continue;
             }
             ImageSearchHits hits = searcher.search(doc, reader);
-            sum += (System.currentTimeMillis()-ms);
+            sum += (System.currentTimeMillis() - ms);
             int goodOnes = 0;
             double avgPrecision = 0d;
             double precision10temp = 0d;

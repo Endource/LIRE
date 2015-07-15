@@ -67,7 +67,8 @@ public class SurfFeature implements LocalFeature {
         feature = SerializationUtils.toDoubleArray(surfInterestPoint.getDescriptor());
     }
 
-    public SurfFeature() { }
+    public SurfFeature() {
+    }
 
     @Override
     public double getDistance(LireFeature f) {

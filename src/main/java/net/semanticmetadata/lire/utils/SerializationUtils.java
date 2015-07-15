@@ -64,10 +64,10 @@ public class SerializationUtils {
     public static int toInt(byte[] data) {
         if (data == null || data.length != 4) return 0x0;
         return (int) ( // NOTE: type cast not necessary for int
-                (0xff & data[0]) << 24 |
-                        (0xff & data[1]) << 16 |
-                        (0xff & data[2]) << 8 |
-                        (0xff & data[3]) << 0
+            (0xff & data[0]) << 24 |
+                (0xff & data[1]) << 16 |
+                (0xff & data[2]) << 8 |
+                (0xff & data[3]) << 0
         );
     }
 
@@ -83,10 +83,10 @@ public class SerializationUtils {
     public static byte[] toBytes(int data) {
 
         return new byte[]{
-                (byte) ((data >> 24) & 0xff),
-                (byte) ((data >> 16) & 0xff),
-                (byte) ((data >> 8) & 0xff),
-                (byte) ((data >> 0) & 0xff),
+            (byte) ((data >> 24) & 0xff),
+            (byte) ((data >> 16) & 0xff),
+            (byte) ((data >> 8) & 0xff),
+            (byte) ((data >> 0) & 0xff),
         };
     }
 
@@ -100,14 +100,14 @@ public class SerializationUtils {
      */
     public static byte[] toBytes(long data) {
         return new byte[]{
-                (byte) ((data >> 56) & 0xff),
-                (byte) ((data >> 48) & 0xff),
-                (byte) ((data >> 40) & 0xff),
-                (byte) ((data >> 32) & 0xff),
-                (byte) ((data >> 24) & 0xff),
-                (byte) ((data >> 16) & 0xff),
-                (byte) ((data >> 8) & 0xff),
-                (byte) ((data >> 0) & 0xff),
+            (byte) ((data >> 56) & 0xff),
+            (byte) ((data >> 48) & 0xff),
+            (byte) ((data >> 40) & 0xff),
+            (byte) ((data >> 32) & 0xff),
+            (byte) ((data >> 24) & 0xff),
+            (byte) ((data >> 16) & 0xff),
+            (byte) ((data >> 8) & 0xff),
+            (byte) ((data >> 0) & 0xff),
         };
     }
 
@@ -123,16 +123,16 @@ public class SerializationUtils {
         if (data == null || data.length != 8) return 0x0;
         // ----------
         return (long) (
-                // (Below) convert to longs before shift because digits
-                //         are lost with ints beyond the 32-bit limit
-                (long) (0xff & data[0]) << 56 |
-                        (long) (0xff & data[1]) << 48 |
-                        (long) (0xff & data[2]) << 40 |
-                        (long) (0xff & data[3]) << 32 |
-                        (long) (0xff & data[4]) << 24 |
-                        (long) (0xff & data[5]) << 16 |
-                        (long) (0xff & data[6]) << 8 |
-                        (long) (0xff & data[7]) << 0
+            // (Below) convert to longs before shift because digits
+            //         are lost with ints beyond the 32-bit limit
+            (long) (0xff & data[0]) << 56 |
+                (long) (0xff & data[1]) << 48 |
+                (long) (0xff & data[2]) << 40 |
+                (long) (0xff & data[3]) << 32 |
+                (long) (0xff & data[4]) << 24 |
+                (long) (0xff & data[5]) << 16 |
+                (long) (0xff & data[6]) << 8 |
+                (long) (0xff & data[7]) << 0
         );
     }
 
@@ -450,6 +450,7 @@ public class SerializationUtils {
 
     /**
      * Reads a double array per line from a text file for the use of code books for local features.
+     *
      * @param in the inputstream the code book is read from.
      * @return
      */
@@ -487,7 +488,7 @@ public class SerializationUtils {
             double[] doubles = iterator.next();
             for (int i = 0; i < doubles.length; i++) {
                 out.write(Double.toString(doubles[i]).getBytes());
-                if (i<doubles.length-1)
+                if (i < doubles.length - 1)
                     out.write(tab.getBytes());
                 else
                     out.write(enter.getBytes());

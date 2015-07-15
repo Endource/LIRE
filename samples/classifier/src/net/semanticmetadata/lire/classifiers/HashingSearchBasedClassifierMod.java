@@ -102,9 +102,9 @@ public class HashingSearchBasedClassifierMod {
 
             String pathName = pathes[r];
             boolean useIndexSearch = true; //use a with HashigIndexorMulti class generated index of the test set for search
-            String locationSaveResultsFile = pathName + System.currentTimeMillis() + "_IG" + informationGainThreshold + "_NC" + numberOfCombinations+ "_NN" + numberOfNeighbours + "_" + "run.txt"; //where should the outcame be saved
+            String locationSaveResultsFile = pathName + System.currentTimeMillis() + "_IG" + informationGainThreshold + "_NC" + numberOfCombinations + "_NN" + numberOfNeighbours + "_" + "run.txt"; //where should the outcame be saved
             String locationOfIndex = pathName + "idx\\index";  //location of the lire index
-            String testIndexLocation =  "D:\\Datasets\\FashionTestItemDataSet\\" + "idx\\index";
+            String testIndexLocation = "D:\\Datasets\\FashionTestItemDataSet\\" + "idx\\index";
             String testImageLocation = "D:\\Datasets\\FashionTestItemDataSet\\";
             // String locationOfImages = pathName;    //location of the images
             String locationOfImages = pathName;    //location of the images
@@ -189,17 +189,17 @@ public class HashingSearchBasedClassifierMod {
             double maxInfoGain = 0.0;
             double minInfoGain = 1000.0;
             for (int i = 0; i < classArray.length; i++) {
-                if (featureInformationGainHashMap.get(classArray[i])>maxInfoGain)
+                if (featureInformationGainHashMap.get(classArray[i]) > maxInfoGain)
                     maxInfoGain = featureInformationGainHashMap.get(classArray[i]);
-                if (featureInformationGainHashMap.get(classArray[i])<minInfoGain)
+                if (featureInformationGainHashMap.get(classArray[i]) < minInfoGain)
                     minInfoGain = featureInformationGainHashMap.get(classArray[i]);
             }
 
             double infoGainAvg = 0.0;
             for (int i = 0; i < classArray.length; i++) {
-                infoGainAvg = infoGainAvg + (featureInformationGainHashMap.get(classArray[i])-minInfoGain)/(maxInfoGain-minInfoGain);
+                infoGainAvg = infoGainAvg + (featureInformationGainHashMap.get(classArray[i]) - minInfoGain) / (maxInfoGain - minInfoGain);
             }
-            infoGainAvg = (infoGainAvg/classArray.length)/2;
+            infoGainAvg = (infoGainAvg / classArray.length) / 2;
 
             for (int i = 0; i < classArray.length; i++) {
                 //  if ((featureInformationGainHashMap.get(classArray[i])-minInfoGain)/(maxInfoGain-minInfoGain) >= infoGainAvg) {
@@ -218,7 +218,7 @@ public class HashingSearchBasedClassifierMod {
             //Starts the classification
             try {
                 if (useIndexSearch)
-                    testClassifyNCombinedFeaturesMulti(0, 220, locationSaveResultsFile, numberOfNeighbours, locationOfIndex, testIndexLocation, locationOfImages, locationOfTestset, 0, reducedFieldsArray, reducedClassArray, numberOfCombinations, class1, class2, informationGainThreshold, "TestSet", precisionThreshold, classArray,testImageLocation);
+                    testClassifyNCombinedFeaturesMulti(0, 220, locationSaveResultsFile, numberOfNeighbours, locationOfIndex, testIndexLocation, locationOfImages, locationOfTestset, 0, reducedFieldsArray, reducedClassArray, numberOfCombinations, class1, class2, informationGainThreshold, "TestSet", precisionThreshold, classArray, testImageLocation);
             } catch (NoSuchFieldException e) {
                 e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
             } catch (IllegalAccessException e) {
@@ -232,7 +232,7 @@ public class HashingSearchBasedClassifierMod {
     }
 
     //use index for classification, its faster
-    public static boolean testClassifyNCombinedFeaturesMulti(int start, int end, String storeToFile, int numberOfNeighbours, String indexLocation, String testIndexLocation,  String photosLocation, String testSetFile, int searchedClass, ArrayList<String> fieldsArray, ArrayList<String> classArray, int combineNfeatures, String class1, String class2, double informationGainThreshold, String useIndex, double precisionThreshold, String[]allClasses, String testImageLocation) throws IOException, NoSuchFieldException, IllegalAccessException, ClassNotFoundException, InstantiationException {
+    public static boolean testClassifyNCombinedFeaturesMulti(int start, int end, String storeToFile, int numberOfNeighbours, String indexLocation, String testIndexLocation, String photosLocation, String testSetFile, int searchedClass, ArrayList<String> fieldsArray, ArrayList<String> classArray, int combineNfeatures, String class1, String class2, double informationGainThreshold, String useIndex, double precisionThreshold, String[] allClasses, String testImageLocation) throws IOException, NoSuchFieldException, IllegalAccessException, ClassNotFoundException, InstantiationException {
 
         //numer of features and how much should be combined
         int feats = fieldsArray.size();
@@ -360,11 +360,11 @@ public class HashingSearchBasedClassifierMod {
                 //The tag count arraylis
                 for (int j = 0; j < combs; j++) {
                     tag2countList.add(new HashMap<String, Integer>(k));
-                    tag2countList.get(j).put(class1,1);
-                    tag2countList.get(j).put(class2,1);
+                    tag2countList.get(j).put(class1, 1);
+                    tag2countList.get(j).put(class2, 1);
                     tag2weightList.add(new HashMap<String, Double>(k));
-                    tag2weightList.get(j).put(class1,1.0);
-                    tag2weightList.get(j).put(class2,1.0);
+                    tag2weightList.get(j).put(class1, 1.0);
+                    tag2weightList.get(j).put(class2, 1.0);
                 }
 
 
@@ -408,19 +408,19 @@ public class HashingSearchBasedClassifierMod {
 
                 for (Iterator<String> tagIterator = tag2countList.get(0).keySet().iterator(); tagIterator.hasNext(); ) {
                     String tag = tagIterator.next();
-                    for (int j = 0; j < combs;j++){
-                        if(tag.equals(class1))  {
+                    for (int j = 0; j < combs; j++) {
+                        if (tag.equals(class1)) {
                             countClass1 = countClass1 + tag2countList.get(j).get(tag);
                             weightClass1 = weightClass1 + tag2weightList.get(j).get(tag);
                         }
-                        if(tag.equals(class2)){
+                        if (tag.equals(class2)) {
                             countClass2 = countClass2 + tag2countList.get(j).get(tag);
                             weightClass2 = weightClass2 + tag2weightList.get(j).get(tag);
                         }
                     }
                 }
 
-                if ((countClass1*weightClass1)*precisionThreshold>countClass2*weightClass2)
+                if ((countClass1 * weightClass1) * precisionThreshold > countClass2 * weightClass2)
                     classifiedAs = class1;
                 else classifiedAs = class2;
 
@@ -434,7 +434,6 @@ public class HashingSearchBasedClassifierMod {
 
                 // if there are two or more classes with the same number of results, then we take a look at the weights.
                 // else the class is alread given in classifiedAs.
-
 
 
                 count++;
@@ -479,10 +478,10 @@ public class HashingSearchBasedClassifierMod {
 
             for (int j = 0; j < combs; j++) {
                 //   System.out.print(combinations.get(i + j).toString() + " ");
-                classesLongName = classesLongName + fields1List.get(i+j) + ";";
+                classesLongName = classesLongName + fields1List.get(i + j) + ";";
             }
 
-            for (int j = 0; j < (allClasses.length-combs); j++){
+            for (int j = 0; j < (allClasses.length - combs); j++) {
                 classesLongName = classesLongName + "no;";
             }
 
@@ -497,8 +496,8 @@ public class HashingSearchBasedClassifierMod {
                 String fileName = "classifieresults-" + System.currentTimeMillis() / 1000 + ".html";
                 BufferedWriter bw = new BufferedWriter(new FileWriter(fileName));
                 bw.write("<html>\n" +
-                        "<head><title>Classification Results</title></head>\n" +
-                        "<body bgcolor=\"#FFFFFF\">\n");
+                    "<head><title>Classification Results</title></head>\n" +
+                    "<body bgcolor=\"#FFFFFF\">\n");
                 bw.write("<table>");
 
                 // int elems = Math.min(filesHTML.size(),50);
@@ -518,7 +517,7 @@ public class HashingSearchBasedClassifierMod {
                     //  s = new File(s).getAbsolutePath();
                     // System.out.println(s);
                     bw.write("<td><a href=\"" + s + "\"><img style=\"max-width:220px;border:medium solid " + colorF + ";\"src=\"" + s + "\" border=\"" + 5 + "\" style=\"border: 3px\n" +
-                            "black solid;\"></a></td>\n");
+                        "black solid;\"></a></td>\n");
                     if (d % 3 == 2) bw.write("</tr>");
                 }
                 if (elems % 3 != 0) {
@@ -532,7 +531,7 @@ public class HashingSearchBasedClassifierMod {
                 }
 
                 bw.write("</table></body>\n" +
-                        "</html>");
+                    "</html>");
                 bw.close();
             }
             //   } // kfor
@@ -952,8 +951,8 @@ public class HashingSearchBasedClassifierMod {
                 String fileName = "classifieresults-" + System.currentTimeMillis() / 1000 + ".html";
                 BufferedWriter bw = new BufferedWriter(new FileWriter(fileName));
                 bw.write("<html>\n" +
-                        "<head><title>Classification Results</title></head>\n" +
-                        "<body bgcolor=\"#FFFFFF\">\n");
+                    "<head><title>Classification Results</title></head>\n" +
+                    "<body bgcolor=\"#FFFFFF\">\n");
                 bw.write("<table>");
 
                 // int elems = Math.min(filesHTML.size(),50);
@@ -972,7 +971,7 @@ public class HashingSearchBasedClassifierMod {
                     //  s = new File(s).getAbsolutePath();
                     // System.out.println(s);
                     bw.write("<td><a href=\"" + s + "\"><img style=\"max-width:220px;border:medium solid " + colorF + ";\"src=\"" + s + "\" border=\"" + 5 + "\" style=\"border: 3px\n" +
-                            "black solid;\"></a></td>\n");
+                        "black solid;\"></a></td>\n");
                     if (i % 3 == 2) bw.write("</tr>");
                 }
                 if (elems % 3 != 0) {
@@ -986,7 +985,7 @@ public class HashingSearchBasedClassifierMod {
                 }
 
                 bw.write("</table></body>\n" +
-                        "</html>");
+                    "</html>");
                 bw.close();
             }
             //   } // kfor
@@ -1211,7 +1210,6 @@ public class HashingSearchBasedClassifierMod {
         //   }
 
         print_line.close();
-
 
 
         return calculateInformationGain(storeToFile, featureInformationGain, featureSpace, featureSpaceHashMap, featureOrder, featureInformationGainHashMap);

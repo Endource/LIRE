@@ -58,16 +58,17 @@ public interface SearchHitsFilter {
      * Filters a given result list based on the given query document.
      *
      * @param results the results
-     * @param query the original query document
+     * @param query   the original query document
      * @return
      */
     public ImageSearchHits filter(ImageSearchHits results, IndexReader reader, Document query);
 
     /**
      * Filters the result list of a Lucene search based on image features.
+     *
      * @param results the results
-     * @param reader the IndexReader employed
-     * @param query the original query document
+     * @param reader  the IndexReader employed
+     * @param query   the original query document
      * @return
      * @throws IOException
      */

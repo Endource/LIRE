@@ -51,6 +51,7 @@ import java.io.IOException;
 
 /**
  * Simple class showing the use of the ParallelIndexer, which uses up as much CPU as it can get.
+ *
  * @author Mathias Lux, mathias@juggle.at and Nektarios Anagnostopoulos, nek.anag@gmail.com
  */
 public class ParallelIndexing {

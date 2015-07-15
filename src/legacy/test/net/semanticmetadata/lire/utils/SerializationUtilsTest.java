@@ -123,11 +123,11 @@ public class SerializationUtilsTest extends TestCase {
     }
 
     public void testByteCompression() {
-        for (int j = 0; j<10000; j++) {
+        for (int j = 0; j < 10000; j++) {
             byte[] test = new byte[6];
             for (int i = 0; i < test.length; i++) {
-                test[i] = (byte) Math.floor(Math.random()*16);
-    //            System.out.println(i + " = " + test[i]);
+                test[i] = (byte) Math.floor(Math.random() * 16);
+                //            System.out.println(i + " = " + test[i]);
             }
             int tmp = test[0];
             tmp = tmp << 5 | test[1];

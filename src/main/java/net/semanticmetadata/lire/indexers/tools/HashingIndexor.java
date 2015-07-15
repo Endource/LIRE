@@ -58,7 +58,7 @@ import java.io.IOException;
 /**
  * This class extends Indexor and does hashing (bit sampling) on a given feature.
  * The hashes are stored in a Lucene field named "Hashes".
- * <p/>
+ * <p>
  * Created: 21.03.13 10:03
  *
  * @author Mathias Lux, mathias@juggle.at

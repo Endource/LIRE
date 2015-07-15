@@ -77,8 +77,8 @@ public class JointHistogram implements GlobalFeature {
             for (int y = 1; y < raster.getHeight() - 1; y++) {
                 raster.getPixel(x, y, px);
                 int colorPos = (int) Math.round((double) px[2] / 85d) +
-                        (int) Math.round((double) px[1] / 85d) * 4 +
-                        (int) Math.round((double) px[0] / 85d) * 4 * 4;
+                    (int) Math.round((double) px[1] / 85d) * 4 +
+                    (int) Math.round((double) px[0] / 85d) * 4 * 4;
                 int rank = 0;
                 grey.getPixel(x, y, intens);
                 if (getIntensity(x - 1, y - 1, grey) > intens[0]) rank++;

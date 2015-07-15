@@ -127,7 +127,7 @@ public class FastOpponentImageSearcher extends AbstractImageSearcher {
             }
             // if the array is not full yet:
             if (this.docs.size() < maxHits) {
-                this.docs.add(new SimpleResult( tmpDistance, i));
+                this.docs.add(new SimpleResult(tmpDistance, i));
                 if (tmpDistance > maxDistance) maxDistance = tmpDistance;
             } else if (tmpDistance < maxDistance) {
                 // if it is nearer to the sample than at least on of the current set:
@@ -152,9 +152,9 @@ public class FastOpponentImageSearcher extends AbstractImageSearcher {
     protected double getDistance(Document document, byte[] histogram) {
         if (document.getField(DocumentBuilder.FIELD_NAME_OPPONENT_HISTOGRAM).binaryValue() != null && document.getField(DocumentBuilder.FIELD_NAME_OPPONENT_HISTOGRAM).binaryValue().length > 0) {
             return cachedInstance.getDistance(histogram, 0, histogram.length,
-                    document.getField(DocumentBuilder.FIELD_NAME_OPPONENT_HISTOGRAM).binaryValue().bytes,
-                    document.getField(DocumentBuilder.FIELD_NAME_OPPONENT_HISTOGRAM).binaryValue().offset,
-                    document.getField(DocumentBuilder.FIELD_NAME_OPPONENT_HISTOGRAM).binaryValue().length);
+                document.getField(DocumentBuilder.FIELD_NAME_OPPONENT_HISTOGRAM).binaryValue().bytes,
+                document.getField(DocumentBuilder.FIELD_NAME_OPPONENT_HISTOGRAM).binaryValue().offset,
+                document.getField(DocumentBuilder.FIELD_NAME_OPPONENT_HISTOGRAM).binaryValue().length);
         } else {
             logger.warning("No feature stored in this document!");
         }
@@ -167,8 +167,8 @@ public class FastOpponentImageSearcher extends AbstractImageSearcher {
 
         if (doc.getField(DocumentBuilder.FIELD_NAME_OPPONENT_HISTOGRAM).binaryValue() != null && doc.getField(DocumentBuilder.FIELD_NAME_OPPONENT_HISTOGRAM).binaryValue().length > 0)
             globalFeature.setByteArrayRepresentation(doc.getField(DocumentBuilder.FIELD_NAME_OPPONENT_HISTOGRAM).binaryValue().bytes,
-                    doc.getField(DocumentBuilder.FIELD_NAME_OPPONENT_HISTOGRAM).binaryValue().offset,
-                    doc.getField(DocumentBuilder.FIELD_NAME_OPPONENT_HISTOGRAM).binaryValue().length);
+                doc.getField(DocumentBuilder.FIELD_NAME_OPPONENT_HISTOGRAM).binaryValue().offset,
+                doc.getField(DocumentBuilder.FIELD_NAME_OPPONENT_HISTOGRAM).binaryValue().length);
         double maxDistance = findSimilar(reader, globalFeature);
 
         searchHits = new SimpleImageSearchHits(this.docs, (float) maxDistance);

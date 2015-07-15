@@ -85,8 +85,8 @@ public class Gabor implements GlobalFeature {
         for (int i = 0; i < M; i++) {
             modulationFrequency[i] = Math.pow(A, i) * U_L;
             sigma_x[i] =
-                    (A + 1) * Math.sqrt(2 * LOG2) /
-                            (2 * Math.PI * Math.pow(A, i) * (A - 1) * U_L);
+                (A + 1) * Math.sqrt(2 * LOG2) /
+                    (2 * Math.PI * Math.pow(A, i) * (A - 1) * U_L);
             sigma_y[i] = 1 / (2 * Math.PI * Math.tan(Math.PI / (2 * N)) * Math.sqrt(Math.pow(U_H, 2) / (2 * LOG2) - Math.pow(1 / (2 * Math.PI * sigma_x[i]), 2)));
 
         }
@@ -258,29 +258,29 @@ public class Gabor implements GlobalFeature {
     private double[] computeMotherWavelet(double x, double y, int m, int n) {
 
         return new double[]{
-                1 / (2 * Math.PI * sigma_x[m] * sigma_y[m]) *
-                        Math.exp(-1 / 2 * (Math.pow(x, 2) / Math.pow(sigma_x[m], 2) + Math.pow(y, 2) / Math.pow(sigma_y[m], 2))) *
-                        Math.cos(2 * Math.PI * modulationFrequency[m] * x),
-                1 / (2 * Math.PI * sigma_x[m] * sigma_y[m]) *
-                        Math.exp(-1 / 2 * (Math.pow(x, 2) / Math.pow(sigma_x[m], 2) + Math.pow(y, 2) / Math.pow(sigma_y[m], 2))) *
-                        Math.sin(2 * Math.PI * modulationFrequency[m] * x)};
+            1 / (2 * Math.PI * sigma_x[m] * sigma_y[m]) *
+                Math.exp(-1 / 2 * (Math.pow(x, 2) / Math.pow(sigma_x[m], 2) + Math.pow(y, 2) / Math.pow(sigma_y[m], 2))) *
+                Math.cos(2 * Math.PI * modulationFrequency[m] * x),
+            1 / (2 * Math.PI * sigma_x[m] * sigma_y[m]) *
+                Math.exp(-1 / 2 * (Math.pow(x, 2) / Math.pow(sigma_x[m], 2) + Math.pow(y, 2) / Math.pow(sigma_y[m], 2))) *
+                Math.sin(2 * Math.PI * modulationFrequency[m] * x)};
     }
 
     private double x_tilde(int x, int y, int m, int n) {
         return
-                Math.pow(A, -m) * (x * Math.cos(theta[n]) + y * Math.sin(theta[n]));
+            Math.pow(A, -m) * (x * Math.cos(theta[n]) + y * Math.sin(theta[n]));
     }
 
     private double y_tilde(int x, int y, int m, int n) {
         return
-                Math.pow(A, -m) * (-x * Math.sin(theta[n] + y * Math.cos(theta[n])));
+            Math.pow(A, -m) * (-x * Math.sin(theta[n] + y * Math.cos(theta[n])));
     }
 
     private double[] selfSimilarGaborWavelet(int x, int y, int m, int n) {
         double[] motherWavelet = computeMotherWavelet(x_tilde(x, y, m, n), y_tilde(x, y, m, n), m, n);
         return new double[]{
-                Math.pow(A, -m) * motherWavelet[0],
-                Math.pow(A, -m) * motherWavelet[1]};
+            Math.pow(A, -m) * motherWavelet[0],
+            Math.pow(A, -m) * motherWavelet[1]};
     }
 
     @Override

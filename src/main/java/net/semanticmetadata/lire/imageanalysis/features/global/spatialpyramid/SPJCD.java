@@ -116,8 +116,8 @@ public class SPJCD implements GlobalFeature {
         if ((position + 1) % 2 == 1) length = position / 2 + 1;
         byte[] result = new byte[length];
         for (int i = 0; i < result.length; i++) {
-            tmp = ((int) (histogram[(i << 1)]*2)) << 4;
-            tmp = (tmp | ((int) (histogram[(i << 1) + 1]*2)));
+            tmp = ((int) (histogram[(i << 1)] * 2)) << 4;
+            tmp = (tmp | ((int) (histogram[(i << 1) + 1] * 2)));
             result[i] = (byte) (tmp - 128);
         }
         return result;
@@ -134,8 +134,8 @@ public class SPJCD implements GlobalFeature {
             Arrays.fill(histogram, in.length << 1, histogram.length - 1, 0);
         for (int i = 0; i < in.length; i++) {
             tmp = in[i] + 128;
-            histogram[(i << 1) + 1] = ((double) (tmp & 0x000F)) /2d;
-            histogram[i << 1] = ((double) (tmp >> 4))/2d;
+            histogram[(i << 1) + 1] = ((double) (tmp & 0x000F)) / 2d;
+            histogram[i << 1] = ((double) (tmp >> 4)) / 2d;
         }
     }
 
@@ -144,8 +144,8 @@ public class SPJCD implements GlobalFeature {
             Arrays.fill(histogram, length << 1, histogram.length - 1, 0);
         for (int i = offset; i < offset + length; i++) {
             tmp = in[i] + 128;
-            histogram[((i - offset) << 1) + 1] = ((double) (tmp & 0x000F))/2d;
-            histogram[(i - offset) << 1] = ((double) (tmp >> 4))/2d;
+            histogram[((i - offset) << 1) + 1] = ((double) (tmp & 0x000F)) / 2d;
+            histogram[(i - offset) << 1] = ((double) (tmp >> 4)) / 2d;
         }
     }
 

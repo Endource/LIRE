@@ -17,7 +17,7 @@
  * We kindly ask you to refer the any or one of the following publications in
  * any publication mentioning or employing Lire:
  *
- * Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval –
+ * Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval ï¿½
  * An Extensible Java CBIR Library. In proceedings of the 16th ACM International
  * Conference on Multimedia, pp. 1085-1088, Vancouver, Canada, 2008
  * URL: http://doi.acm.org/10.1145/1459359.1459577
@@ -36,6 +36,7 @@ package net.semanticmetadata.lire.aggregators;
 
 import net.semanticmetadata.lire.classifiers.Cluster;
 import net.semanticmetadata.lire.imageanalysis.features.LocalFeature;
+
 import java.util.List;
 
 /**
@@ -44,7 +45,7 @@ import java.util.List;
  * Created by Nektarios on 03/06/2015.
  *
  * @author Nektarios Anagnostopoulos, nek.anag@gmail.com
- * (c) 2015 by Nektarios Anagnostopoulos
+ *         (c) 2015 by Nektarios Anagnostopoulos
  */
 public interface Aggregator {
     String FIELD_NAME_BOVW = "BOVW";
@@ -52,31 +53,36 @@ public interface Aggregator {
 
     /**
      * This method is used to create the vector representation of an image using the list of Features and a codebook
+     *
      * @param listOfLocalFeatures is the list of features.
-     * @param clustersArray is the codebook.
+     * @param clustersArray       is the codebook.
      */
     void createVectorRepresentation(List<? extends LocalFeature> listOfLocalFeatures, Cluster[] clustersArray);
 
     /**
      * Returns the vector representation in byte[] format.
+     *
      * @return the vector representation as a byte array.
      */
     byte[] getByteVectorRepresentation();
 
     /**
      * Returns the vector representation in string format.
+     *
      * @return the vector representation as string.
      */
     String getStringVectorRepresentation();
 
     /**
      * Returns the vector representation in double[] format.
+     *
      * @return the vector representation as a double array.
      */
     double[] getVectorRepresentation();
 
     /**
      * Returns the FieldName according to the selected aggregator.
+     *
      * @return FieldName.
      */
     String getFieldName();

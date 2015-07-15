@@ -50,7 +50,7 @@ import net.semanticmetadata.lire.impl.GenericFastImageSearcher;
  * <h2>Searching in an Index</h2>
  * Use the ImageSearcherFactory for creating an ImageSearcher, which will retrieve the images
  * for you from the index.
- * <p/>
+ * <p>
  * <pre>
  * IndexReader reader = IndexReader.open(indexPath);
  * ImageSearcher searcher = ImageSearcherFactory.createDefaultSearcher();
@@ -70,7 +70,7 @@ import net.semanticmetadata.lire.impl.GenericFastImageSearcher;
  * System.out.println(hits.score(i) + ": " + hits.doc(i).getField(DocumentBuilder.FIELD_NAME_IDENTIFIER).stringValue());
  * }
  * </pre>
- * <p/>
+ * <p>
  * This file is part of the Caliph and Emir project: http://www.SemanticMetadata.net
  * <br>Date: 03.02.2006
  * <br>Time: 00:30:07
@@ -152,7 +152,7 @@ public class ImageSearcherFactory {
      */
     public static ImageSearcher createHashingCEDDImageSearcher(int maximumHits) {
         return new BitSamplingImageSearcher(maximumHits, DocumentBuilder.FIELD_NAME_CEDD,
-                DocumentBuilder.FIELD_NAME_CEDD+"_hash", new CEDD());
+            DocumentBuilder.FIELD_NAME_CEDD + "_hash", new CEDD());
     }
 
 
@@ -277,6 +277,7 @@ public class ImageSearcherFactory {
 
     /**
      * Creates a new ImageSearcher instance based on the class {@link net.semanticmetadata.lire.imageanalysis.OpponentHistogram}
+     *
      * @param maximumHits
      * @return a new searcher instance
      * @see net.semanticmetadata.lire.imageanalysis.OpponentHistogram
@@ -287,6 +288,7 @@ public class ImageSearcherFactory {
 
     /**
      * Creates a new ImageSearcher instance based on the class {@link net.semanticmetadata.lire.imageanalysis.LuminanceLayout}
+     *
      * @param maximumHits
      * @return a new searcher instance
      * @see net.semanticmetadata.lire.imageanalysis.LuminanceLayout
@@ -297,6 +299,7 @@ public class ImageSearcherFactory {
 
     /**
      * Creates a new ImageSearcher instance based on the class {@link net.semanticmetadata.lire.imageanalysis.PHOG}
+     *
      * @param maximumHits
      * @return a new searcher instance
      * @see net.semanticmetadata.lire.imageanalysis.PHOG
@@ -312,7 +315,7 @@ public class ImageSearcherFactory {
      * @return true if the weight is in [0,1], false otherwise
      */
     @SuppressWarnings("unused")
-	private static boolean isAppropriateWeight(float f) {
+    private static boolean isAppropriateWeight(float f) {
         boolean result = false;
         if (f <= 1f && f >= 0) result = true;
         return result;

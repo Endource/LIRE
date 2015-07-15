@@ -155,11 +155,11 @@ public class RankAndOpponent implements GlobalFeature {
 
     @Override
     public byte[] getByteArrayRepresentation() {
-        byte[] result = new byte[descriptor.length/2];
+        byte[] result = new byte[descriptor.length / 2];
         for (int i = 0; i < result.length; i++) {
             tmp = ((int) (descriptor[(i << 1)] * 2)) << 4;
             tmp = (tmp | ((int) (descriptor[(i << 1) + 1] * 2)));
-            result[i] = (byte) (tmp-128);
+            result[i] = (byte) (tmp - 128);
         }
         return result;
     }
@@ -167,18 +167,18 @@ public class RankAndOpponent implements GlobalFeature {
     @Override
     public void setByteArrayRepresentation(byte[] in) {
         for (int i = 0; i < in.length; i++) {
-            tmp = in[i]+128;
-            descriptor[(i << 1) +1] = ((double) (tmp & 0x000F))/2d;
-            descriptor[i << 1] = ((double) (tmp >> 4))/2d;
+            tmp = in[i] + 128;
+            descriptor[(i << 1) + 1] = ((double) (tmp & 0x000F)) / 2d;
+            descriptor[i << 1] = ((double) (tmp >> 4)) / 2d;
         }
     }
 
     @Override
     public void setByteArrayRepresentation(byte[] in, int offset, int length) {
         for (int i = offset; i < length; i++) {
-            tmp = in[i]+128;
-            descriptor[(i << 1) +1] = ((double) (tmp & 0x000F))/2d;
-            descriptor[i << 1] = ((double) (tmp >> 4))/2d;
+            tmp = in[i] + 128;
+            descriptor[(i << 1) + 1] = ((double) (tmp & 0x000F)) / 2d;
+            descriptor[i << 1] = ((double) (tmp >> 4)) / 2d;
         }
     }
 

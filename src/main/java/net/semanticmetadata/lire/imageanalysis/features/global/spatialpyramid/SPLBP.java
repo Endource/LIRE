@@ -50,8 +50,9 @@ import java.awt.image.BufferedImage;
 
 /**
  * A spatial pyramid version of the rotation invariant local binary pattern feature.
+ *
  * @author Mathias Lux, mathias@juggle.at
- * Date: 21.06.13, 15:38
+ *         Date: 21.06.13, 15:38
  */
 public class SPLBP implements GlobalFeature {
     int histogramSize = 36 * 5 + 36 * 4 * 4;
@@ -118,7 +119,7 @@ public class SPLBP implements GlobalFeature {
     public void setByteArrayRepresentation(byte[] in, int offset, int length) {
         for (int i = offset; i < offset + length; i++) {
             tmp = in[i] + 128;
-            histogram[i-offset] = in[i];
+            histogram[i - offset] = in[i];
         }
     }
 

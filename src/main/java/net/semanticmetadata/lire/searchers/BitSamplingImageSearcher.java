@@ -116,8 +116,8 @@ public class BitSamplingImageSearcher extends AbstractImageSearcher {
     /**
      * Creates a new searcher for BitSampling based hashes. The field names are inferred from the entries in //TODO {@ link GenericDocumentBuilder}
      *
-     * @param maximumHits how many hits the searcher shall return.
-     * @param feature     an instance of the feature.
+     * @param maximumHits   how many hits the searcher shall return.
+     * @param feature       an instance of the feature.
      * @param useFastSearch if true it only uses a random sample of hashes for the query and speeds up the search significantly.
      */
     public BitSamplingImageSearcher(int maximumHits, GlobalFeature feature, boolean useFastSearch) {
@@ -218,8 +218,8 @@ public class BitSamplingImageSearcher extends AbstractImageSearcher {
         try {
             GlobalFeature queryFeature = feature.getClass().newInstance();
             queryFeature.setByteArrayRepresentation(doc.getBinaryValue(featureFieldName).bytes,
-                    doc.getBinaryValue(featureFieldName).offset,
-                    doc.getBinaryValue(featureFieldName).length);
+                doc.getBinaryValue(featureFieldName).offset,
+                doc.getBinaryValue(featureFieldName).length);
             return search(doc.getValues(hashesFieldName)[0].split(" "), queryFeature, reader);
 //            return search(doc.getValues(hashesFieldName + "_q")[0].split(" "), queryFeature, reader);  // just for debug if a query feature is stored in the index.
         } catch (Exception e) {
@@ -249,8 +249,8 @@ public class BitSamplingImageSearcher extends AbstractImageSearcher {
         double tmpScore;
         for (int i = 0; i < docs.scoreDocs.length; i++) {
             feature.setByteArrayRepresentation(reader.document(docs.scoreDocs[i].doc).getBinaryValue(featureFieldName).bytes,
-                    reader.document(docs.scoreDocs[i].doc).getBinaryValue(featureFieldName).offset,
-                    reader.document(docs.scoreDocs[i].doc).getBinaryValue(featureFieldName).length);
+                reader.document(docs.scoreDocs[i].doc).getBinaryValue(featureFieldName).offset,
+                reader.document(docs.scoreDocs[i].doc).getBinaryValue(featureFieldName).length);
             tmpScore = queryFeature.getDistance(feature);
             assert (tmpScore >= 0);
             if (resultScoreDocs.size() < maximumHits) {

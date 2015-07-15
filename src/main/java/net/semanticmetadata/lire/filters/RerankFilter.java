@@ -88,8 +88,8 @@ public class RerankFilter implements SearchHitsFilter {
         // check if features are there and compatible.
         if (query.getField(fieldName) != null) {
             queryFeature.setByteArrayRepresentation(query.getField(fieldName).binaryValue().bytes,
-                    query.getField(fieldName).binaryValue().offset,
-                    query.getField(fieldName).binaryValue().length);
+                query.getField(fieldName).binaryValue().offset,
+                query.getField(fieldName).binaryValue().length);
         } else {
             logger.severe("Given feature class " + featureClass.getName() + " is not available in the query document (" + getClass().getName() + ").");
             return null;
@@ -104,8 +104,8 @@ public class RerankFilter implements SearchHitsFilter {
             }
             if (d.getField(fieldName) != null) {
                 tempFeature.setByteArrayRepresentation(d.getField(fieldName).binaryValue().bytes,
-                        d.getField(fieldName).binaryValue().offset,
-                        d.getField(fieldName).binaryValue().length);
+                    d.getField(fieldName).binaryValue().offset,
+                    d.getField(fieldName).binaryValue().length);
                 distance = queryFeature.getDistance(tempFeature);
                 maxDistance = Math.max(maxDistance, distance);
                 resultSet.add(new SimpleResult(distance, results.documentID(x)));
@@ -135,8 +135,8 @@ public class RerankFilter implements SearchHitsFilter {
         // check if features are there and compatible.
         if (query.getField(fieldName) != null) {
             queryFeature.setByteArrayRepresentation(query.getField(fieldName).binaryValue().bytes,
-                    query.getField(fieldName).binaryValue().offset,
-                    query.getField(fieldName).binaryValue().length);
+                query.getField(fieldName).binaryValue().offset,
+                query.getField(fieldName).binaryValue().length);
         } else {
             logger.severe("Given feature class " + featureClass.getName() + " is not available in the query document (" + getClass().getName() + ").");
             return null;
@@ -144,11 +144,11 @@ public class RerankFilter implements SearchHitsFilter {
         ScoreDoc[] scoreDocs = results.scoreDocs;
         Document tmp = null;
         for (int x = 0; x < scoreDocs.length; x++) {
-            tmp =reader.document(scoreDocs[x].doc);
+            tmp = reader.document(scoreDocs[x].doc);
             if (tmp.getField(fieldName) != null) {
                 tempFeature.setByteArrayRepresentation(tmp.getField(fieldName).binaryValue().bytes,
-                        tmp.getField(fieldName).binaryValue().offset,
-                        tmp.getField(fieldName).binaryValue().length);
+                    tmp.getField(fieldName).binaryValue().offset,
+                    tmp.getField(fieldName).binaryValue().length);
                 distance = queryFeature.getDistance(tempFeature);
                 maxDistance = Math.max(maxDistance, distance);
                 resultSet.add(new SimpleResult(distance, scoreDocs[x].doc));

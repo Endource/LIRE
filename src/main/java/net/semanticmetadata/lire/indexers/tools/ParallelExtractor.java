@@ -57,57 +57,57 @@ import java.util.*;
  * and puts them into a data file. Main purpose is run multiple extractors at multiple machines
  * and put the data files into one single index. Images are references relatively to the data file,
  * so it should work fine for network file systems.
- * <p/>
+ * <p>
  * File format is specified as: (12(345)+('-1'))+ with 1-5 being ...
- * <p/>
+ * <p>
  * 1. Length of the file name [4 bytes], an int n giving the number of bytes for the file name
  * 2. File name, relative to the outfile [n bytes, see above]
  * 3. Feature index [1 byte], see static members
  * 4. Feature value length [4 bytes], an int k giving the number of bytes encoding the value
  * 5. Feature value [k bytes, see above]
- * <p/>
+ * <p>
  * The file is sent through an GZIPOutputStream, so it's compressed in addition.
- * <p/>
+ * <p>
  * Note that the outfile has to be in a folder parent to all images!
- *
+ * <p>
  * // TODO: Change to LinkedBlockingQueue and Files.readAllBytes.
  *
  * @author Mathias Lux, mathias@juggle.at, 08.03.13
  */
 public class ParallelExtractor implements Runnable {
     public static final String[] features = new String[]{
-            "CEDD",                  // 0
-            "FCTH",                  // 1
-            "OpponentHistogram",     // 2
-            "JointHistogram",        // 3
-            "AutoColorCorrelogram",  // 4
-            "ColorLayout",           // 5
-            "EdgeHistogram",         // 6
-            "Gabor",                 // 7
-            "JCD",                   // 8
-            "JpegCoefficientHistogram",
-            "ScalableColor",         // 10
-            "SimpleColorHistogram",  // 11
-            "Tamura",                // 12
-            "LuminanceLayout",       // 13
-            "PHOG",                   // 14
+        "CEDD",                  // 0
+        "FCTH",                  // 1
+        "OpponentHistogram",     // 2
+        "JointHistogram",        // 3
+        "AutoColorCorrelogram",  // 4
+        "ColorLayout",           // 5
+        "EdgeHistogram",         // 6
+        "Gabor",                 // 7
+        "JCD",                   // 8
+        "JpegCoefficientHistogram",
+        "ScalableColor",         // 10
+        "SimpleColorHistogram",  // 11
+        "Tamura",                // 12
+        "LuminanceLayout",       // 13
+        "PHOG",                   // 14
     };
     public static final String[] featureFieldNames = new String[]{
-            DocumentBuilder.FIELD_NAME_CEDD,                 // 0
-            DocumentBuilder.FIELD_NAME_FCTH,                 // 1
-            DocumentBuilder.FIELD_NAME_OPPONENT_HISTOGRAM,   // 2
-            DocumentBuilder.FIELD_NAME_JOINT_HISTOGRAM,      // 3
-            DocumentBuilder.FIELD_NAME_AUTOCOLORCORRELOGRAM, // 4
-            DocumentBuilder.FIELD_NAME_COLORLAYOUT,          // 5
-            DocumentBuilder.FIELD_NAME_EDGEHISTOGRAM,        // 6
-            DocumentBuilder.FIELD_NAME_GABOR,                // 7
-            DocumentBuilder.FIELD_NAME_JCD,                  // 8
-            DocumentBuilder.FIELD_NAME_JPEGCOEFFS,
-            DocumentBuilder.FIELD_NAME_SCALABLECOLOR,
-            DocumentBuilder.FIELD_NAME_COLORHISTOGRAM,
-            DocumentBuilder.FIELD_NAME_TAMURA,               // 12
-            DocumentBuilder.FIELD_NAME_LUMINANCE_LAYOUT,     // 13
-            DocumentBuilder.FIELD_NAME_PHOG,                 // 14
+        DocumentBuilder.FIELD_NAME_CEDD,                 // 0
+        DocumentBuilder.FIELD_NAME_FCTH,                 // 1
+        DocumentBuilder.FIELD_NAME_OPPONENT_HISTOGRAM,   // 2
+        DocumentBuilder.FIELD_NAME_JOINT_HISTOGRAM,      // 3
+        DocumentBuilder.FIELD_NAME_AUTOCOLORCORRELOGRAM, // 4
+        DocumentBuilder.FIELD_NAME_COLORLAYOUT,          // 5
+        DocumentBuilder.FIELD_NAME_EDGEHISTOGRAM,        // 6
+        DocumentBuilder.FIELD_NAME_GABOR,                // 7
+        DocumentBuilder.FIELD_NAME_JCD,                  // 8
+        DocumentBuilder.FIELD_NAME_JPEGCOEFFS,
+        DocumentBuilder.FIELD_NAME_SCALABLECOLOR,
+        DocumentBuilder.FIELD_NAME_COLORHISTOGRAM,
+        DocumentBuilder.FIELD_NAME_TAMURA,               // 12
+        DocumentBuilder.FIELD_NAME_LUMINANCE_LAYOUT,     // 13
+        DocumentBuilder.FIELD_NAME_PHOG,                 // 14
     };
     static HashMap<String, Integer> feature2index;
 
@@ -214,24 +214,24 @@ public class ParallelExtractor implements Runnable {
 
     private static void printHelp() {
         System.out.println("Help for the ParallelExtractor class.\n" +
-                "=============================\n" +
-                "This help text is shown if you start the ParallelExtractor with the '-h' option.\n" +
-                "\n" +
-                "1. Usage\n" +
-                "========\n" +
-                "$> ParallelExtractor -i <infile> [-o <outfile>] -c <configfile> [-n <threads>] [-m <max_side_length>]\n" +
-                "\n" +
-                "Note: if you don't specify an outfile just \".data\" is appended to the infile for output.\n" +
-                "\n" +
-                "2. Config File\n" +
-                "==============\n" +
-                "The config file is a simple java Properties file. It basically gives the \n" +
-                "employed features as a list of properties, just like:\n" +
-                "\n" +
-                "feature.1=CEDD\n" +
-                "feature.2=FCTH\n" +
-                "\n" +
-                "... and so on. ");
+            "=============================\n" +
+            "This help text is shown if you start the ParallelExtractor with the '-h' option.\n" +
+            "\n" +
+            "1. Usage\n" +
+            "========\n" +
+            "$> ParallelExtractor -i <infile> [-o <outfile>] -c <configfile> [-n <threads>] [-m <max_side_length>]\n" +
+            "\n" +
+            "Note: if you don't specify an outfile just \".data\" is appended to the infile for output.\n" +
+            "\n" +
+            "2. Config File\n" +
+            "==============\n" +
+            "The config file is a simple java Properties file. It basically gives the \n" +
+            "employed features as a list of properties, just like:\n" +
+            "\n" +
+            "feature.1=CEDD\n" +
+            "feature.2=FCTH\n" +
+            "\n" +
+            "... and so on. ");
     }
 
     /**

@@ -194,8 +194,8 @@ public class TestParallelIndexer extends TestCase {
                 String t = getMaxItem(hist);
                 String s = "";
                 if (t != null && reader.document(docNumber).getValues("tags") != null
-                        && reader.document(docNumber).getValues("tags").length > 0
-                        && reader.document(docNumber).getValues("tags")[0].indexOf(t) > -1) {
+                    && reader.document(docNumber).getValues("tags").length > 0
+                    && reader.document(docNumber).getValues("tags")[0].indexOf(t) > -1) {
                     s = "* ";
                     countHits++;
                 }

@@ -87,19 +87,19 @@ public class JCDTest extends TestCase {
     public void testSerialization() throws IOException, IllegalAccessException, InstantiationException {
         LireFeature f1 = new JCD();
         String[] testFiles = {"D:\\DataSets\\WIPO-CA\\converted-0\\1000038.png",
-                "D:\\DataSets\\WIPO-CA\\converted-0\\1000282.png",
-                "D:\\DataSets\\WIPO-CA\\converted-0\\1000414.png",
-                "D:\\DataSets\\WIPO-CA\\converted-0\\1000489.png",
-                "D:\\DataSets\\WIPO-CA\\converted-0\\1000466.png",
-                "D:\\DataSets\\WIPO-CA\\converted-0\\1000194.png",
-                "D:\\DataSets\\WIPO-CA\\converted-0\\1000248.png",
-                "D:\\DataSets\\WIPO-CA\\converted-0\\1000009.png",
-                "D:\\DataSets\\WIPO-CA\\converted-0\\1001816.png",
-                "D:\\DataSets\\WIPO-CA\\converted-0\\1001809.png",
-                "D:\\DataSets\\WIPO-CA\\converted-0\\1002011.png",
-                "D:\\DataSets\\WIPO-CA\\converted-0\\1001855.png",
-                "D:\\DataSets\\WIPO-CA\\converted-0\\1002863.png",
-                "D:\\DataSets\\WIPO-CA\\converted-0\\1002896.png"};
+            "D:\\DataSets\\WIPO-CA\\converted-0\\1000282.png",
+            "D:\\DataSets\\WIPO-CA\\converted-0\\1000414.png",
+            "D:\\DataSets\\WIPO-CA\\converted-0\\1000489.png",
+            "D:\\DataSets\\WIPO-CA\\converted-0\\1000466.png",
+            "D:\\DataSets\\WIPO-CA\\converted-0\\1000194.png",
+            "D:\\DataSets\\WIPO-CA\\converted-0\\1000248.png",
+            "D:\\DataSets\\WIPO-CA\\converted-0\\1000009.png",
+            "D:\\DataSets\\WIPO-CA\\converted-0\\1001816.png",
+            "D:\\DataSets\\WIPO-CA\\converted-0\\1001809.png",
+            "D:\\DataSets\\WIPO-CA\\converted-0\\1002011.png",
+            "D:\\DataSets\\WIPO-CA\\converted-0\\1001855.png",
+            "D:\\DataSets\\WIPO-CA\\converted-0\\1002863.png",
+            "D:\\DataSets\\WIPO-CA\\converted-0\\1002896.png"};
         for (String testFile : testFiles) {
             f1.extract(ImageIO.read(new File(testFile)));
             LireFeature f2 = f1.getClass().newInstance();
@@ -138,9 +138,9 @@ public class JCDTest extends TestCase {
     public void testConcurrentExtraction() throws IOException, IllegalAccessException, InstantiationException {
         // concurrent extraction.
         Class[] featureClasses = new Class[]{
-                CEDD.class,
-                FCTH.class,
-                JCD.class
+            CEDD.class,
+            FCTH.class,
+            JCD.class
 //                AutoColorCorrelogram.class,
 //                ColorLayout.class,
 //                EdgeHistogram.class,
@@ -164,7 +164,7 @@ public class JCDTest extends TestCase {
             Thread t = null;
             BufferedImage read = ImageIO.read(new File("src/test/resources/images/91561.lire.jpg"));
             f1.extract(read);
-            for (int i=0; i<16; i++) {
+            for (int i = 0; i < 16; i++) {
                 t = new Thread(new Extractor(read, f1));
                 t.start();
             }
@@ -202,11 +202,11 @@ public class JCDTest extends TestCase {
 
         @Override
         public void run() {
-            for (int i =0; i<100; i++) {
+            for (int i = 0; i < 100; i++) {
                 try {
                     feature.extract(file);
                     if (feature.getDistance(truth) != 0) {
-                        System.err.println(Thread.currentThread().getName() + " ("+feature.getFeatureName()+") : " + feature.getDistance(truth));
+                        System.err.println(Thread.currentThread().getName() + " (" + feature.getFeatureName() + ") : " + feature.getDistance(truth));
                         break;
                     }
                 } catch (Exception e) {

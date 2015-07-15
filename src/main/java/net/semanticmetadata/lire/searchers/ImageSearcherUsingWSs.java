@@ -40,36 +40,26 @@ public class ImageSearcherUsingWSs extends GenericFastImageSearcher {
         setWS();
     }
 
-    private void setWS()
-    {
-        if (termFrequency)
-        {
-            if (inverseDocFrequency)
-            {
+    private void setWS() {
+        if (termFrequency) {
+            if (inverseDocFrequency) {
                 if (normalizeHistogram)
                     ws = "ltc";
                 else if (!normalizeHistogram)
                     ws = "ltn";
-            }
-            else if (!inverseDocFrequency)
-            {
+            } else if (!inverseDocFrequency) {
                 if (normalizeHistogram)
                     ws = "lnc";
                 else if (!normalizeHistogram)
                     ws = "lnn";
             }
-        }
-        else if (!termFrequency)
-        {
-            if (inverseDocFrequency)
-            {
+        } else if (!termFrequency) {
+            if (inverseDocFrequency) {
                 if (normalizeHistogram)
                     ws = "ntc";
                 else if (!normalizeHistogram)
                     ws = "ntn";
-            }
-            else if (!inverseDocFrequency)
-            {
+            } else if (!inverseDocFrequency) {
                 if (normalizeHistogram)
                     ws = "nnc";
                 else if (!normalizeHistogram)
@@ -114,7 +104,7 @@ public class ImageSearcherUsingWSs extends GenericFastImageSearcher {
             while (!locallyEnded) {
                 try {
                     tmp = queue.take();
-                    if (tmp.getKey() < 0 ) locallyEnded = true;
+                    if (tmp.getKey() < 0) locallyEnded = true;
                     if (!locallyEnded) {    // && tmp != -1
                         localCachedInstance.setByteArrayRepresentation(tmp.getValue());
                         computeFeatureCache(localCachedInstance);
@@ -164,7 +154,7 @@ public class ImageSearcherUsingWSs extends GenericFastImageSearcher {
             featureCache = new LinkedHashMap<Integer, byte[]>(docs);
             try {
                 int counter = 0;
-                while ((reader.hasDeletions() && !liveDocs.get(counter))&&(counter<docs)){
+                while ((reader.hasDeletions() && !liveDocs.get(counter)) && (counter < docs)) {
                     counter++;
                 }
 
@@ -239,7 +229,7 @@ public class ImageSearcherUsingWSs extends GenericFastImageSearcher {
             for (Consumer task : tasks) {
                 tmpDocs = task.getResult();
                 flag = true;
-                while (flag && (tmpDocs.size() > 0)){
+                while (flag && (tmpDocs.size() > 0)) {
                     simpleResult = tmpDocs.pollFirst();
                     if (this.docs.size() < maxHits) {
                         this.docs.add(simpleResult);
@@ -271,7 +261,7 @@ public class ImageSearcherUsingWSs extends GenericFastImageSearcher {
                 }
             }
             LinkedHashMap<Integer, byte[]> tmpMap = new LinkedHashMap<Integer, byte[]>(numThreads * 3);
-            for (int i = 1; i < numThreads * 3; i++)  {
+            for (int i = 1; i < numThreads * 3; i++) {
                 tmpMap.put(-i, null);
             }
             for (Map.Entry<Integer, byte[]> documentEntry : tmpMap.entrySet()) {
@@ -286,7 +276,7 @@ public class ImageSearcherUsingWSs extends GenericFastImageSearcher {
 
     private class Consumer implements Runnable {
         private boolean locallyEnded = false;
-        private TreeSet<SimpleResult> localDocs  = new TreeSet<SimpleResult>();
+        private TreeSet<SimpleResult> localDocs = new TreeSet<SimpleResult>();
         private LireFeature localCachedInstance;
         private LireFeature localLireFeature;
 
@@ -310,7 +300,7 @@ public class ImageSearcherUsingWSs extends GenericFastImageSearcher {
             while (!locallyEnded) {
                 try {
                     tmp = queue.take();
-                    if (tmp.getKey() < 0 )  locallyEnded = true;
+                    if (tmp.getKey() < 0) locallyEnded = true;
                     if (!locallyEnded) {
                         localCachedInstance.setByteArrayRepresentation(tmp.getValue());
                         tmpDistance = localLireFeature.getDistance(localCachedInstance);

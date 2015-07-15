@@ -84,7 +84,6 @@ import java.util.Iterator;
  * https://code.google.com/p/lire/source/checkout
  *
  * @author Mathias Lux mathias@juggle.at
- *
  */
 public class TestRerankTextSearch extends TestCase {
     // that's where we put the index for testing:
@@ -109,7 +108,7 @@ public class TestRerankTextSearch extends TestCase {
             // create the document with the LIRE DocumentBuilder, this adds the image features to the document.
             Document d = builder.createDocument(new FileInputStream(img), path);
             // handling the XML of the test data set
-            path = path.substring(0,path.lastIndexOf('.')) + ".xml";
+            path = path.substring(0, path.lastIndexOf('.')) + ".xml";
             TagHandler handler = new TagHandler();
             xmlReader.setContentHandler(handler);
             xmlReader.parse(new InputSource(new File(path).toURI().toString()));

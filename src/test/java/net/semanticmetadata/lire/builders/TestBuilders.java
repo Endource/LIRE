@@ -17,7 +17,7 @@
  * We kindly ask you to refer the any or one of the following publications in
  * any publication mentioning or employing Lire:
  *
- * Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval –
+ * Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval ï¿½
  * An Extensible Java CBIR Library. In proceedings of the 16th ACM International
  * Conference on Multimedia, pp. 1085-1088, Vancouver, Canada, 2008
  * URL: http://doi.acm.org/10.1145/1459359.1459577
@@ -61,7 +61,7 @@ import java.util.List;
  * Created by Nektarios on 28/5/2015.
  *
  * @author Nektarios Anagnostopoulos, nek.anag@gmail.com
- * (c) 2015 by Nektarios Anagnostopoulos
+ *         (c) 2015 by Nektarios Anagnostopoulos
  */
 public class TestBuilders extends TestCase {
     Class<? extends GlobalFeature> globalFeatureClass = CEDD.class;
@@ -259,7 +259,8 @@ public class TestBuilders extends TestCase {
             bool6 = Arrays.equals(featureVector5, featureVector6);
 
 
-            if (!(bool && bool1 && bool2 && bool3 && bool4 && bool5 && bool6)) System.err.println("ERROR using " + path);
+            if (!(bool && bool1 && bool2 && bool3 && bool4 && bool5 && bool6))
+                System.err.println("ERROR using " + path);
         }
         System.out.println("Local done...");
     }
@@ -362,15 +363,11 @@ public class TestBuilders extends TestCase {
             bool6 = Arrays.equals(featureVector5, featureVector6);
 
 
-            if (!(bool && bool1 && bool2 && bool3 && bool4 && bool5 && bool6)) System.err.println("ERROR using " + path);
+            if (!(bool && bool1 && bool2 && bool3 && bool4 && bool5 && bool6))
+                System.err.println("ERROR using " + path);
         }
         System.out.println("Simple done...");
     }
-
-
-
-
-
 
 
 }

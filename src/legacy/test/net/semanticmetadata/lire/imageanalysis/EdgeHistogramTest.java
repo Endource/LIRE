@@ -83,15 +83,15 @@ public class EdgeHistogramTest extends TestCase {
     public void testSerializationAndReUse() throws IOException, IllegalAccessException, InstantiationException {
         LireFeature f = new EdgeHistogram();
         String[] testFiles = new String[]{"D:\\DataSets\\WIPO-CA\\converted-0\\1001557.png",
-                "D:\\DataSets\\WIPO-CA\\converted-0\\1001714.png",
-                "D:\\DataSets\\WIPO-CA\\converted-0\\1001816.png",
-                "D:\\DataSets\\WIPO-CA\\converted-0\\1001651.png",
-                "D:\\DataSets\\WIPO-CA\\converted-0\\1002071.png",
-                "D:\\DataSets\\WIPO-CA\\converted-0\\1001809.png",
-                "D:\\DataSets\\WIPO-CA\\converted-0\\1001627.png",
-                "D:\\DataSets\\WIPO-CA\\converted-0\\1001611.png",
-                "D:\\DataSets\\WIPO-CA\\converted-0\\1001855.png",
-                "D:\\DataSets\\WIPO-CA\\converted-0\\1002011.png"};
+            "D:\\DataSets\\WIPO-CA\\converted-0\\1001714.png",
+            "D:\\DataSets\\WIPO-CA\\converted-0\\1001816.png",
+            "D:\\DataSets\\WIPO-CA\\converted-0\\1001651.png",
+            "D:\\DataSets\\WIPO-CA\\converted-0\\1002071.png",
+            "D:\\DataSets\\WIPO-CA\\converted-0\\1001809.png",
+            "D:\\DataSets\\WIPO-CA\\converted-0\\1001627.png",
+            "D:\\DataSets\\WIPO-CA\\converted-0\\1001611.png",
+            "D:\\DataSets\\WIPO-CA\\converted-0\\1001855.png",
+            "D:\\DataSets\\WIPO-CA\\converted-0\\1002011.png"};
         for (String testFile : testFiles) {
 //            f=new EdgeHistogram();
             f.extract(ImageIO.read(new File(testFile)));
@@ -100,7 +100,7 @@ public class EdgeHistogramTest extends TestCase {
             f2.extract(ImageIO.read(new File(testFile)));
 //            f2.getByteArrayRepresentation();
             System.out.println(testFile);
-            System.out.println(Arrays.toString(f.getDoubleHistogram()).replaceAll("\\.0,",""));
+            System.out.println(Arrays.toString(f.getDoubleHistogram()).replaceAll("\\.0,", ""));
             System.out.println(Arrays.toString(f2.getDoubleHistogram()).replaceAll("\\.0,", ""));
             System.out.println(f2.getDistance(f));
 //            assertEquals(f2.getDistance(f), 0d, 0.000000001);

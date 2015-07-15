@@ -61,6 +61,7 @@ import java.util.TreeSet;
  * HashingMode. First a number of candidates is retrieved from the index, then the candidates are re-ranked.
  * The number of candidates can be tuned with the numHashedResults parameter in the constructor. The higher
  * this parameter, the better the results, but the slower the search.
+ *
  * @author Mathias Lux, mathias@juggle.at, 2013-04-12
  */
 
@@ -73,10 +74,11 @@ public class LshImageSearcher extends AbstractImageSearcher {
 
     /**
      * Creates a new searcher for BitSampling based hashes.
-     * @param maximumHits how many hits the searcher shall return.
+     *
+     * @param maximumHits      how many hits the searcher shall return.
      * @param featureFieldName the field hashFunctionsFileName of the feature.
-     * @param hashesFieldName the field hashFunctionsFileName of the hashes.
-     * @param feature an instance of the feature.
+     * @param hashesFieldName  the field hashFunctionsFileName of the hashes.
+     * @param feature          an instance of the feature.
      */
     public LshImageSearcher(int maximumHits, String featureFieldName, String hashesFieldName, GlobalFeature feature) {
         this.maximumHits = maximumHits;
@@ -154,8 +156,8 @@ public class LshImageSearcher extends AbstractImageSearcher {
         try {
             GlobalFeature queryFeature = feature.getClass().newInstance();
             queryFeature.setByteArrayRepresentation(doc.getBinaryValue(featureFieldName).bytes,
-                    doc.getBinaryValue(featureFieldName).offset,
-                    doc.getBinaryValue(featureFieldName).length);
+                doc.getBinaryValue(featureFieldName).offset,
+                doc.getBinaryValue(featureFieldName).length);
             return search(doc.getValues(hashesFieldName)[0].split(" "), queryFeature, reader);
         } catch (Exception e) {
             e.printStackTrace();
@@ -166,7 +168,7 @@ public class LshImageSearcher extends AbstractImageSearcher {
     private ImageSearchHits search(String[] hashes, GlobalFeature queryFeature, IndexReader reader) throws IOException {
         // first search by text:
         IndexSearcher searcher = new IndexSearcher(reader);
-        searcher.setSimilarity(new DefaultSimilarity(){
+        searcher.setSimilarity(new DefaultSimilarity() {
             @Override
             public float tf(float freq) {
                 return 1;
@@ -209,8 +211,8 @@ public class LshImageSearcher extends AbstractImageSearcher {
         double tmpScore = 0d;
         for (int i = 0; i < docs.scoreDocs.length; i++) {
             feature.setByteArrayRepresentation(reader.document(docs.scoreDocs[i].doc).getBinaryValue(featureFieldName).bytes,
-                    reader.document(docs.scoreDocs[i].doc).getBinaryValue(featureFieldName).offset,
-                    reader.document(docs.scoreDocs[i].doc).getBinaryValue(featureFieldName).length);
+                reader.document(docs.scoreDocs[i].doc).getBinaryValue(featureFieldName).offset,
+                reader.document(docs.scoreDocs[i].doc).getBinaryValue(featureFieldName).length);
             tmpScore = queryFeature.getDistance(feature);
             if (resultScoreDocs.size() < maximumHits) {
                 resultScoreDocs.add(new SimpleResult(tmpScore, docs.scoreDocs[i].doc));

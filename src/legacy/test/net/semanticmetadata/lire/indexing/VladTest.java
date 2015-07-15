@@ -62,7 +62,7 @@ public class VladTest extends TestCase {
         Document d = db.createDocument(new FileInputStream(new File("./testdata/wang-1000/99.jpg")), "./testdata/wang-1000/99.jpg");
         d = vladBuilder.getVisualWords(d);
         ImageSearchHits hits = searcher.search(d, reader);
-        for (int i=0; i< hits.length(); i++) {
+        for (int i = 0; i < hits.length(); i++) {
             String file = hits.doc(i).getValues(DocumentBuilder.FIELD_NAME_IDENTIFIER)[0];
             System.out.println(hits.score(i) + ": " + file);
         }

@@ -163,8 +163,8 @@ public class LsaFilter implements SearchHitsFilter {
         double max = 0;
         for (int i = 0; i < results.scoreDocs.length; i++) {
             ScoreDoc scoreDoc = results.scoreDocs[i];
-            SimpleResult s = new SimpleResult(1/scoreDoc.score, scoreDoc.doc);
-            max = Math.max(max, 1/scoreDoc.score);
+            SimpleResult s = new SimpleResult(1 / scoreDoc.score, scoreDoc.doc);
+            max = Math.max(max, 1 / scoreDoc.score);
             tmp.add(s);
         }
 

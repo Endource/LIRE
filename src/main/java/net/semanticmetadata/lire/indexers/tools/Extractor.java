@@ -58,57 +58,57 @@ import java.util.Properties;
  * and puts them into a data file. Main purpose is run multiple extractors at multiple machines
  * and put the data files into one single index. Images are references relatively to the data file,
  * so it should work fine for network file systems.
- * <p/>
+ * <p>
  * File format is specified as: (12(345)+)+6 with 1-6 being ...
- * <p/>
+ * <p>
  * 1. Length of the file name [4 bytes], an int n giving the number of bytes for the file hashFunctionsFileName
  * 2. File name, relative to the output file this data is written to [n bytes, see above]
  * 3. Feature index [1 byte], see static members
  * 4. Feature value length [4 bytes], an int k giving the number of bytes encoding the value
  * 5. Feature value [k bytes, see above]
  * 6. One single byte with the value -1
- * <p/>
+ * <p>
  * The file is sent through an GZIPOutputStream, so it's compressed in addition.
- *
+ * <p>
  * Note that the outfile has to be in a folder parent to all images!
  *
  * @author Mathias Lux, mathias@juggle.at, 08.03.13
  */
 public class Extractor implements Runnable {
     public static final String[] features = new String[]{
-            "CEDD",                  // 0
-            "FCTH",                  // 1
-            "OpponentHistogram",     // 2
-            "JointHistogram",        // 3
-            "AutoColorCorrelogram",  // 4
-            "ColorLayout",           // 5
-            "EdgeHistogram",         // 6
-            "Gabor",                 // 7
-            "JCD",                   // 8
-            "JpegCoefficientHistogram",
-            "ScalableColor",         // 10
-            "SimpleColorHistogram",  // 11
-            "Tamura",                // 12
-            "LuminanceLayout",       // 13
-            "PHOG",                  // 14
+        "CEDD",                  // 0
+        "FCTH",                  // 1
+        "OpponentHistogram",     // 2
+        "JointHistogram",        // 3
+        "AutoColorCorrelogram",  // 4
+        "ColorLayout",           // 5
+        "EdgeHistogram",         // 6
+        "Gabor",                 // 7
+        "JCD",                   // 8
+        "JpegCoefficientHistogram",
+        "ScalableColor",         // 10
+        "SimpleColorHistogram",  // 11
+        "Tamura",                // 12
+        "LuminanceLayout",       // 13
+        "PHOG",                  // 14
     };
 
     public static final String[] featureFieldNames = new String[]{
-            DocumentBuilder.FIELD_NAME_CEDD,                 // 0
-            DocumentBuilder.FIELD_NAME_FCTH,                 // 1
-            DocumentBuilder.FIELD_NAME_OPPONENT_HISTOGRAM,   // 2
-            DocumentBuilder.FIELD_NAME_JOINT_HISTOGRAM,      // 3
-            DocumentBuilder.FIELD_NAME_AUTOCOLORCORRELOGRAM, // 4
-            DocumentBuilder.FIELD_NAME_COLORLAYOUT,          // 5
-            DocumentBuilder.FIELD_NAME_EDGEHISTOGRAM,        // 6
-            DocumentBuilder.FIELD_NAME_GABOR,                // 7
-            DocumentBuilder.FIELD_NAME_JCD,                  // 8
-            DocumentBuilder.FIELD_NAME_JPEGCOEFFS,
-            DocumentBuilder.FIELD_NAME_SCALABLECOLOR,
-            DocumentBuilder.FIELD_NAME_COLORHISTOGRAM,
-            DocumentBuilder.FIELD_NAME_TAMURA,               // 12
-            DocumentBuilder.FIELD_NAME_LUMINANCE_LAYOUT,     // 13
-            DocumentBuilder.FIELD_NAME_PHOG,                  // 14
+        DocumentBuilder.FIELD_NAME_CEDD,                 // 0
+        DocumentBuilder.FIELD_NAME_FCTH,                 // 1
+        DocumentBuilder.FIELD_NAME_OPPONENT_HISTOGRAM,   // 2
+        DocumentBuilder.FIELD_NAME_JOINT_HISTOGRAM,      // 3
+        DocumentBuilder.FIELD_NAME_AUTOCOLORCORRELOGRAM, // 4
+        DocumentBuilder.FIELD_NAME_COLORLAYOUT,          // 5
+        DocumentBuilder.FIELD_NAME_EDGEHISTOGRAM,        // 6
+        DocumentBuilder.FIELD_NAME_GABOR,                // 7
+        DocumentBuilder.FIELD_NAME_JCD,                  // 8
+        DocumentBuilder.FIELD_NAME_JPEGCOEFFS,
+        DocumentBuilder.FIELD_NAME_SCALABLECOLOR,
+        DocumentBuilder.FIELD_NAME_COLORHISTOGRAM,
+        DocumentBuilder.FIELD_NAME_TAMURA,               // 12
+        DocumentBuilder.FIELD_NAME_LUMINANCE_LAYOUT,     // 13
+        DocumentBuilder.FIELD_NAME_PHOG,                  // 14
     };
 
     static HashMap<String, Integer> feature2index;
@@ -164,12 +164,12 @@ public class Extractor implements Runnable {
             String arg = args[i];
             if (arg.startsWith("-i")) {
                 // infile ...
-                if ((i+1) < args.length)
+                if ((i + 1) < args.length)
                     e.setFileList(new File(args[i + 1]));
                 else printHelp();
             } else if (arg.startsWith("-o")) {
                 // out file
-                if ((i+1) < args.length)
+                if ((i + 1) < args.length)
                     e.setOutFile(new File(args[i + 1]));
                 else printHelp();
             } else if (arg.startsWith("-h")) {
@@ -203,8 +203,8 @@ public class Extractor implements Runnable {
 
     private boolean isConfigured() {
         boolean configured = true;
-        if (fileList==null || !fileList.exists()) configured = false;
-        else if (outFile==null) {
+        if (fileList == null || !fileList.exists()) configured = false;
+        else if (outFile == null) {
             // create an outfile ...
             try {
                 outFile = new File(fileList.getCanonicalPath() + ".data");
@@ -216,30 +216,30 @@ public class Extractor implements Runnable {
             System.err.println(outFile.getName() + " already exists. Please delete or choose another outfile.");
             configured = false;
         }
-        if (listOfFeatures.size()<1) configured = false;
+        if (listOfFeatures.size() < 1) configured = false;
         return configured;
     }
 
     private static void printHelp() {
         System.out.println("Help for the Extractor class.\n" +
-                "=============================\n" +
-                "This help text is shown if you start the Extractor with the '-h' option.\n" +
-                "\n" +
-                "1. Usage\n" +
-                "========\n" +
-                "$> Extractor -i <infile> [-o <outfile>] -c <configfile>\n" +
-                "\n" +
-                "Note: if you don't specify an outfile just \".data\" is appended to the infile for output.\n" +
-                "\n" +
-                "2. Config File\n" +
-                "==============\n" +
-                "The config file is a simple java Properties file. It basically gives the \n" +
-                "employed features as a list of properties, just like:\n" +
-                "\n" +
-                "feature.1=CEDD\n" +
-                "feature.2=FCTH\n" +
-                "\n" +
-                "... and so on. ");
+            "=============================\n" +
+            "This help text is shown if you start the Extractor with the '-h' option.\n" +
+            "\n" +
+            "1. Usage\n" +
+            "========\n" +
+            "$> Extractor -i <infile> [-o <outfile>] -c <configfile>\n" +
+            "\n" +
+            "Note: if you don't specify an outfile just \".data\" is appended to the infile for output.\n" +
+            "\n" +
+            "2. Config File\n" +
+            "==============\n" +
+            "The config file is a simple java Properties file. It basically gives the \n" +
+            "employed features as a list of properties, just like:\n" +
+            "\n" +
+            "feature.1=CEDD\n" +
+            "feature.2=FCTH\n" +
+            "\n" +
+            "... and so on. ");
     }
 
 
@@ -256,7 +256,7 @@ public class Extractor implements Runnable {
         }
 
         // do it ...
-        byte[] myBuffer = new byte[1024*1024*10];
+        byte[] myBuffer = new byte[1024 * 1024 * 10];
         int bufferCount = 0;
         try {
             BufferedReader br = new BufferedReader(new FileReader(fileList));
@@ -265,7 +265,7 @@ public class Extractor implements Runnable {
             String outFilePath = outFile.getCanonicalPath();
 //            outFilePath = outFilePath.substring(0, outFilePath.lastIndexOf(outFile.getName()));
             long ms = System.currentTimeMillis();
-            int count=0;
+            int count = 0;
             while ((file = br.readLine()) != null) {
                 File input = new File(file);
                 String relFile = input.getCanonicalPath();//.substring(outFilePath.length());
@@ -304,8 +304,8 @@ public class Extractor implements Runnable {
                     System.err.println("Error processing image " + relFile + ": " + e.getMessage());
                     // e.printStackTrace();
                 }
-                if (count%100==0 && count > 0)
-                    System.out.println(count + " files processed, " + (System.currentTimeMillis()-ms)/count + " ms per file.");
+                if (count % 100 == 0 && count > 0)
+                    System.out.println(count + " files processed, " + (System.currentTimeMillis() - ms) / count + " ms per file.");
             }
             dos.flush();
             dos.close();

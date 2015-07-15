@@ -67,7 +67,7 @@ public class HistogramTest extends TestGeneral {
             for (int i = 0; i < raster.getWidth(); i++) {
                 for (int j = 0; j < raster.getHeight(); j++) {
                     raster.getPixel(i, j, pixel);
-                    ColorConversion.rgb2hsv(pixel[0],pixel[1],pixel[2], hsv);
+                    ColorConversion.rgb2hsv(pixel[0], pixel[1], pixel[2], hsv);
                     // check for color hue.
                     if (hsv[1] > 15 && hsv[2] > 15)
                         histogram[hsv[0]]++;

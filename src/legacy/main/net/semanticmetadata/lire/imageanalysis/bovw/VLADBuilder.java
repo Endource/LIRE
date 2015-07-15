@@ -90,7 +90,6 @@ public class VLADBuilder {
 
 
     /**
-     *
      * @param reader
      * @deprecated
      */
@@ -134,8 +133,8 @@ public class VLADBuilder {
      * the number of clusters k-means should find. Note that this number should be lower than the number of features,
      * otherwise an exception will be thrown while indexing. TODO: write
      *
-     * @param reader               the index reader
-     * @param lireFeature          lireFeature used
+     * @param reader      the index reader
+     * @param lireFeature lireFeature used
      */
     public VLADBuilder(IndexReader reader, LireFeature lireFeature) {
         this.reader = reader;
@@ -337,12 +336,12 @@ public class VLADBuilder {
         IndexWriter iw = LuceneUtils.createIndexWriter(((DirectoryReader) reader).directory(), true, LuceneUtils.AnalyzerType.WhitespaceAnalyzer);
         for (int i = 0; i < reader.maxDoc(); i++) {
 //            if (!reader.isDeleted(i)) {
-                Document d = reader.document(i);
-                // Only if there are no values yet:
-                if (d.getValues(vladFieldName) == null || d.getValues(vladFieldName).length == 0) {
-                    createVisualWords(d, f);
-                    iw.updateDocument(new Term(DocumentBuilder.FIELD_NAME_IDENTIFIER, d.getValues(DocumentBuilder.FIELD_NAME_IDENTIFIER)[0]), d);
-                }
+            Document d = reader.document(i);
+            // Only if there are no values yet:
+            if (d.getValues(vladFieldName) == null || d.getValues(vladFieldName).length == 0) {
+                createVisualWords(d, f);
+                iw.updateDocument(new Term(DocumentBuilder.FIELD_NAME_IDENTIFIER, d.getValues(DocumentBuilder.FIELD_NAME_IDENTIFIER)[0]), d);
+            }
 //            }
         }
         iw.commit();
@@ -372,7 +371,7 @@ public class VLADBuilder {
         for (int i = 0; i < histogram.length; i++) {
             sumOfSquares += histogram[i] * histogram[i];
         }
-        if (sumOfSquares>0) {
+        if (sumOfSquares > 0) {
             for (int i = 0; i < histogram.length; i++) {
 //            histogram[i] = Math.floor(16d * histogram[i] / Math.sqrt(sumOfSquares));
                 histogram[i] = histogram[i] / Math.sqrt(sumOfSquares);
@@ -459,7 +458,7 @@ public class VLADBuilder {
     protected LireFeature getFeatureInstance() {
         LireFeature result = null;
         try {
-            result =  lireFeature.getClass().newInstance();
+            result = lireFeature.getClass().newInstance();
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -532,8 +531,7 @@ public class VLADBuilder {
         }
     }
 
-    private void createVisualWords(Document d, LireFeature f)
-    {
+    private void createVisualWords(Document d, LireFeature f) {
         IndexableField[] fields = d.getFields(localFeatureFieldName);
         // remove the fields if they are already there ...
         d.removeField(vladFieldName);

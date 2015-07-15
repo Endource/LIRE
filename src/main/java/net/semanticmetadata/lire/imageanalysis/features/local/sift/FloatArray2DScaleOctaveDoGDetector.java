@@ -41,7 +41,7 @@ package net.semanticmetadata.lire.imageanalysis.features.local.sift;
 /**
  * Difference Of Gaussian detector on top of a scale space octave as described
  * by David Lowe \citep{Loew04}.
- *
+ * <p>
  * BibTeX:
  * <pre>
  * &#64;article{Lowe04,
@@ -54,18 +54,18 @@ package net.semanticmetadata.lire.imageanalysis.features.local.sift;
  *   pages   = {91--110},
  * }
  * </pre>
- *
+ * <p>
  * License: GPL
- *
+ * <p>
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License 2
  * as published by the Free Software Foundation.
- *
+ * <p>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
@@ -314,9 +314,9 @@ public class FloatArray2DScaleOctaveDoGDetector {
 
                         // invert hessian
                         Array2DRowRealMatrix H = new Array2DRowRealMatrix(new double[][]{
-                                {(double) dxx, (double) dxy, (double) dxi},
-                                {(double) dxy, (double) dyy, (double) dyi},
-                                {(double) dxi, (double) dyi, (double) dii}});
+                            {(double) dxx, (double) dxy, (double) dxi},
+                            {(double) dxy, (double) dyy, (double) dyi},
+                            {(double) dxi, (double) dyi, (double) dii}});
                         RealMatrix H_inv;
                         try {
                             H_inv = new LUDecomposition(H).getSolver().getInverse();

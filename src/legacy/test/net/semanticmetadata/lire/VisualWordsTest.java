@@ -104,7 +104,7 @@ public class VisualWordsTest extends TestCase {
         int[] docIDs = new int[]{7886, 1600, 4611, 4833, 4260, 2044, 7658};
         for (int i : docIDs) {
             IndexReader ir = DirectoryReader.open(FSDirectory.open(indexPath));
-            BOVWBuilder sfh = new BOVWBuilder(ir,new SurfFeature());
+            BOVWBuilder sfh = new BOVWBuilder(ir, new SurfFeature());
             VisualWordsImageSearcher vis = new VisualWordsImageSearcher(10, DocumentBuilder.FIELD_NAME_SURF + DocumentBuilder.FIELD_NAME_BOVW);
 //            Document doc = sfh.getVisualWords(surfBuilder.createDocument(ImageIO.read(new File(queryImage)), queryImage));
             ImageSearchHits hits = vis.search(ir.document(i), ir);
@@ -132,7 +132,7 @@ public class VisualWordsTest extends TestCase {
         for (Iterator<File> i = files.iterator(); i.hasNext(); ) {
             File imgFile = i.next();
             iw.addDocument(siftBuilder.createDocument(
-                    ImageIO.read(imgFile), imgFile.getPath()));
+                ImageIO.read(imgFile), imgFile.getPath()));
             count++;
             if (count > 100 && count % 500 == 0) {
                 System.out.println(count + " files indexed. " + (System.currentTimeMillis() - ms) / (count) + " ms per file");
@@ -180,7 +180,7 @@ public class VisualWordsTest extends TestCase {
             Document doc = builder.createDocument(new FileInputStream(identifier), identifier);
             iw.addDocument(doc);
             count++;
-            if (count%100 ==0) System.out.println(count);
+            if (count % 100 == 0) System.out.println(count);
         }
         iw.close();
         System.out.println("Creating vocabulary.");
@@ -197,7 +197,7 @@ public class VisualWordsTest extends TestCase {
     public void testWikiSearchIndex() throws IOException {
         String indexPath = "./bovw-test";
         VisualWordsImageSearcher searcher = new VisualWordsImageSearcher(10,
-                DocumentBuilder.FIELD_NAME_SURF + DocumentBuilder.FIELD_NAME_BOVW);
+            DocumentBuilder.FIELD_NAME_SURF + DocumentBuilder.FIELD_NAME_BOVW);
         IndexReader reader = DirectoryReader.open(FSDirectory.open(new File(indexPath)));
         // let's take the first document for a query:
         Document query = reader.document(2);
@@ -205,7 +205,7 @@ public class VisualWordsTest extends TestCase {
         // show or analyze your results ....
         FileUtils.saveImageResultsToPng("bovw", hits, query.getValues(DocumentBuilder.FIELD_NAME_IDENTIFIER)[0]);
     }
-    
+
     public void testCvSurfBuilder() throws IOException {
         String imageDirectory = "D:\\Temp\\imagew\\source_images";
         ParallelIndexer indexer = new ParallelIndexer(4, indexPath.getName(), imageDirectory) {

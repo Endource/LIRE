@@ -54,6 +54,7 @@ import java.util.Iterator;
 
 /**
  * Test class for PHOG descriptor.
+ *
  * @author Mathias Lux, mathias@juggle.at, 05.04.13
  */
 public class PHOGTest extends TestCase {

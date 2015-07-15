@@ -71,8 +71,8 @@ import java.io.IOException;
 public class CvLocalTest extends TestCase {
 
     String indexPath = "cv_test_idx";
-        private String imageDirectory = "testdata/wang-1000";
-//    private String imageDirectory = "D:\\Temp\\imagew\\source_images";
+    private String imageDirectory = "testdata/wang-1000";
+    //    private String imageDirectory = "D:\\Temp\\imagew\\source_images";
     private DocumentBuilder simpleBuilder;
 
     @Override

@@ -134,7 +134,7 @@ public class TestLocalFeatureHistogram extends TestCase {
     }
 
     @SuppressWarnings("unused")
-	private void printClusters(KMeans k) {
+    private void printClusters(KMeans k) {
         Cluster[] clusters = k.getClusters();
         for (int i = 0; i < clusters.length; i++) {
             Cluster cluster = clusters[i];

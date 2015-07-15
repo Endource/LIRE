@@ -41,7 +41,7 @@ package net.semanticmetadata.lire.imageanalysis.mser;
 
 /**
  * Created by IntelliJ IDEA.
- * <p/>
+ * <p>
  * User: Shotty
  * Date: 28.06.2010
  * Time: 23:53:21

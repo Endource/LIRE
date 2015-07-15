@@ -17,7 +17,7 @@
  * We kindly ask you to refer the any or one of the following publications in
  * any publication mentioning or employing Lire:
  *
- * Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval –
+ * Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval ï¿½
  * An Extensible Java CBIR Library. In proceedings of the 16th ACM International
  * Conference on Multimedia, pp. 1085-1088, Vancouver, Canada, 2008
  * URL: http://doi.acm.org/10.1145/1459359.1459577
@@ -41,13 +41,14 @@ import net.semanticmetadata.lire.classifiers.Cluster;
  * Created by Nektarios on 03/06/2015.
  *
  * @author Nektarios Anagnostopoulos, nek.anag@gmail.com
- * (c) 2015 by Nektarios Anagnostopoulos
+ *         (c) 2015 by Nektarios Anagnostopoulos
  */
 public abstract class AbstractAggregator implements Aggregator {
 
     /**
      * Returns the index of the cluster with the min distance between a feature and a codebook.
-     * @param f is the feature.
+     *
+     * @param f             is the feature.
      * @param clustersArray is the codebook.
      * @return index of the cluster.
      */

@@ -51,7 +51,7 @@ import java.util.Set;
  * <h2>Searching in an Index</h2>
  * Use the ImageSearcherFactory for creating an ImageSearcher, which will retrieve the images
  * for you from the index.
- * <p/>
+ * <p>
  * <pre>
  * IndexReader reader = IndexReader.open(indexPath);
  * ImageSearcher searcher = ImageSearcherFactory.createDefaultSearcher();
@@ -71,7 +71,7 @@ import java.util.Set;
  * System.out.println(hits.score(i) + ": " + hits.doc(i).getField(DocumentBuilder.FIELD_NAME_IDENTIFIER).stringValue());
  * }
  * </pre>
- * <p/>
+ * <p>
  * This file is part of the Caliph and Emir project: http://www.SemanticMetadata.net
  * <br>Date: 01.02.2006
  * <br>Time: 00:09:42

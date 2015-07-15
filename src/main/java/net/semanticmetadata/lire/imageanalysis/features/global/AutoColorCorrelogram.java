@@ -57,7 +57,7 @@ import java.awt.image.Raster;
  * Huang, J.; Kumar, S. R.; Mitra, M.; Zhu, W. & Zabih, R. (2007) "Image
  * Indexing Using Color Correlograms", IEEE Computer Society</p>
  * <p>see also DOI <a href="http://doi.ieeecomputersociety.org/10.1109/CVPR.1997.609412">10.1109/CVPR.1997.609412</a></p>
- * <p/>
+ * <p>
  * Todo: Change the 2-dim array to a one dim array, as this is much faster in Java.
  */
 public class AutoColorCorrelogram implements GlobalFeature {
@@ -249,7 +249,7 @@ public class AutoColorCorrelogram implements GlobalFeature {
         int position = 0;
         for (int i = 0; i < correlogram.length; i++) {
             float[] floats = correlogram[i];
-            for (int j = 0; j < floats.length-1; j+=2) {
+            for (int j = 0; j < floats.length - 1; j += 2) {
                 int tmp = ((int) (floats[(j)])) << 4;
                 tmp = (tmp | ((int) (floats[j + 1])));
                 result[position] = (byte) (tmp - 128);
@@ -294,11 +294,11 @@ public class AutoColorCorrelogram implements GlobalFeature {
     public void setByteArrayRepresentation(byte[] in, int offset, int length) {
         correlogram = new float[numBins][4];
         int count = 0;
-        for (int i = offset; i < offset+length; i++) {
+        for (int i = offset; i < offset + length; i++) {
             int tmp = in[i] + 128;
-            correlogram[count/4][count%4] = (tmp >> 4);
+            correlogram[count / 4][count % 4] = (tmp >> 4);
             count++;
-            correlogram[count/4][count%4] = (tmp & 0x000F);
+            correlogram[count / 4][count % 4] = (tmp & 0x000F);
             count++;
         }
         /*
@@ -355,8 +355,8 @@ public class AutoColorCorrelogram implements GlobalFeature {
      */
     private int quantize(int[] pixel) {
         return (int) ((int) (pixel[0] / quantH) * (quantV_f) * (quantS_f)
-                + (int) (pixel[1] / quantS) * (quantV_f)
-                + (int) (pixel[2] / quantV));
+            + (int) (pixel[1] / quantS) * (quantV_f)
+            + (int) (pixel[2] / quantV));
     }
 
     /**
@@ -434,7 +434,7 @@ public class AutoColorCorrelogram implements GlobalFeature {
             float[] ints = correlogram[i];
             for (int j = 0; j < ints.length; j++) {
                 result += (correlogram[i][j] > 0 ? (correlogram[i][j] / 2f) * Math.log((2f * correlogram[i][j]) / (correlogram[i][j] + vdCorrelogram[i][j])) : 0) +
-                        (vdCorrelogram[i][j] > 0 ? (vdCorrelogram[i][j] / 2f) * Math.log((2f * vdCorrelogram[i][j]) / (correlogram[i][j] + vdCorrelogram[i][j])) : 0);
+                    (vdCorrelogram[i][j] > 0 ? (vdCorrelogram[i][j] / 2f) * Math.log((2f * vdCorrelogram[i][j]) / (correlogram[i][j] + vdCorrelogram[i][j])) : 0);
             }
         }
         return result;

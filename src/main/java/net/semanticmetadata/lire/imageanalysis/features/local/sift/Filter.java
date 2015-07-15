@@ -153,10 +153,10 @@ public class Filter {
     ** create a normalized gaussian impulse with appropriate size and offset center
     */
     static public FloatArray2D create_gaussian_kernel_2D_offset(
-            float sigma,
-            float offset_x,
-            float offset_y,
-            boolean normalize) {
+        float sigma,
+        float offset_x,
+        float offset_y,
+        boolean normalize) {
         int size = 3;
         FloatArray2D gaussian_kernel;
         if (sigma == 0) {
@@ -460,13 +460,13 @@ public class Filter {
             for (int x = 0; x < array.width; ++x) {
                 // L(x+1, y) - L(x-1, y)
                 float der_x = (
-                        array.data[ro[1] + Math.min(x + 1, array.width - 1)] -
-                                array.data[ro[1] + Math.max(0, x - 1)]) / 2;
+                    array.data[ro[1] + Math.min(x + 1, array.width - 1)] -
+                        array.data[ro[1] + Math.max(0, x - 1)]) / 2;
 
                 // L(x, y+1) - L(x, y-1)
                 float der_y = (
-                        array.data[ro[2] + x] -
-                                array.data[ro[0] + x]) / 2;
+                    array.data[ro[2] + x] -
+                        array.data[ro[0] + x]) / 2;
 
                 //! amplitude
                 gradients[0].data[ro[1] + x] = (float) Math.sqrt(Math.pow(der_x, 2) + Math.pow(der_y, 2));

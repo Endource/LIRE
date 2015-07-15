@@ -45,7 +45,7 @@ import java.util.List;
 
 /**
  * The GrowthHistory holds the information for ONE Extremal Region!!
- * <p/>
+ * <p>
  * User: Shotty
  * Date: 28.06.2010
  * Time: 11:04:17
@@ -130,7 +130,7 @@ public class MSERGrowthHistory implements Comparable {
             neighbor = currentPoint.getNextBoundary();
 
             while (stopConditionCurrentPoint.getIndex() != currentPoint.getIndex() ||
-                    stopConditionNeighborPoint.getIndex() != neighbor.getIndex()) {
+                stopConditionNeighborPoint.getIndex() != neighbor.getIndex()) {
                 // add the neighbor to the boundary pixels
                 boundary.add(imagePoints.get(neighbor.getX() + "_" + neighbor.getY()));
 
@@ -176,14 +176,14 @@ public class MSERGrowthHistory implements Comparable {
 
     public static void main(String[] args) {
         int[] points = new int[]{12,
-                21, 22, 23, 25,
-                30, 31, 32, 33, 34, 35, 36, 38, 39,
-                40, 41, 42, 43, 44, 45, 48,
-                50, 51, 53, 54, 55, 56, 58, 59,
-                63, 64, 65, 66, 67, 68,
-                71, 72, 73, 74, 75, 76,
-                80, 81, 82, 83, 84,
-                91, 92, 93
+            21, 22, 23, 25,
+            30, 31, 32, 33, 34, 35, 36, 38, 39,
+            40, 41, 42, 43, 44, 45, 48,
+            50, 51, 53, 54, 55, 56, 58, 59,
+            63, 64, 65, 66, 67, 68,
+            71, 72, 73, 74, 75, 76,
+            80, 81, 82, 83, 84,
+            91, 92, 93
         };
 
         int width = 10;
@@ -217,7 +217,7 @@ public class MSERGrowthHistory implements Comparable {
         System.out.println("SAME =" + ((borderPoints.equals(expectedBorderPoints) ? "true" : "false")));
 
         points = new int[]
-                {23, 26, 27, 31, 32, 33, 34, 35, 36, 37, 44, 45, 46, 47, 55, 56, 57, 65, 66};
+            {23, 26, 27, 31, 32, 33, 34, 35, 36, 37, 44, 45, 46, 47, 55, 56, 57, 65, 66};
 
         width = 10;
 

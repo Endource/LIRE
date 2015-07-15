@@ -67,7 +67,7 @@ import java.util.ArrayList;
  * Created by Nektarios on 28/5/2015.
  *
  * @author Nektarios Anagnostopoulos, nek.anag@gmail.com
- * (c) 2015 by Nektarios Anagnostopoulos
+ *         (c) 2015 by Nektarios Anagnostopoulos
  */
 public class TestSearching extends TestCase {
     Class<? extends GlobalFeature> globalFeatureClass = CEDD.class;
@@ -158,7 +158,7 @@ public class TestSearching extends TestCase {
         ImageSearchHits ceddhits, cvsurfhits, simpleceddcvsurfhits;
         String hitFile;
         int counter = 0;
-        for(String next : images){
+        for (String next : images) {
             image = ImageIO.read(new FileInputStream(next));
             next = next.substring(next.lastIndexOf('\\') + 1);
             System.out.println(counter + " ~ " + next);
@@ -177,7 +177,7 @@ public class TestSearching extends TestCase {
             if (next.equals(hitFile))
                 System.out.println(0 + ". " + hitFile + " " + cvsurfhits.score(0));
             else
-                System.err.println("ERROR " + hitFile + " " + cvsurfhits.score(0)+ " ERROR");
+                System.err.println("ERROR " + hitFile + " " + cvsurfhits.score(0) + " ERROR");
 
             simpleceddcvsurfhits = simpleceddcvsurfsearcher.search(image, reader);
             hitFile = reader.document(simpleceddcvsurfhits.documentID(0)).getValues(DocumentBuilder.FIELD_NAME_IDENTIFIER)[0];
@@ -185,7 +185,7 @@ public class TestSearching extends TestCase {
             if (next.equals(hitFile))
                 System.out.println(0 + ". " + hitFile + " " + simpleceddcvsurfhits.score(0));
             else
-                System.err.println("ERROR " + hitFile + " " + simpleceddcvsurfhits.score(0)+ " ERROR");
+                System.err.println("ERROR " + hitFile + " " + simpleceddcvsurfhits.score(0) + " ERROR");
 
             counter++;
             System.out.println();

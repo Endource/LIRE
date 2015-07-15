@@ -40,7 +40,7 @@ package net.semanticmetadata.lire.imageanalysis.features.local.sift;
 
 /**
  * Scale Invariant Feature Transform as described by David Lowe \citep{Loew04}.
- *
+ * <p>
  * BibTeX:
  * <pre>
  * &#64;article{Lowe04,
@@ -53,22 +53,22 @@ package net.semanticmetadata.lire.imageanalysis.features.local.sift;
  *   pages   = {91--110},
  * }
  * </pre>
- *
+ * <p>
  * License: GPL
- *
+ * <p>
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License 2
  * as published by the Free Software Foundation.
- *
+ * <p>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- *
+ * <p>
  * NOTE:
  * The SIFT-method is protected by U.S. Patent 6,711,293: "Method and
  * apparatus for identifying scale invariant features in an image and use of
@@ -141,8 +141,8 @@ public class FloatArray2DSIFT {
      * @param feature_descriptor_size
      */
     public FloatArray2DSIFT(
-            int feature_descriptor_size,
-            int feature_descriptor_orientation_bins) {
+        int feature_descriptor_size,
+        int feature_descriptor_orientation_bins) {
         octaves = null;
         dog = new FloatArray2DScaleOctaveDoGDetector();
 
@@ -180,11 +180,11 @@ public class FloatArray2DSIFT {
      *                      resolutions is not necessary.
      */
     public void init(
-            FloatArray2D src,
-            int steps,
-            float initial_sigma,
-            int min_size,
-            int max_size) {
+        FloatArray2D src,
+        int steps,
+        float initial_sigma,
+        int min_size,
+        int max_size) {
         // estimate the number of octaves needed using a simple while loop instead of ld
         int o = 0;
         float w = (float) src.width;
@@ -217,14 +217,14 @@ public class FloatArray2DSIFT {
 
         for (int i = 0; i < octaves.length; ++i) {
             octaves[i] = new FloatArray2DScaleOctave(
-                    src,
-                    sigma,
-                    sigma_diff,
-                    kernel_diff);
+                src,
+                sigma,
+                sigma_diff,
+                kernel_diff);
             octaves[i].buildStub();
             next = new FloatArray2D(
-                    src.width / 2 + src.width % 2,
-                    src.height / 2 + src.height % 2);
+                src.width / 2 + src.width % 2,
+                src.height / 2 + src.height % 2);
             FloatArray2DScaleOctave.downsample(octaves[i].getL(1), next);
             if (src.width > max_size || src.height > max_size)
                 octaves[i].clear();
@@ -249,20 +249,20 @@ public class FloatArray2DSIFT {
      * @param orientation  orientation [-&pi; ... &pi;]
      */
     private float[] createDescriptor(
-            float[] c,
-            int o,
-            float octave_sigma,
-            float orientation) {
+        float[] c,
+        int o,
+        float octave_sigma,
+        float orientation) {
         FloatArray2DScaleOctave octave = octaves[o];
         FloatArray2D[] gradients = octave.getL1(Math.round(c[2]));
         FloatArray2D[] region = new FloatArray2D[2];
 
         region[0] = new FloatArray2D(
-                FEATURE_DESCRIPTOR_WIDTH,
-                FEATURE_DESCRIPTOR_WIDTH);
+            FEATURE_DESCRIPTOR_WIDTH,
+            FEATURE_DESCRIPTOR_WIDTH);
         region[1] = new FloatArray2D(
-                FEATURE_DESCRIPTOR_WIDTH,
-                FEATURE_DESCRIPTOR_WIDTH);
+            FEATURE_DESCRIPTOR_WIDTH,
+            FEATURE_DESCRIPTOR_WIDTH);
         float cos_o = (float) Math.cos(orientation);
         float sin_o = (float) Math.sin(orientation);
 
@@ -274,10 +274,10 @@ public class FloatArray2DSIFT {
         //! sample the region arround the keypoint location
         for (int y = FEATURE_DESCRIPTOR_WIDTH - 1; y >= 0; --y) {
             float ys =
-                    ((float) y - 2.0f * (float) FEATURE_DESCRIPTOR_SIZE + 0.5f) * octave_sigma; //!< scale y around 0,0
+                ((float) y - 2.0f * (float) FEATURE_DESCRIPTOR_SIZE + 0.5f) * octave_sigma; //!< scale y around 0,0
             for (int x = FEATURE_DESCRIPTOR_WIDTH - 1; x >= 0; --x) {
                 float xs =
-                        ((float) x - 2.0f * (float) FEATURE_DESCRIPTOR_SIZE + 0.5f) * octave_sigma; //!< scale x around 0,0
+                    ((float) x - 2.0f * (float) FEATURE_DESCRIPTOR_SIZE + 0.5f) * octave_sigma; //!< scale x around 0,0
                 float yr = cos_o * ys + sin_o * xs; //!< rotate y around 0,0
                 float xr = cos_o * xs - sin_o * ys; //!< rotate x around 0,0
 
@@ -288,13 +288,13 @@ public class FloatArray2DSIFT {
 
                 // translate ys to sample y position in the gradient image
                 int yg = Filter.flipInRange(
-                        (int) (Math.round(yr + c[1])),
-                        gradients[0].height);
+                    (int) (Math.round(yr + c[1])),
+                    gradients[0].height);
 
                 // translate xs to sample x position in the gradient image
                 int xg = Filter.flipInRange(
-                        (int) (Math.round(xr + c[0])),
-                        gradients[0].width);
+                    (int) (Math.round(xr + c[0])),
+                    gradients[0].width);
 
                 // get the samples
                 int region_p = FEATURE_DESCRIPTOR_WIDTH * y + x;
@@ -374,9 +374,9 @@ public class FloatArray2DSIFT {
      * @param features finally contains all processed candidates
      */
     void processCandidate(
-            float[] c,
-            int o,
-            Vector<SiftFeature> features) {
+        float[] c,
+        int o,
+        Vector<SiftFeature> features) {
         final int ORIENTATION_BINS = 36;
         final float ORIENTATION_BIN_SIZE = 2.0f * (float) Math.PI / (float) ORIENTATION_BINS;
         float[] histogram_bins = new float[ORIENTATION_BINS];
@@ -389,11 +389,11 @@ public class FloatArray2DSIFT {
 
         // create a circular gaussian window with sigma 1.5 times that of the feature
         FloatArray2D gaussianMask =
-                Filter.create_gaussian_kernel_2D_offset(
-                        octave_sigma * 1.5f,
-                        c[0] - (float) Math.floor(c[0]),
-                        c[1] - (float) Math.floor(c[1]),
-                        false);
+            Filter.create_gaussian_kernel_2D_offset(
+                octave_sigma * 1.5f,
+                c[0] - (float) Math.floor(c[0]),
+                c[1] - (float) Math.floor(c[1]),
+                false);
         //FloatArrayToImagePlus( gaussianMask, "gaussianMask", 0, 0 ).show();
 
         // get the gradients in a region arround the keypoints location
@@ -451,12 +451,12 @@ public class FloatArray2DSIFT {
 
         // assign descriptor and add the Feature instance to the collection
         features.addElement(
-                new SiftFeature(
-                        octave_sigma * scale,
-                        orientation,
-                        new float[]{c[0] * scale, c[1] * scale},
-                        //new float[]{ ( c[ 0 ] + 0.5f ) * scale - 0.5f, ( c[ 1 ] + 0.5f ) * scale - 0.5f },
-                        createDescriptor(c, o, octave_sigma, orientation)));
+            new SiftFeature(
+                octave_sigma * scale,
+                orientation,
+                new float[]{c[0] * scale, c[1] * scale},
+                //new float[]{ ( c[ 0 ] + 0.5f ) * scale - 0.5f, ( c[ 1 ] + 0.5f ) * scale - 0.5f },
+                createDescriptor(c, o, octave_sigma, orientation)));
 
         // TODO this is for test
         //---------------------------------------------------------------------
@@ -468,10 +468,10 @@ public class FloatArray2DSIFT {
          */
         for (int i = 0; i < ORIENTATION_BINS; ++i) {
             if (
-                    i != max_i &&
-                            (max_i + 1) % ORIENTATION_BINS != i &&
-                            (max_i - 1 + ORIENTATION_BINS) % ORIENTATION_BINS != i &&
-                            histogram_bins[i] > 0.8 * histogram_bins[max_i]) {
+                i != max_i &&
+                    (max_i + 1) % ORIENTATION_BINS != i &&
+                    (max_i - 1 + ORIENTATION_BINS) % ORIENTATION_BINS != i &&
+                    histogram_bins[i] > 0.8 * histogram_bins[max_i]) {
                 /**
                  * interpolate orientation estimate the offset from center of
                  * the parabolic extremum of the taylor series through env[1],
@@ -486,12 +486,12 @@ public class FloatArray2DSIFT {
                     orientation = ((float) i + 0.5f + offset) * ORIENTATION_BIN_SIZE - (float) Math.PI;
 
                     features.addElement(
-                            new SiftFeature(
-                                    octave_sigma * scale,
-                                    orientation,
-                                    new float[]{c[0] * scale, c[1] * scale},
-                                    //new float[]{ ( c[ 0 ] + 0.5f ) * scale - 0.5f, ( c[ 1 ] + 0.5f ) * scale - 0.5f },
-                                    createDescriptor(c, o, octave_sigma, orientation)));
+                        new SiftFeature(
+                            octave_sigma * scale,
+                            orientation,
+                            new float[]{c[0] * scale, c[1] * scale},
+                            //new float[]{ ( c[ 0 ] + 0.5f ) * scale - 0.5f, ( c[ 1 ] + 0.5f ) * scale - 0.5f },
+                            createDescriptor(c, o, octave_sigma, orientation)));
 
                     // TODO this is for test
                     //---------------------------------------------------------------------
@@ -570,11 +570,11 @@ public class FloatArray2DSIFT {
      *         TODO implement the spatial constraints
      */
     public static Vector<PointMatch> createMatches(
-            List<SiftFeature> fs1,
-            List<SiftFeature> fs2,
-            float max_sd,
-            Model model,
-            float max_id) {
+        List<SiftFeature> fs1,
+        List<SiftFeature> fs2,
+        float max_sd,
+        Model model,
+        float max_id) {
         Vector<PointMatch> matches = new Vector<PointMatch>();
         float min_sd = 1.0f / max_sd;
 
@@ -624,12 +624,12 @@ public class FloatArray2DSIFT {
 //										new float[] { best.location[ 0 ], best.location[ 1 ] } ) ) );
                 // weighted with the features scale
                 matches.addElement(
-                        new PointMatch(
-                                new Point(
-                                        new float[]{f1.location[0], f1.location[1]}),
-                                new Point(
-                                        new float[]{best.location[0], best.location[1]}),
-                                (f1.scale + best.scale) / 2.0f));
+                    new PointMatch(
+                        new Point(
+                            new float[]{f1.location[0], f1.location[1]}),
+                        new Point(
+                            new float[]{best.location[0], best.location[1]}),
+                        (f1.scale + best.scale) / 2.0f));
         }
         // now remove ambiguous matches
         for (int i = 0; i < matches.size(); ) {
@@ -657,10 +657,10 @@ public class FloatArray2DSIFT {
      * get a histogram of feature sizes
      */
     public static float[] featureSizeHistogram(
-            Vector<SiftFeature> features,
-            float min,
-            float max,
-            int bins) {
+        Vector<SiftFeature> features,
+        float min,
+        float max,
+        int bins) {
         System.out.print("estimating feature size histogram ...");
         int num_features = features.size();
         float h[] = new float[bins];

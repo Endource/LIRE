@@ -55,6 +55,7 @@ import java.util.List;
 
 /**
  * A simple pixel clustering algorithm based on RGB, k-means and L2 distance.
+ *
  * @author Mathias Lux, mathias@juggle.at - 20.09.13 10:39
  */
 public class PixelClustering {
@@ -64,8 +65,8 @@ public class PixelClustering {
         // Apply Bilateral Filtering before actually classifying the pixels ...
         BufferedImage b = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB);
         b.getGraphics().drawImage(img, 0, 0, null);
-        IndexedIntArray src = new IndexedIntArray(new int[img.getWidth()*img.getHeight()], 0);
-        IndexedIntArray dst = new IndexedIntArray(new int[img.getWidth()*img.getHeight()], 0);
+        IndexedIntArray src = new IndexedIntArray(new int[img.getWidth() * img.getHeight()], 0);
+        IndexedIntArray dst = new IndexedIntArray(new int[img.getWidth() * img.getHeight()], 0);
         b.getRaster().getDataElements(0, 0, img.getWidth(), img.getHeight(), src.array);
         FastBilateralFilter fbf = new FastBilateralFilter(img.getWidth(), img.getHeight(), img.getWidth(), 90f, 0.3f);
         fbf.apply(src, dst);
@@ -81,15 +82,15 @@ public class PixelClustering {
         img.getGraphics().drawImage(b, 0, 0, null);
         WritableRaster r = img.getRaster();
         // quantize image colors with k-means:
-        ArrayList<double[]> pixels = new ArrayList<double[]>(r.getHeight()*r.getWidth());
+        ArrayList<double[]> pixels = new ArrayList<double[]>(r.getHeight() * r.getWidth());
         for (int x = 0; x < r.getWidth(); x++) {
             for (int y = 0; y < r.getHeight(); y++) {
                 double[] tmpPixel = new double[3];
 //                double[] tmpPixel = new double[5]; // use this one if you want connected patches.
                 r.getPixel(x, y, tmpPixel);
-                assert(tmpPixel[0]<256);
-                assert(tmpPixel[1]<256);
-                assert(tmpPixel[2]<256);
+                assert (tmpPixel[0] < 256);
+                assert (tmpPixel[1] < 256);
+                assert (tmpPixel[2] < 256);
 //                tmpPixel[3] = x*255f/(double)r.getWidth(); // use this one if you want connected patches.
 //                tmpPixel[4] = y*255f/(double)r.getHeight();
                 pixels.add(tmpPixel);
@@ -97,7 +98,7 @@ public class PixelClustering {
         }
         // do the k-means
         KMeans km = new KMeans(pixels, numberOfColors);
-        for (int i=0; i<15; i++)
+        for (int i = 0; i < 15; i++)
             km.step();
         List<double[]> means = km.getMeans();
         double[] tmpPixel = new double[3];
@@ -109,7 +110,7 @@ public class PixelClustering {
 //                tmpPixel[4] = y*255f/(double)r.getHeight();
                 int num = -1;
                 int count = 0;
-                double distance=-1, tmpDistance=-1;
+                double distance = -1, tmpDistance = -1;
                 for (Iterator<double[]> iterator = means.iterator(); iterator.hasNext(); ) {
                     double[] next = iterator.next();
                     distance = MetricsUtils.distL2(next, tmpPixel);
@@ -122,7 +123,7 @@ public class PixelClustering {
                 tmpPixel[0] = Math.floor(means.get(num)[0]);
                 tmpPixel[1] = Math.floor(means.get(num)[1]);
                 tmpPixel[2] = Math.floor(means.get(num)[2]);
-                r.setPixel(x,y,tmpPixel);
+                r.setPixel(x, y, tmpPixel);
             }
         }
         return img;
@@ -134,11 +135,11 @@ public class PixelClustering {
         for (Iterator<File> iterator = files.iterator(); iterator.hasNext(); ) {
             File next = iterator.next();
             BufferedImage img = ImageIO.read(next);
-            BufferedImage toWrite = new BufferedImage(img.getWidth()*2, img.getHeight(), BufferedImage.TYPE_INT_RGB);
+            BufferedImage toWrite = new BufferedImage(img.getWidth() * 2, img.getHeight(), BufferedImage.TYPE_INT_RGB);
             toWrite.getGraphics().drawImage(img, 0, 0, null);
             BufferedImage bufferedImage = clusterPixels(img);
             toWrite.getGraphics().drawImage(bufferedImage, img.getWidth(), 0, null);
-            ImageIO.write(toWrite, "png", new File("out_test_"+count+".png"));
+            ImageIO.write(toWrite, "png", new File("out_test_" + count + ".png"));
             count++;
         }
     }

@@ -105,7 +105,7 @@ public class TestUniversal extends TestCase {
 
     private int numOfDocsForVocabulary = 500;
     private Class<? extends AbstractAggregator> aggregator = BOVW.class;
-    private int[] numOfClusters = new int[] {32, 128, 512, 2048};
+    private int[] numOfClusters = new int[]{32, 128, 512, 2048};
 
 //    private Class<? extends AbstractAggregator> aggregator = VLAD.class;
 //    private int[] numOfClusters = new int[] {16, 64};
@@ -300,11 +300,10 @@ public class TestUniversal extends TestCase {
         double h = (System.currentTimeMillis() - start) / 3600000.0;
         double m = (h - Math.floor(h)) * 60.0;
         double s = (m - Math.floor(m)) * 60;
-        System.out.printf("Total time of searching: %s.\n", String.format("%s%02d:%02d", (((int)h > 0)? String.format("%02d:", (int) h) : ""), (int)m, (int)s));
+        System.out.printf("Total time of searching: %s.\n", String.format("%s%02d:%02d", (((int) h > 0) ? String.format("%02d:", (int) h) : ""), (int) m, (int) s));
     }
 
-    public void performWSs (Class<? extends GlobalFeature> globalFeature, SimpleExtractor.KeypointDetector detector, Aggregator aggregator, int codebookSize, IndexReader reader, String codebooksDir, String prefix) throws IOException
-    {
+    public void performWSs(Class<? extends GlobalFeature> globalFeature, SimpleExtractor.KeypointDetector detector, Aggregator aggregator, int codebookSize, IndexReader reader, String codebooksDir, String prefix) throws IOException {
         computeMAP(new ImageSearcherUsingWSs(1000, globalFeature, detector, aggregator, codebookSize, reader, codebooksDir, false, false, false), prefix, reader, codebookSize);
         computeMAP(new ImageSearcherUsingWSs(1000, globalFeature, detector, aggregator, codebookSize, reader, codebooksDir, false, false, true), prefix, reader, codebookSize);
         computeMAP(new ImageSearcherUsingWSs(1000, globalFeature, detector, aggregator, codebookSize, reader, codebooksDir, false, true, false), prefix, reader, codebookSize);
@@ -315,8 +314,7 @@ public class TestUniversal extends TestCase {
         computeMAP(new ImageSearcherUsingWSs(1000, globalFeature, detector, aggregator, codebookSize, reader, codebooksDir, true, true, true), prefix, reader, codebookSize);
     }
 
-    public void performWSs (Class<? extends LocalFeatureExtractor> localFeatureExtractor, Aggregator aggregator, int codebookSize, IndexReader reader, String codebooksDir, String prefix) throws IOException
-    {
+    public void performWSs(Class<? extends LocalFeatureExtractor> localFeatureExtractor, Aggregator aggregator, int codebookSize, IndexReader reader, String codebooksDir, String prefix) throws IOException {
         computeMAP(new ImageSearcherUsingWSs(1000, localFeatureExtractor, aggregator, codebookSize, reader, codebooksDir, false, false, false), prefix, reader, codebookSize);
         computeMAP(new ImageSearcherUsingWSs(1000, localFeatureExtractor, aggregator, codebookSize, reader, codebooksDir, false, false, true), prefix, reader, codebookSize);
         computeMAP(new ImageSearcherUsingWSs(1000, localFeatureExtractor, aggregator, codebookSize, reader, codebooksDir, false, true, false), prefix, reader, codebookSize);
@@ -339,18 +337,18 @@ public class TestUniversal extends TestCase {
         double errorRate = 0;
         double map = 0;
         double p10 = 0;
-        int errorCount=0;
+        int errorCount = 0;
         // Needed for check whether the document is deleted.
         Bits liveDocs = MultiFields.getLiveDocs(reader);
         PrintWriter fw;
         if (searcher.toString().contains("ImageSearcherUsingWSs")) {
             (new File("eval/" + db + "/" + prefix.replace(' ', '_') + "/" + clusters + "/")).mkdirs();
             fw = new PrintWriter(new File("eval/" + db + "/" + prefix.replace(' ', '_') + "/" + clusters + "/" + prefix.replace(' ', '_') + "-" + db + clusters + searcher.toString().split("\\s+")[searcher.toString().split("\\s+").length - 1] + ".txt"));
-        }else {
+        } else {
 //            (new File("eval/#WithMirFlickr/" + db + "/")).mkdirs();
             (new File("eval/" + db + "/")).mkdirs();
-            if (clusters>0)
-                fw = new PrintWriter(new File("eval/" + db + "/" + prefix.replace(' ', '_') + "-" + db + clusters +".txt"));
+            if (clusters > 0)
+                fw = new PrintWriter(new File("eval/" + db + "/" + prefix.replace(' ', '_') + "-" + db + clusters + ".txt"));
             else
 //                fw = new PrintWriter(new File("eval/#WithMirFlickr/" + db + "/" + prefix.replace(' ', '_') + "-" + db + "Global.txt")); //forGlobal
                 fw = new PrintWriter(new File("eval/" + db + "/" + prefix.replace(' ', '_') + "-" + db + "Global.txt")); //forGlobal
@@ -398,7 +396,7 @@ public class TestUniversal extends TestCase {
                 avgPrecision /= (double) (1d + queries.get(fileName).size());
 //                avgPrecision /= (double) (queries.get(fileName).size());
 
-                if (!(found - queries.get(fileName).size() == 1)){
+                if (!(found - queries.get(fileName).size() == 1)) {
                     // some of the results have not been found. We have to deal with it ...
                     errorCount++;
                 }
@@ -422,20 +420,20 @@ public class TestUniversal extends TestCase {
         double h = (System.currentTimeMillis() - start) / 3600000.0;
         double m = (h - Math.floor(h)) * 60.0;
         double s = (m - Math.floor(m)) * 60;
-        String str = String.format("%s%02d:%02d", (((int)h > 0)? String.format("%02d:", (int) h) : ""), (int)m, (int)s) + " ~ ";
+        String str = String.format("%s%02d:%02d", (((int) h > 0) ? String.format("%02d:", (int) h) : ""), (int) m, (int) s) + " ~ ";
 
         if (searcher.toString().contains("ImageSearcherUsingWSs"))
-            str += String.format("%s%s\t%.4f\t%.4f\t%.4f\t(%s)", prefix, ((clusters>0)? ("\t"+clusters):"") , map, p10, errorRate, searcher.toString().split("\\s+")[searcher.toString().split("\\s+").length-1]);
+            str += String.format("%s%s\t%.4f\t%.4f\t%.4f\t(%s)", prefix, ((clusters > 0) ? ("\t" + clusters) : ""), map, p10, errorRate, searcher.toString().split("\\s+")[searcher.toString().split("\\s+").length - 1]);
         else
-            str += String.format("%s%s\t%.4f\t%.4f\t%.4f", prefix, ((clusters>0)? ("\t"+clusters):""), map, p10, errorRate);
-        if (errorCount>0) {
+            str += String.format("%s%s\t%.4f\t%.4f\t%.4f", prefix, ((clusters > 0) ? ("\t" + clusters) : ""), map, p10, errorRate);
+        if (errorCount > 0) {
             // some of the results have not been found. We have to deal with it ...
             str += "\t~~\tDid not find result ;(\t(" + errorCount + ")";
         }
         h = timeOfSearch / 3600000.0;
         m = (h - Math.floor(h)) * 60.0;
         s = (m - Math.floor(m)) * 60;
-        str += " ~ TimeOfsearch: " + String.format("%s%02d:%02d", (((int)h > 0)? String.format("%02d:", (int) h) : ""), (int)m, (int)s);
+        str += " ~ TimeOfsearch: " + String.format("%s%02d:%02d", (((int) h > 0) ? String.format("%02d:", (int) h) : ""), (int) m, (int) s);
 
         System.out.println(str);
     }

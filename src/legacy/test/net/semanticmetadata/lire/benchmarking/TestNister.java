@@ -231,7 +231,7 @@ public class TestNister extends TestCase {
 
 /**
  * General file manipulation utilities.
- * <p/>
+ * <p>
  * Facilities are provided in the following areas:
  * <ul>
  * <li>writing to a file
@@ -245,7 +245,7 @@ public class TestNister extends TestCase {
  * <li>file last changed date
  * <li>calculating a checksum
  * </ul>
- * <p/>
+ * <p>
  * Origin of code: Excalibur, Alexandria, Commons-Utils
  *
  * @version $Id: FileUtils.java 1349509 2012-06-12 20:39:23Z ggregory $
@@ -448,10 +448,10 @@ class FileUtils {
     /**
      * Opens a {@link FileInputStream} for the specified file, providing better
      * error messages than simply calling <code>new FileInputStream(file)</code>.
-     * <p/>
+     * <p>
      * At the end of the method either the stream will be successfully opened,
      * or an exception will have been thrown.
-     * <p/>
+     * <p>
      * An exception is thrown if the file does not exist.
      * An exception is thrown if the file object exists but is a directory.
      * An exception is thrown if the file exists but cannot be read.
@@ -482,10 +482,10 @@ class FileUtils {
     /**
      * Opens a {@link FileOutputStream} for the specified file, checking and
      * creating the parent directory if it does not exist.
-     * <p/>
+     * <p>
      * At the end of the method either the stream will be successfully opened,
      * or an exception will have been thrown.
-     * <p/>
+     * <p>
      * The parent directory will be created if it does not exist.
      * The file will be created if it does not exist.
      * An exception is thrown if the file object exists but is a directory.
@@ -506,10 +506,10 @@ class FileUtils {
     /**
      * Opens a {@link FileOutputStream} for the specified file, checking and
      * creating the parent directory if it does not exist.
-     * <p/>
+     * <p>
      * At the end of the method either the stream will be successfully opened,
      * or an exception will have been thrown.
-     * <p/>
+     * <p>
      * The parent directory will be created if it does not exist.
      * The file will be created if it does not exist.
      * An exception is thrown if the file object exists but is a directory.
@@ -636,7 +636,7 @@ class FileUtils {
 
         if (srcFile.length() != destFile.length()) {
             throw new IOException("Failed to copy full contents from '" +
-                    srcFile + "' to '" + destFile + "'");
+                srcFile + "' to '" + destFile + "'");
         }
         if (preserveFileDate) {
             destFile.setLastModified(srcFile.lastModified());
@@ -649,14 +649,14 @@ class FileUtils {
 
     /**
      * Copies a whole directory to a new location.
-     * <p/>
+     * <p>
      * This method copies the contents of the specified source directory
      * to within the specified destination directory.
-     * <p/>
+     * <p>
      * The destination directory is created if it does not exist.
      * If the destination directory did exist, then this method merges
      * the source with the destination, with the source taking precedence.
-     * <p/>
+     * <p>
      * <strong>Note:</strong> Setting <code>preserveFileDate</code> to
      * {@code true} tries to preserve the files' last modified
      * date/times using {@link File#setLastModified(long)}, however it is
@@ -679,19 +679,19 @@ class FileUtils {
 
     /**
      * Copies a filtered directory to a new location preserving the file dates.
-     * <p/>
+     * <p>
      * This method copies the contents of the specified source directory
      * to within the specified destination directory.
-     * <p/>
+     * <p>
      * The destination directory is created if it does not exist.
      * If the destination directory did exist, then this method merges
      * the source with the destination, with the source taking precedence.
-     * <p/>
+     * <p>
      * <strong>Note:</strong> This method tries to preserve the files' last
      * modified date/times using {@link File#setLastModified(long)}, however
      * it is not guaranteed that those operations will succeed.
      * If the modification operation fails, no indication is provided.
-     * <p/>
+     * <p>
      * <h4>Example: Copy directories only</h4>
      * <pre>
      *  // only copy the directory structure
@@ -727,20 +727,20 @@ class FileUtils {
 
     /**
      * Copies a filtered directory to a new location.
-     * <p/>
+     * <p>
      * This method copies the contents of the specified source directory
      * to within the specified destination directory.
-     * <p/>
+     * <p>
      * The destination directory is created if it does not exist.
      * If the destination directory did exist, then this method merges
      * the source with the destination, with the source taking precedence.
-     * <p/>
+     * <p>
      * <strong>Note:</strong> Setting <code>preserveFileDate</code> to
      * {@code true} tries to preserve the files' last modified
      * date/times using {@link File#setLastModified(long)}, however it is
      * not guaranteed that those operations will succeed.
      * If the modification operation fails, no indication is provided.
-     * <p/>
+     * <p>
      * <h4>Example: Copy directories only</h4>
      * <pre>
      *  // only copy the directory structure

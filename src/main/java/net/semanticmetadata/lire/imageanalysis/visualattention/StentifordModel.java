@@ -126,7 +126,7 @@ public class StentifordModel {
                 getNeighbourhood(x, y, nx, raster);
                 for (int checks = 0; checks < maxChecks; checks++) {
                     getNeighbourhood((int) (Math.random() * (img.getWidth() - 2 * radius) + radius),
-                            (int) (Math.random() * (img.getHeight() - 2 * radius) + radius), ny, raster);
+                        (int) (Math.random() * (img.getHeight() - 2 * radius) + radius), ny, raster);
                     match = true;
                     for (int i = 0; i < nx.length; i++) {
                         if (getDistance(nx[i], ny[i]) > maxDist) {

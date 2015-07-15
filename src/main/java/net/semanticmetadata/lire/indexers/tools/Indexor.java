@@ -134,22 +134,22 @@ public class Indexor {
      */
     protected static void printHelp() {
         System.out.println("Help for the Indexor class.\n" +
-                "===========================\n" +
-                "This help text is shown if you start the Indexor with the '-h' option.\n" +
-                "\n" +
-                "Usage\n" +
-                "=====\n" +
-                "$> Indexor -i <input-file> -l <index-directory>\n" +
-                "\n" +
-                "or \n" +
-                "\n" +
-                "$> Indexor -c <file-list> -l <index-directory>\n" +
-                "\n" +
-                "with \n" +
-                "\n" +
-                "<input-file> ... \t\ta single output file of Extractor.\n" +
-                "<index-directory> ...\tthe index to write the data to (it's appended).\n" +
-                "<file-list> ...\t\t\ta file containing data files one per line.\n");
+            "===========================\n" +
+            "This help text is shown if you start the Indexor with the '-h' option.\n" +
+            "\n" +
+            "Usage\n" +
+            "=====\n" +
+            "$> Indexor -i <input-file> -l <index-directory>\n" +
+            "\n" +
+            "or \n" +
+            "\n" +
+            "$> Indexor -c <file-list> -l <index-directory>\n" +
+            "\n" +
+            "with \n" +
+            "\n" +
+            "<input-file> ... \t\ta single output file of Extractor.\n" +
+            "<index-directory> ...\tthe index to write the data to (it's appended).\n" +
+            "<file-list> ...\t\t\ta file containing data files one per line.\n");
     }
 
 

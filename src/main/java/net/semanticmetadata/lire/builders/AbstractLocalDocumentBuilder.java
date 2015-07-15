@@ -17,7 +17,7 @@
  * We kindly ask you to refer the any or one of the following publications in
  * any publication mentioning or employing Lire:
  *
- * Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval –
+ * Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval ï¿½
  * An Extensible Java CBIR Library. In proceedings of the 16th ACM International
  * Conference on Multimedia, pp. 1085-1088, Vancouver, Canada, 2008
  * URL: http://doi.acm.org/10.1145/1459359.1459577
@@ -52,7 +52,7 @@ import java.util.*;
  * Created by Nektarios on 03/06/2015.
  *
  * @author Nektarios Anagnostopoulos, nek.anag@gmail.com
- * (c) 2015 by Nektarios Anagnostopoulos
+ *         (c) 2015 by Nektarios Anagnostopoulos
  */
 public abstract class AbstractLocalDocumentBuilder implements DocumentBuilder {
 //    enum HashingMode {BitSampling, LSH}
@@ -68,7 +68,8 @@ public abstract class AbstractLocalDocumentBuilder implements DocumentBuilder {
     /**
      * Images are resized so as not to exceed the {@link DocumentBuilder#MAX_IMAGE_DIMENSION}, after that
      * features are extracted using the given localFeatureExtractor.
-     * @param image is the image
+     *
+     * @param image                 is the image
      * @param localFeatureExtractor selected local feature extractor
      * @return the input localFeatureExtractor
      */
@@ -86,8 +87,9 @@ public abstract class AbstractLocalDocumentBuilder implements DocumentBuilder {
 
     /**
      * Extracts the features and returns the Lucene Fields with the vector representation of the selected image.
-     * @param image is the selected image.
-     * @param extractorItem is the selected extractor.
+     *
+     * @param image           is the selected image.
+     * @param extractorItem   is the selected extractor.
      * @param listOfCodebooks is the list which can contain one or more codebooks to be used for the aggregation of the local features.
      * @return Lucene Fields with the vector representation of the selected image.
      */
@@ -99,12 +101,13 @@ public abstract class AbstractLocalDocumentBuilder implements DocumentBuilder {
 
     /**
      * Creates the Lucene Fiels with the vector representation of list of local features.
+     *
      * @param listOfLocalFeatures is the list of local features.
-     * @param extractorItem is the extractor that was used to extract the features.
-     * @param listOfCodebooks is the list which can contain one or more codebooks to be used for the aggregation of the local features.
+     * @param extractorItem       is the extractor that was used to extract the features.
+     * @param listOfCodebooks     is the list which can contain one or more codebooks to be used for the aggregation of the local features.
      * @return Lucene Fields with the vector representation of the list of local features.
      */
-    public Field[] createLocalDescriptorFields(List<? extends LocalFeature> listOfLocalFeatures, ExtractorItem extractorItem, LinkedList<Cluster[]> listOfCodebooks){
+    public Field[] createLocalDescriptorFields(List<? extends LocalFeature> listOfLocalFeatures, ExtractorItem extractorItem, LinkedList<Cluster[]> listOfCodebooks) {
         Field[] result = new Field[listOfCodebooks.size() * 2];
         int count = 0;
         for (Cluster[] codebook : listOfCodebooks) {
@@ -138,7 +141,7 @@ public abstract class AbstractLocalDocumentBuilder implements DocumentBuilder {
     }
 
     /**
-     * @param image the image to index. Cannot be NULL.
+     * @param image      the image to index. Cannot be NULL.
      * @param identifier an id for the image, for instance the filename or a URL. Can be NULL.
      * @return a Lucene Document.
      */

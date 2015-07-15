@@ -57,7 +57,7 @@ import java.util.Arrays;
  * This class provides a simple color histogram for content based image retrieval.
  * Number of bins is configurable, histogram is normalized to 8 bit per bin (0-255). <br>
  * Defaults are given in the final fields. Available options are given by the enums.
- * <p/>
+ * <p>
  * <br/>Date: 14.05.2008
  * <br/>Time: 09:47:10
  *
@@ -69,76 +69,76 @@ public class SimpleColorHistogram implements GlobalFeature {
     public static DistanceFunction DEFAULT_DISTANCE_FUNCTION = DistanceFunction.JSD;
 
     private static final int[] quantTable = {
-            1, 32, 4, 8, 16, 4, 16, 4, 16, 4,            // Hue, Sum - subspace 0,1,2,3,4 for 256 levels
-            1, 16, 4, 4, 8, 4, 8, 4, 8, 4,            // Hue, Sum - subspace 0,1,2,3,4 for 128 levels
-            1, 8, 4, 4, 4, 4, 8, 2, 8, 1,            // Hue, Sum - subspace 0,1,2,3,4 for  64 levels
-            1, 8, 4, 4, 4, 4, 4, 1, 4, 1};           // Hue, Sum - subspace 0,1,2,3,4 for  32 levels
+        1, 32, 4, 8, 16, 4, 16, 4, 16, 4,            // Hue, Sum - subspace 0,1,2,3,4 for 256 levels
+        1, 16, 4, 4, 8, 4, 8, 4, 8, 4,            // Hue, Sum - subspace 0,1,2,3,4 for 128 levels
+        1, 8, 4, 4, 4, 4, 8, 2, 8, 1,            // Hue, Sum - subspace 0,1,2,3,4 for  64 levels
+        1, 8, 4, 4, 4, 4, 4, 1, 4, 1};           // Hue, Sum - subspace 0,1,2,3,4 for  32 levels
 
     public static final int[][] rgbPalette64 = new int[][]{
-            new int[]{0, 0, 0},
-            new int[]{0, 0, 85},
-            new int[]{0, 0, 170},
-            new int[]{0, 0, 255},
-            new int[]{0, 85, 0},
-            new int[]{0, 85, 85},
-            new int[]{0, 85, 170},
-            new int[]{0, 85, 255},
-            new int[]{0, 170, 0},
-            new int[]{0, 170, 85},
-            new int[]{0, 170, 170},
-            new int[]{0, 170, 255},
-            new int[]{0, 255, 0},
-            new int[]{0, 255, 85},
-            new int[]{0, 255, 170},
-            new int[]{0, 255, 255},
-            new int[]{85, 0, 0},
-            new int[]{85, 0, 85},
-            new int[]{85, 0, 170},
-            new int[]{85, 0, 255},
-            new int[]{85, 85, 0},
-            new int[]{85, 85, 85},
-            new int[]{85, 85, 170},
-            new int[]{85, 85, 255},
-            new int[]{85, 170, 0},
-            new int[]{85, 170, 85},
-            new int[]{85, 170, 170},
-            new int[]{85, 170, 255},
-            new int[]{85, 255, 0},
-            new int[]{85, 255, 85},
-            new int[]{85, 255, 170},
-            new int[]{85, 255, 255},
-            new int[]{170, 0, 0},
-            new int[]{170, 0, 85},
-            new int[]{170, 0, 170},
-            new int[]{170, 0, 255},
-            new int[]{170, 85, 0},
-            new int[]{170, 85, 85},
-            new int[]{170, 85, 170},
-            new int[]{170, 85, 255},
-            new int[]{170, 170, 0},
-            new int[]{170, 170, 85},
-            new int[]{170, 170, 170},
-            new int[]{170, 170, 255},
-            new int[]{170, 255, 0},
-            new int[]{170, 255, 85},
-            new int[]{170, 255, 170},
-            new int[]{170, 255, 255},
-            new int[]{255, 0, 0},
-            new int[]{255, 0, 85},
-            new int[]{255, 0, 170},
-            new int[]{255, 0, 255},
-            new int[]{255, 85, 0},
-            new int[]{255, 85, 85},
-            new int[]{255, 85, 170},
-            new int[]{255, 85, 255},
-            new int[]{255, 170, 0},
-            new int[]{255, 170, 85},
-            new int[]{255, 170, 170},
-            new int[]{255, 170, 255},
-            new int[]{255, 255, 0},
-            new int[]{255, 255, 85},
-            new int[]{255, 255, 170},
-            new int[]{255, 255, 255}
+        new int[]{0, 0, 0},
+        new int[]{0, 0, 85},
+        new int[]{0, 0, 170},
+        new int[]{0, 0, 255},
+        new int[]{0, 85, 0},
+        new int[]{0, 85, 85},
+        new int[]{0, 85, 170},
+        new int[]{0, 85, 255},
+        new int[]{0, 170, 0},
+        new int[]{0, 170, 85},
+        new int[]{0, 170, 170},
+        new int[]{0, 170, 255},
+        new int[]{0, 255, 0},
+        new int[]{0, 255, 85},
+        new int[]{0, 255, 170},
+        new int[]{0, 255, 255},
+        new int[]{85, 0, 0},
+        new int[]{85, 0, 85},
+        new int[]{85, 0, 170},
+        new int[]{85, 0, 255},
+        new int[]{85, 85, 0},
+        new int[]{85, 85, 85},
+        new int[]{85, 85, 170},
+        new int[]{85, 85, 255},
+        new int[]{85, 170, 0},
+        new int[]{85, 170, 85},
+        new int[]{85, 170, 170},
+        new int[]{85, 170, 255},
+        new int[]{85, 255, 0},
+        new int[]{85, 255, 85},
+        new int[]{85, 255, 170},
+        new int[]{85, 255, 255},
+        new int[]{170, 0, 0},
+        new int[]{170, 0, 85},
+        new int[]{170, 0, 170},
+        new int[]{170, 0, 255},
+        new int[]{170, 85, 0},
+        new int[]{170, 85, 85},
+        new int[]{170, 85, 170},
+        new int[]{170, 85, 255},
+        new int[]{170, 170, 0},
+        new int[]{170, 170, 85},
+        new int[]{170, 170, 170},
+        new int[]{170, 170, 255},
+        new int[]{170, 255, 0},
+        new int[]{170, 255, 85},
+        new int[]{170, 255, 170},
+        new int[]{170, 255, 255},
+        new int[]{255, 0, 0},
+        new int[]{255, 0, 85},
+        new int[]{255, 0, 170},
+        new int[]{255, 0, 255},
+        new int[]{255, 85, 0},
+        new int[]{255, 85, 85},
+        new int[]{255, 85, 170},
+        new int[]{255, 85, 255},
+        new int[]{255, 170, 0},
+        new int[]{255, 170, 85},
+        new int[]{255, 170, 170},
+        new int[]{255, 170, 255},
+        new int[]{255, 255, 0},
+        new int[]{255, 255, 85},
+        new int[]{255, 255, 170},
+        new int[]{255, 255, 255}
     };
 
     // upper borders for quantization.
@@ -272,8 +272,8 @@ public class SimpleColorHistogram implements GlobalFeature {
             // and for 64 bins ...
             else {
                 int pos = (int) Math.round((double) pixel[2] / 85d) +
-                        (int) Math.round((double) pixel[1] / 85d) * 4 +
-                        (int) Math.round((double) pixel[0] / 85d) * 4 * 4;
+                    (int) Math.round((double) pixel[1] / 85d) * 4 +
+                    (int) Math.round((double) pixel[0] / 85d) * 4 * 4;
                 return pos;
             }
         }

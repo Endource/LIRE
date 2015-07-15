@@ -53,8 +53,9 @@ import java.util.Arrays;
 
 /**
  * A simple implementation of the rotation invariant local binary pattern feature.
+ *
  * @author Mathias Lux, mathias@juggle.at
- * Time: 21.06.13 13:51
+ *         Time: 21.06.13 13:51
  */
 public class RotationInvariantLocalBinaryPatterns implements GlobalFeature {
     double[] histogram = new double[36];
@@ -109,6 +110,7 @@ public class RotationInvariantLocalBinaryPatterns implements GlobalFeature {
 
     /**
      * Extracts the classical, radius = 1 version.
+     *
      * @param image
      */
     private void extractWithRadiusOne(BufferedImage image) {
@@ -150,8 +152,8 @@ public class RotationInvariantLocalBinaryPatterns implements GlobalFeature {
             min = Math.min(getNumber(pattern), min);
             // rotate:
             int tmp = pattern[7];
-            for (int j = pattern.length-1; j > 0; j--) {
-                pattern[j] = pattern[j-1];
+            for (int j = pattern.length - 1; j > 0; j--) {
+                pattern[j] = pattern[j - 1];
             }
             pattern[0] = tmp;
         }
@@ -162,8 +164,8 @@ public class RotationInvariantLocalBinaryPatterns implements GlobalFeature {
         int result = 0;
         int current = 1;
         for (int i = 0; i < pattern.length; i++) {
-            if (pattern[i]>0) result+=current;
-            current*=2;
+            if (pattern[i] > 0) result += current;
+            current *= 2;
         }
         return result;
     }
@@ -196,7 +198,7 @@ public class RotationInvariantLocalBinaryPatterns implements GlobalFeature {
 
     @Override
     public double getDistance(LireFeature feature) {
-        return  MetricsUtils.distL1(histogram, feature.getFeatureVector());
+        return MetricsUtils.distL1(histogram, feature.getFeatureVector());
     }
 
 //    @Override

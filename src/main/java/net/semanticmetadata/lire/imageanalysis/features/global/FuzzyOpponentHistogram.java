@@ -131,14 +131,14 @@ public class FuzzyOpponentHistogram implements GlobalFeature {
                         for (int k = 0; k < o3f.length; k++) {
                             if (o3f[k] == 0) continue;
                             colorPos = i + j * 3 + k * 3 * 3;
-                            histogram[colorPos][rank]+=o1f[i]*o2f[j]*o3f[k];
+                            histogram[colorPos][rank] += o1f[i] * o2f[j] * o3f[k];
                         }
                     }
                 }
             }
         }
         // normalize with max norm & quantize to [0,127]:
-        descriptor = new double[64*9];
+        descriptor = new double[64 * 9];
         double max = 0;
         for (int i = 0; i < histogram.length; i++) {
             for (int j = 0; j < histogram[i].length; j++)
@@ -147,7 +147,7 @@ public class FuzzyOpponentHistogram implements GlobalFeature {
         }
         for (int i = 0; i < histogram.length; i++) {
             for (int j = 0; j < histogram[i].length; j++)
-                descriptor[i+27*j] = Math.floor(127d * (histogram[i][j] / max));
+                descriptor[i + 27 * j] = Math.floor(127d * (histogram[i][j] / max));
         }
     }
 
@@ -186,7 +186,6 @@ public class FuzzyOpponentHistogram implements GlobalFeature {
         grey.getPixel(x, y, tmpIntensity);
         return tmpIntensity[0];
     }
-
 
 
     public byte[] getByteArrayRepresentation() {

@@ -66,8 +66,8 @@ public interface WeightingData {
      * by the LIRE framework.
      *
      * @return initial relevancy, a floating point
-     *         number between <code>0.0f</code> and
-     *         <code>1.0f</code>.
+     * number between <code>0.0f</code> and
+     * <code>1.0f</code>.
      */
     public float getRelevancy();
 
@@ -116,7 +116,7 @@ public interface WeightingData {
      * Gets the possible replacement candidate.
      *
      * @return a suitable image that is a cadidate
-     *         to replace the slice.
+     * to replace the slice.
      */
     public BufferedImage getReplacement();
 

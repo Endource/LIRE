@@ -53,8 +53,9 @@ import java.util.Arrays;
 
 /**
  * A simple implementation of the original local binary pattern texture feature.
+ *
  * @author Mathias Lux, mathias@juggle.at
- * Time: 21.06.13 13:51
+ *         Time: 21.06.13 13:51
  */
 public class LocalBinaryPatterns implements GlobalFeature {
     double[] histogram = new double[256];
@@ -151,7 +152,7 @@ public class LocalBinaryPatterns implements GlobalFeature {
     @Override
     public void setByteArrayRepresentation(byte[] in, int offset, int length) {
         for (int i = 0; i < length; i++) {
-            histogram[i] = in[i+offset];
+            histogram[i] = in[i + offset];
         }
     }
 

@@ -49,11 +49,11 @@ import java.io.FileNotFoundException;
 
 /**
  * <h2>Creating an Index</h2>
- * <p/>
+ * <p>
  * Use DocumentBuilderFactory to create a DocumentBuilder, which
  * will create Lucene Documents from images. Add this documents to
  * an index like this:
- * <p/>
+ * <p>
  * <pre>
  * System.out.println(">> Indexing " + images.size() + " files.");
  * DocumentBuilder builder = DocumentBuilderFactory.getExtensiveDocumentBuilder();
@@ -73,8 +73,8 @@ import java.io.FileNotFoundException;
  * iw.optimize();
  * iw.close();
  * </pre>
- * <p/>
- * <p/>
+ * <p>
+ * <p>
  * This file is part of the Caliph and Emir project: http://www.SemanticMetadata.net
  * <br>Date: 31.01.2006
  * <br>Time: 23:02:00
@@ -92,7 +92,7 @@ public interface DocumentBuilder {
     String FIELD_NAME_IDENTIFIER = "ImageIdentifier";
 
     String FIELD_NAME_AUTOCOLORCORRELOGRAM = "ACC";
-    String FIELD_NAME_BINARY_PATTERNS_PYRAMID ="BPP";
+    String FIELD_NAME_BINARY_PATTERNS_PYRAMID = "BPP";
     String FIELD_NAME_CEDD = "CEDD";
     String FIELD_NAME_COLORHISTOGRAM = "ColorHist";
     String FIELD_NAME_COLORLAYOUT = "CLD";
@@ -141,7 +141,7 @@ public interface DocumentBuilder {
      * Creates a new Lucene document from a BufferedImage. The identifier can be used like an id
      * (e.g. the file hashFunctionsFileName or the url of the image)
      *
-     * @param image the image to index. Cannot be NULL.
+     * @param image      the image to index. Cannot be NULL.
      * @param identifier an id for the image, for instance the filename or a URL. Can be NULL.
      * @return a Lucene Document containing the indexed image.
      */

@@ -72,8 +72,8 @@ import java.util.List;
  */
 public class MserTest extends TestCase {
     private String[] testFiles = new String[]{
-            "img01.JPG", "img02.JPG", "img03.JPG", "img04.JPG", "img05.JPG",
-            "img06.JPG", "img07.JPG", "img08.JPG", "error.jpg"};
+        "img01.JPG", "img02.JPG", "img03.JPG", "img04.JPG", "img05.JPG",
+        "img06.JPG", "img07.JPG", "img08.JPG", "error.jpg"};
     private String testFilesPath = "./src/test/resources/images/";
     private File indexPath = new File("mserIndex");
 
@@ -97,7 +97,7 @@ public class MserTest extends TestCase {
     public void testExtendedIndexMSER() throws IOException {
         MSERDocumentBuilder builder = new MSERDocumentBuilder();
         IndexWriterConfig conf = new IndexWriterConfig(LuceneUtils.LUCENE_VERSION,
-                new WhitespaceAnalyzer(LuceneUtils.LUCENE_VERSION));
+            new WhitespaceAnalyzer(LuceneUtils.LUCENE_VERSION));
         IndexWriter iw = new IndexWriter(FSDirectory.open(indexPath), conf);
         long ms = System.currentTimeMillis();
         int count = 0;

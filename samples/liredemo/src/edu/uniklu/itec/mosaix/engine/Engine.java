@@ -127,7 +127,7 @@ public final class Engine {
      * @param hits            a non-<code>null</code> LIRE search result.
      * @param scalePercentage value from 1-100d
      * @return the best match as determined by the relevancy
-     *         and the relevancy weighting.
+     * and the relevancy weighting.
      * @throws IOException if the image could not be loaded.
      * @see edu.uniklu.itec.mosaix.engine.WeightingStrategy
      */
@@ -201,7 +201,7 @@ public final class Engine {
      *
      * @param data the non-<code>null</code> data to evaluate.
      * @return the weighted relevancy within <code>0.0f</code>
-     *         (worst case) and <code>1.0f</code> (best case).
+     * (worst case) and <code>1.0f</code> (best case).
      */
     private float getWeightedRelevancy(WeightingData data) {
         assert data != null;

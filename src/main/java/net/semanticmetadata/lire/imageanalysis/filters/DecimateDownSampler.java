@@ -40,8 +40,7 @@
 package net.semanticmetadata.lire.imageanalysis.filters;
 
 // Trivial sub sampler that keeps 1 in "n" pixels
-public class DecimateDownSampler
-{
+public class DecimateDownSampler {
     private final int width;
     private final int height;
     private final int stride;
@@ -49,20 +48,17 @@ public class DecimateDownSampler
     private final int factor;
 
 
-    public DecimateDownSampler(int width, int height)
-    {
+    public DecimateDownSampler(int width, int height) {
         this(width, height, width, 0, 2);
     }
 
 
-    public DecimateDownSampler(int width, int height, int factor)
-    {
+    public DecimateDownSampler(int width, int height, int factor) {
         this(width, height, width, 0, factor);
     }
 
 
-    public DecimateDownSampler(int width, int height, int stride, int offset, int factor)
-    {
+    public DecimateDownSampler(int width, int height, int stride, int offset, int factor) {
         if (height < 8)
             throw new IllegalArgumentException("The height must be at least 8");
 
@@ -76,8 +72,8 @@ public class DecimateDownSampler
             throw new IllegalArgumentException("The stride must be at least as big as the width");
 
         if (factor < 2)
-            throw new IllegalArgumentException("This implementation only supports "+
-                    "a scaling factor greater than or equal to 2");
+            throw new IllegalArgumentException("This implementation only supports " +
+                "a scaling factor greater than or equal to 2");
 
         this.height = height;
         this.width = width;
@@ -87,64 +83,57 @@ public class DecimateDownSampler
     }
 
 
-    public void subSampleHorizontal(int[] input, int[] output)
-    {
+    public void subSampleHorizontal(int[] input, int[] output) {
         final int w = this.width;
         final int inc = this.factor;
         final int st = this.stride;
         int iOffs = this.offset;
         int oOffs = 0;
 
-        for (int j=this.height; j>0; j--)
-        {
-           final int end = iOffs + w;
+        for (int j = this.height; j > 0; j--) {
+            final int end = iOffs + w;
 
-           for (int i=iOffs; i<end; i+=inc)
-              output[oOffs++] = input[i];
+            for (int i = iOffs; i < end; i += inc)
+                output[oOffs++] = input[i];
 
-           iOffs += st;
+            iOffs += st;
         }
     }
 
 
-    public void subSampleVertical(int[] input, int[] output)
-    {
+    public void subSampleVertical(int[] input, int[] output) {
         final int w = this.width;
         final int inc = this.factor;
         final int stn = this.stride * inc;
         int iOffs = this.offset;
         int oOffs = 0;
 
-        for (int j=this.height; j>0; j-=inc)
-        {
-           System.arraycopy(input, iOffs, output, oOffs, w);
-           iOffs += stn;
+        for (int j = this.height; j > 0; j -= inc) {
+            System.arraycopy(input, iOffs, output, oOffs, w);
+            iOffs += stn;
         }
     }
 
 
-    public void subSample(int[] input, int[] output)
-    {
+    public void subSample(int[] input, int[] output) {
         final int w = this.width;
         final int inc = this.factor;
         final int stn = this.stride * inc;
         int iOffs = this.offset;
         int oOffs = 0;
 
-        for (int j=this.height; j>0; j-=inc)
-        {
-           final int end = iOffs + w;
+        for (int j = this.height; j > 0; j -= inc) {
+            final int end = iOffs + w;
 
-           for (int i=iOffs; i<end; i+=inc)
-              output[oOffs++] = input[i];
+            for (int i = iOffs; i < end; i += inc)
+                output[oOffs++] = input[i];
 
-           iOffs += stn;
+            iOffs += stn;
         }
     }
 
 
-    public boolean supportsScalingFactor(int factor)
-    {
+    public boolean supportsScalingFactor(int factor) {
         return (factor >= 2) ? true : false;
     }
 }

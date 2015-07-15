@@ -146,7 +146,7 @@ public class MetricSpacesInvertedListIndexing {
 
         if (hasDeletions) {
             System.err.println("WARNING: There are deleted docs in your index. You should " +
-                    "optimize your index before using this method.");
+                "optimize your index before using this method.");
         }
 
         // progress report
@@ -222,7 +222,7 @@ public class MetricSpacesInvertedListIndexing {
         Map<String, Analyzer> perField = new HashMap<String, Analyzer>(1);
         perField.put("ro-order", new WhitespaceAnalyzer(LuceneUtils.LUCENE_VERSION));
         PerFieldAnalyzerWrapper aWrapper =
-                new PerFieldAnalyzerWrapper(new SimpleAnalyzer(LuceneUtils.LUCENE_VERSION), perField);
+            new PerFieldAnalyzerWrapper(new SimpleAnalyzer(LuceneUtils.LUCENE_VERSION), perField);
 
         IndexWriter iw = new IndexWriter(FSDirectory.open(new File(indexPath)), new IndexWriterConfig(LuceneUtils.LUCENE_VERSION, aWrapper).setOpenMode(IndexWriterConfig.OpenMode.CREATE));
         StringBuilder sb = new StringBuilder(256);

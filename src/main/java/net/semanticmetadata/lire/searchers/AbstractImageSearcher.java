@@ -51,7 +51,7 @@ import java.util.Set;
 /**
  * Abstract ImageSearcher, which uses javax.imageio.ImageIO to create a BufferedImage
  * from an InputStream.
- * <p/>
+ * <p>
  * This file is part of the Caliph and Emir project: http://www.SemanticMetadata.net
  * <br>Date: 01.02.2006
  * <br>Time: 00:13:16

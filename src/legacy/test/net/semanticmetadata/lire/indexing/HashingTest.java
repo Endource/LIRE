@@ -142,10 +142,10 @@ public class HashingTest extends TestCase {
                 for (int i = 0; i < 3; i++) {
                     topDocs = searcher.search(query, 5000);
                 }
-                System.out.println((System.currentTimeMillis() - ms)/3);
+                System.out.println((System.currentTimeMillis() - ms) / 3);
                 ms = System.currentTimeMillis();
                 for (int i = 0; i < 3; i++) topDocs = rerank(topDocs, feat, reader);
-                System.out.println((System.currentTimeMillis() - ms)/3);
+                System.out.println((System.currentTimeMillis() - ms) / 3);
                 String file = printToHtml(topDocs, reader);
                 FileUtils.browseUri(file);
             } catch (Exception e) {
@@ -178,15 +178,16 @@ public class HashingTest extends TestCase {
 
     public void testImageSearcher() throws IOException {
         BitSamplingImageSearcher is = new BitSamplingImageSearcher(60, DocumentBuilder.FIELD_NAME_PHOG,
-                DocumentBuilder.FIELD_NAME_PHOG + "_hash", new PHOG(), 500);
+            DocumentBuilder.FIELD_NAME_PHOG + "_hash", new PHOG(), 500);
         IndexReader reader = DirectoryReader.open(FSDirectory.open(new File("E:\\wipo1m-idx")));
         Document queryDoc = reader.document(1);
-        ImageSearchHits search = is.search(queryDoc, reader);;
+        ImageSearchHits search = is.search(queryDoc, reader);
+        ;
         long ms = System.currentTimeMillis();
         int runs = 50;
-        for (int i = 0; i<runs; i++)
+        for (int i = 0; i < runs; i++)
             search = is.search(queryDoc, reader);
-        ms = System.currentTimeMillis() -ms;
+        ms = System.currentTimeMillis() - ms;
 //        String file = FileUtils.saveImageResultsToHtml("wipo", search, queryDoc.getValues(DocumentBuilder.FIELD_NAME_IDENTIFIER)[0]);
 //        FileUtils.browseUri(file);
         System.out.println(((double) ms) / ((double) runs) + " ms per search.");
@@ -201,8 +202,8 @@ public class HashingTest extends TestCase {
         String fileName = "results-" + System.currentTimeMillis() / 1000 + ".html";
         BufferedWriter bw = new BufferedWriter(new FileWriter(fileName));
         bw.write("<html>\n" +
-                "<head><title>Search Results</title></head>\n" +
-                "<body bgcolor=\"#FFFFFF\">\n");
+            "<head><title>Search Results</title></head>\n" +
+            "<body bgcolor=\"#FFFFFF\">\n");
         bw.write("<h3>query</h3>\n");
         bw.write("<a href=\"" + queryFile + "\"><img src=\"" + queryFile + "\"></a><p>\n");
         bw.write("<h3>results</h3>\n<table>");
@@ -224,7 +225,7 @@ public class HashingTest extends TestCase {
             bw.write("</tr>");
         }
         bw.write("</table></body>\n" +
-                "</html>");
+            "</html>");
         bw.close();
         return new File(fileName).getPath();
     }

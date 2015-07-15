@@ -179,7 +179,7 @@ public class TRModel2D extends Model {
 
     /**
      * change the model a bit
-     * <p/>
+     * <p>
      * estimates the necessary amount of shaking for each single dimensional
      * distance in the set of matches
      *
@@ -188,9 +188,9 @@ public class TRModel2D extends Model {
      * @param center  local pivot point
      */
     final public void shake(
-            Collection<PointMatch> matches,
-            float scale,
-            float[] center) {
+        Collection<PointMatch> matches,
+        float scale,
+        float[] center) {
         double xd = 0.0;
         double yd = 0.0;
         double rd = 0.0;
@@ -246,10 +246,10 @@ public class TRModel2D extends Model {
      * @param epsilon          maximally allowed displacement
      * @param min_inlier_ratio minimal amount of inliers
      * @return TRModel2D or null
-     *         <p/>
-     *         <p/>
-     *         Bibtex reference:
-     *         <pre>
+     * <p>
+     * <p>
+     * Bibtex reference:
+     * <pre>
      * @article{FischlerB81, author            = {Martin A. Fischler and Robert C. Bolles},
      * title			= {Random sample consensus: a paradigm for model fitting with applications to image analysis and automated cartography},
      * journal			= {Communications of the ACM},
@@ -265,11 +265,11 @@ public class TRModel2D extends Model {
      * </pre>
      */
     static public TRModel2D estimateModel(
-            List<PointMatch> candidates,
-            Collection<PointMatch> inliers,
-            int iterations,
-            float epsilon,
-            float min_inlier_ratio) {
+        List<PointMatch> candidates,
+        Collection<PointMatch> inliers,
+        int iterations,
+        float epsilon,
+        float min_inlier_ratio) {
         inliers.clear();
 
         if (candidates.size() < MIN_SET_SIZE) {
@@ -316,9 +316,9 @@ public class TRModel2D extends Model {
                 is_good = m.test(candidates, temp_inliers, epsilon, min_inlier_ratio);
             }
             if (
-                    is_good &&
-                            m.betterThan(model) &&
-                            temp_inliers.size() >= 3 * MIN_SET_SIZE) // now at least 6 matches required
+                is_good &&
+                    m.betterThan(model) &&
+                    temp_inliers.size() >= 3 * MIN_SET_SIZE) // now at least 6 matches required
             {
                 model = m.clone();
                 inliers.clear();
@@ -335,15 +335,15 @@ public class TRModel2D extends Model {
     /**
      * estimate the transformation model for a set of feature correspondences
      * containing a high number of outliers using RANSAC
-     * <p/>
+     * <p>
      * increase the error as long as not more inliers occur
      */
     static public TRModel2D estimateBestModel(
-            List<PointMatch> candidates,
-            Collection<PointMatch> inliers,
-            float min_epsilon,
-            float max_epsilon,
-            float min_inlier_ratio) {
+        List<PointMatch> candidates,
+        Collection<PointMatch> inliers,
+        float min_epsilon,
+        float max_epsilon,
+        float min_inlier_ratio) {
         inliers.clear();
         TRModel2D model = null;
         float epsilon = 0.0f;
@@ -356,11 +356,11 @@ public class TRModel2D extends Model {
                 epsilon += min_epsilon;
                 // 1000 iterations lead to a probability of < 0.01% that only bad data values were found
                 m = estimateModel(
-                        candidates,                    //!< point correspondence candidates
-                        temp_inliers,
-                        1000,                        //!< iterations
-                        epsilon,                    //!< maximal alignment error for a good point pair when fitting the model
-                        min_inlier_ratio);                //!< minimal partition (of 1.0) of inliers
+                    candidates,                    //!< point correspondence candidates
+                    temp_inliers,
+                    1000,                        //!< iterations
+                    epsilon,                    //!< maximal alignment error for a good point pair when fitting the model
+                    min_inlier_ratio);                //!< minimal partition (of 1.0) of inliers
 
                 if (m != null) {
                     int num_inliers = temp_inliers.size();

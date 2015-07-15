@@ -103,7 +103,7 @@ public class SPACC implements GlobalFeature {
      * @see SPJCD#setByteArrayRepresentation(byte[])
      */
     public byte[] getByteArrayRepresentation() {
-        byte[] result = new byte[histogramSize/2];
+        byte[] result = new byte[histogramSize / 2];
         for (int i = 0; i < result.length; i++) {
             tmp = ((int) (histogram[(i << 1)])) << 4;
             tmp = (tmp | ((int) (histogram[(i << 1) + 1])));

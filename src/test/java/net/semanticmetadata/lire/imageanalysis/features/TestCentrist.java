@@ -35,7 +35,7 @@ public class TestCentrist extends TestCase {
         for (Iterator<File> iterator = imageFiles.iterator(); iterator.hasNext(); ) {
             File nextImage = iterator.next();
             sc.extract(ImageIO.read(nextImage));
-            System.out.println(nextImage.getName() + ": " + sc.getFeatureVector().length + " entries -> "+ Arrays.toString(sc.getFeatureVector()));
+            System.out.println(nextImage.getName() + ": " + sc.getFeatureVector().length + " entries -> " + Arrays.toString(sc.getFeatureVector()));
         }
     }
 }

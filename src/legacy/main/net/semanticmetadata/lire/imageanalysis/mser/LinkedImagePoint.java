@@ -41,7 +41,7 @@ package net.semanticmetadata.lire.imageanalysis.mser;
 
 /**
  * ImagePoint (linked List)
- * <p/>
+ * <p>
  * User: Shotty
  * Date: 28.06.2010
  * Time: 23:25:19

@@ -138,6 +138,7 @@ public class FuzzyColorHistogram implements GlobalFeature {
 
     /**
      * by patch contributed by Franz Graf, franz.graf@gmail.com
+     *
      * @return the feature vector as double[]
      */
     @Override

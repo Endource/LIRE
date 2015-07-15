@@ -90,7 +90,6 @@ public class BOVWBuilder {
     private boolean useParallelClustering = true;
 
     /**
-     *
      * @param reader
      * @deprecated
      */
@@ -131,8 +130,8 @@ public class BOVWBuilder {
     /**
      * Creates a new instance of the BOVWBuilder using the given reader. TODO: write
      *
-     * @param reader               the index reader
-     * @param lireFeature          lireFeature used
+     * @param reader      the index reader
+     * @param lireFeature lireFeature used
      */
     public BOVWBuilder(IndexReader reader, LireFeature lireFeature) {
         this.reader = reader;
@@ -175,8 +174,8 @@ public class BOVWBuilder {
     protected void init() {
         localFeatureFieldName = lireFeature.getFieldName();
         visualWordsFieldName = lireFeature.getFieldName() + DocumentBuilder.FIELD_NAME_BOVW;
-        localFeatureHistFieldName = lireFeature.getFieldName()+ DocumentBuilder.FIELD_NAME_BOVW_VECTOR;
-        clusterFile = "./clusters-bovw" + lireFeature.getFeatureName() +  ".dat";
+        localFeatureHistFieldName = lireFeature.getFieldName() + DocumentBuilder.FIELD_NAME_BOVW_VECTOR;
+        clusterFile = "./clusters-bovw" + lireFeature.getFeatureName() + ".dat";
     }
 
     /**
@@ -332,7 +331,7 @@ public class BOVWBuilder {
 
         // based on bug report from Einav Itamar <einavitamar@gmail.com>
         IndexWriter iw = LuceneUtils.createIndexWriter(((DirectoryReader) reader).directory(),
-                false, LuceneUtils.AnalyzerType.WhitespaceAnalyzer);
+            false, LuceneUtils.AnalyzerType.WhitespaceAnalyzer);
         int counter = 0;
         for (int i = 0; i < reader.maxDoc(); i++) {
             if (reader.hasDeletions() && !liveDocs.get(i)) continue; // if it is deleted, just ignore it.
@@ -465,7 +464,7 @@ public class BOVWBuilder {
     protected LireFeature getFeatureInstance() {
         LireFeature result = null;
         try {
-            result =  lireFeature.getClass().newInstance();
+            result = lireFeature.getClass().newInstance();
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -507,8 +506,7 @@ public class BOVWBuilder {
         }
     }
 
-    private void createVisualWords(Document d, LireFeature f)
-    {
+    private void createVisualWords(Document d, LireFeature f) {
         double[] tmpHist = new double[numClusters];
         Arrays.fill(tmpHist, 0d);
         IndexableField[] fields = d.getFields(localFeatureFieldName);

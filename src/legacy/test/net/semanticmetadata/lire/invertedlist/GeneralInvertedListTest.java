@@ -197,6 +197,23 @@ public class GeneralInvertedListTest extends TestCase {
  * Constructs a Scorer.
  *
  * @param similarity The <code>Similarity</code> implementation used by this scorer.
+ * Returns the current document number matching the query.
+ * Initially invalid, until {@link #next()} is called the first time.
+ * Advances to the next document matching the query.
+ * <br>The iterator over the matching documents is buffered using
+ * {@link TermDocs#read(int[], int[])}.
+ * @return true iff there is another document matching the query.
+ * Skips to the first match beyond the current whose document number is
+ * greater than or equal to a given target.
+ * <br>The implementation uses {@link TermDocs#skipTo(int)}.
+ * @param target The target document number.
+ * @return true iff there is such a match.
+ * Returns an explanation of the score for a document.
+ * <br>When this method is used, the {@link #next()} method
+ * and the {@link #score(HitCollector)} method should not be used.
+ * @param doc The document number for the explanation.
+ * <p>
+ * Returns a string representation of this <code>TermScorer</code>.
  *//*
     public PositionScorer(Similarity similarity, TermPositions tp) {
         super(similarity);

@@ -53,91 +53,71 @@ public class CompactCEDDQuant {
         double[] ElementsDistance = new double[8];
         double Max = 1;
 
-        for (int i = 0; i < 10; i++)
-        {
+        for (int i = 0; i < 10; i++) {
             Edge_HistogramElement[i] = 0;
-            for (int j = 0; j < 8; j++)
-            {
+            for (int j = 0; j < 8; j++) {
                 ElementsDistance[j] = Math.abs(Local_Edge_Histogram[i] - QuantTable[j] / 1000000);
             }
             Max = 1;
-            for (int j = 0; j < 8; j++)
-            {
-                if (ElementsDistance[j] < Max)
-                {
+            for (int j = 0; j < 8; j++) {
+                if (ElementsDistance[j] < Max) {
                     Max = ElementsDistance[j];
                     Edge_HistogramElement[i] = j;
                 }
             }
         }
 
-        for (int i = 10; i < 20; i++)
-        {
+        for (int i = 10; i < 20; i++) {
             Edge_HistogramElement[i] = 0;
-            for (int j = 0; j < 8; j++)
-            {
+            for (int j = 0; j < 8; j++) {
                 ElementsDistance[j] = Math.abs(Local_Edge_Histogram[i] - QuantTable2[j] / 1000000);
             }
             Max = 1;
-            for (int j = 0; j < 8; j++)
-            {
-                if (ElementsDistance[j] < Max)
-                {
+            for (int j = 0; j < 8; j++) {
+                if (ElementsDistance[j] < Max) {
                     Max = ElementsDistance[j];
                     Edge_HistogramElement[i] = j;
                 }
             }
         }
 
-        for (int i = 20; i < 30; i++)
-        {
+        for (int i = 20; i < 30; i++) {
             Edge_HistogramElement[i] = 0;
-            for (int j = 0; j < 8; j++)
-            {
+            for (int j = 0; j < 8; j++) {
                 ElementsDistance[j] = Math.abs(Local_Edge_Histogram[i] - QuantTable3[j] / 1000000);
             }
 
             Max = 1;
-            for (int j = 0; j < 8; j++)
-            {
-                if (ElementsDistance[j] < Max)
-                {
+            for (int j = 0; j < 8; j++) {
+                if (ElementsDistance[j] < Max) {
                     Max = ElementsDistance[j];
                     Edge_HistogramElement[i] = j;
                 }
             }
         }
 
-        for (int i = 30; i < 40; i++)
-        {
+        for (int i = 30; i < 40; i++) {
             Edge_HistogramElement[i] = 0;
-            for (int j = 0; j < 8; j++)
-            {
+            for (int j = 0; j < 8; j++) {
                 ElementsDistance[j] = Math.abs(Local_Edge_Histogram[i] - QuantTable4[j] / 1000000);
             }
             Max = 1;
-            for (int j = 0; j < 8; j++)
-            {
-                if (ElementsDistance[j] < Max)
-                {
+            for (int j = 0; j < 8; j++) {
+                if (ElementsDistance[j] < Max) {
                     Max = ElementsDistance[j];
                     Edge_HistogramElement[i] = j;
                 }
             }
         }
 
-        for (int i = 40; i < 50; i++)
-        {
+        for (int i = 40; i < 50; i++) {
             Edge_HistogramElement[i] = 0;
-            for (int j = 0; j < 8; j++)
-            {
+            for (int j = 0; j < 8; j++) {
                 ElementsDistance[j] = Math.abs(Local_Edge_Histogram[i] - QuantTable5[j] / 1000000);
             }
             Max = 1;
-            for (int j = 0; j < 8; j++)
-            {
-                if (ElementsDistance[j] < Max)
-                {
+            for (int j = 0; j < 8; j++) {
+                if (ElementsDistance[j] < Max) {
                     Max = ElementsDistance[j];
                     Edge_HistogramElement[i] = j;
                 }

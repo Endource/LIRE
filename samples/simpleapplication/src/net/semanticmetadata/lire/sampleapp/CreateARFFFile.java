@@ -75,13 +75,13 @@ public class CreateARFFFile {
         // Create the instance of the LireFeature you want to use:
         GlobalFeature feature = new CEDD();
 
-        if (images.size()>0) {
+        if (images.size() > 0) {
             // getting the number of dimensions:
             feature.extract(ImageIO.read(new FileInputStream(images.get(0))));
             System.out.println("@RELATION images\n");
             System.out.println("@ATTRIBUTE filename string\n");
-            for (int i=0;i<feature.getFeatureVector().length;i++) {
-                System.out.println("@ATTRIBUTE f"+i+" NUMERIC\n");
+            for (int i = 0; i < feature.getFeatureVector().length; i++) {
+                System.out.println("@ATTRIBUTE f" + i + " NUMERIC\n");
             }
             System.out.println("\n@DATA\n");
             // Iterating through images building the low level features
@@ -103,7 +103,7 @@ public class CreateARFFFile {
             }
             // closing the IndexWriter
             System.out.println("% Finished indexing.");
-        }  else {
+        } else {
             System.err.println("No images found in kgiven directory: " + args[0]);
         }
     }

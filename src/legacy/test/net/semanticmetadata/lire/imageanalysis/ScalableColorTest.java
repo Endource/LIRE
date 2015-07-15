@@ -182,7 +182,7 @@ public class ScalableColorTest extends TestCase {
         IndexReader ir = DirectoryReader.open(FSDirectory.open(new File("test-idx")));
         ScalableColor tmp = new ScalableColor();
         ScalableColor idx = new ScalableColor();
-        for (int i=0; i< ir.maxDoc(); i++) {
+        for (int i = 0; i < ir.maxDoc(); i++) {
             Document d = ir.document(i);
             BytesRef ref = d.getBinaryValue(new ScalableColor().getFieldName());
             idx.setByteArrayRepresentation(ref.bytes, ref.offset, ref.length);
@@ -214,6 +214,7 @@ public class ScalableColorTest extends TestCase {
 
     /**
      * Storing zeros run length coded: one zero is "8", two zeros are "9", ... etc.
+     *
      * @throws java.io.IOException
      */
     public void testRLE() throws IOException {
@@ -235,7 +236,7 @@ public class ScalableColorTest extends TestCase {
                     if (count == 0) rep[actualLength] = 0;
                     else {
                         rep[actualLength] = 7 + count;
-                        i += count-1;
+                        i += count - 1;
                     }
                 } else {
                     rep[actualLength] = (int) hist[i];

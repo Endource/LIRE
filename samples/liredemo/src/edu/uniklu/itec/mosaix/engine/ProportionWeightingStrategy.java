@@ -56,7 +56,7 @@ public final class ProportionWeightingStrategy implements WeightingStrategy {
      *
      * @param img the image to inspect, may not be <code>null</code>.
      * @return a value greater than zero representing the
-     *         dimensional aspect of an image.
+     * dimensional aspect of an image.
      */
     private static float getProportions(final BufferedImage img) {
         assert img != null;

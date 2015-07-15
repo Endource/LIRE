@@ -44,18 +44,21 @@ package net.semanticmetadata.lire.imageanalysis.features;
 public interface LireFeature extends FeatureVector {
     /**
      * Gives a descriptive name of the feature, i.e. a name to show up in benchmarks, menus, UIs, etc.
+     *
      * @return the name of the feature.
      */
     public String getFeatureName();
 
     /**
      * Returns the preferred field name for indexing.
+     *
      * @return the field name preferred for indexing in a Lucene index.
      */
     public String getFieldName();
 
     /**
      * Returns a compact byte[] based representation of the feature vector.
+     *
      * @return a compact byte[] array containing the feature vector.
      * @see LireFeature#setByteArrayRepresentation(byte[])
      */
@@ -65,6 +68,7 @@ public interface LireFeature extends FeatureVector {
      * Sets the feature vector values based on the byte[] data. Use
      * {@link LireFeature#getByteArrayRepresentation()}
      * to generate a compatible byte[] array.
+     *
      * @param featureData the byte[] data.
      * @see LireFeature#getByteArrayRepresentation()
      */
@@ -74,15 +78,17 @@ public interface LireFeature extends FeatureVector {
      * Sets the feature vector values based on the byte[] data.
      * Use {@link LireFeature#getByteArrayRepresentation()}
      * to generate a compatible byte[] array.
+     *
      * @param featureData the byte[] array containing the data.
-     * @param offset the offset, i.e. where the feature vector starts.
-     * @param length the length of the data representing the feature vector.
+     * @param offset      the offset, i.e. where the feature vector starts.
+     * @param length      the length of the data representing the feature vector.
      * @see LireFeature#getByteArrayRepresentation()
      */
     public void setByteArrayRepresentation(byte[] featureData, int offset, int length);
 
     /**
      * The distance function for this type of feature
+     *
      * @param feature the feature vector to compare the current instance to.
      * @return the distance (or dissimilarity) between the instance and the parameter.
      */

@@ -17,7 +17,7 @@
  * We kindly ask you to refer the any or one of the following publications in
  * any publication mentioning or employing Lire:
  *
- * Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval –
+ * Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval ï¿½
  * An Extensible Java CBIR Library. In proceedings of the 16th ACM International
  * Conference on Multimedia, pp. 1085-1088, Vancouver, Canada, 2008
  * URL: http://doi.acm.org/10.1145/1459359.1459577
@@ -44,37 +44,37 @@ import java.util.List;
 /**
  * Implementation based on the paper:
  * Matching Local Self-Similarities across Images and Videos
- *
+ * <p>
  * Created by Nektarios on 12/1/2015.
  *
  * @author Nektarios Anagnostopoulos, nek.anag@gmail.com
- * (c) 2015 by Nektarios Anagnostopoulos
+ *         (c) 2015 by Nektarios Anagnostopoulos
  */
 public class SelfSimilaritiesOrigExtractor implements LocalFeatureExtractor {
 
     private int density = 5;
-    private int size=5;
-    private int coRelWindowRadius=10;
-    private int numRadiiIntervals=2;
-    private int numThetaIntervals=4;
-    private int varNoise=(25*3*36);
-    private int autoVarRadius=1;
-    private int saliencyThresh=0; //I usually disable saliency checking
+    private int size = 5;
+    private int coRelWindowRadius = 10;
+    private int numRadiiIntervals = 2;
+    private int numThetaIntervals = 4;
+    private int varNoise = (25 * 3 * 36);
+    private int autoVarRadius = 1;
+    private int saliencyThresh = 0; //I usually disable saliency checking
 
     LinkedList<SelfSimilaritiesOrigFeature> features = null;
 
-    public SelfSimilaritiesOrigExtractor(){
+    public SelfSimilaritiesOrigExtractor() {
     }
 
     public void extract(BufferedImage img) {
-        int nChannels=img.getColorModel().getNumColorComponents();
-        int radius = (size-1)/2; // the radius of the patch
-        int marg = radius+coRelWindowRadius;
-        int NUMradius=(size-1)/2; //the radius of the patch ~ Note: size should be odd only
-        int NUMpixels=size*size;
+        int nChannels = img.getColorModel().getNumColorComponents();
+        int radius = (size - 1) / 2; // the radius of the patch
+        int marg = radius + coRelWindowRadius;
+        int NUMradius = (size - 1) / 2; //the radius of the patch ~ Note: size should be odd only
+        int NUMpixels = size * size;
 
-        int NUMcols=img.getWidth(); //width
-        int NUMrows=img.getHeight(); //height
+        int NUMcols = img.getWidth(); //width
+        int NUMrows = img.getHeight(); //height
         int pixel;
         int[][] ImageGridRed = new int[NUMcols][NUMrows];
         int[][] ImageGridGreen = new int[NUMcols][NUMrows];
@@ -93,116 +93,118 @@ public class SelfSimilaritiesOrigExtractor implements LocalFeatureExtractor {
             return;
         }
 
-        int interiorH=NUMrows-2*NUMradius;
-        int numPixels=(2*NUMradius+1)*(2*NUMradius+1); // patchRad = NUMradius
-        int dim = (coRelWindowRadius*2 + 1);
-        int[] xGrid = new int[dim*dim];
-        int[] yGrid = new int[dim*dim];
+        int interiorH = NUMrows - 2 * NUMradius;
+        int numPixels = (2 * NUMradius + 1) * (2 * NUMradius + 1); // patchRad = NUMradius
+        int dim = (coRelWindowRadius * 2 + 1);
+        int[] xGrid = new int[dim * dim];
+        int[] yGrid = new int[dim * dim];
         int tempCoRelWindowRadiusY, tempCoRelWindowRadiusX = coRelWindowRadius;
         int counter = 0;
         for (int i = 0; i < dim; i++) {
             tempCoRelWindowRadiusY = coRelWindowRadius;
             for (int j = 0; j < dim; j++) {
-                xGrid[counter]=(-1)*tempCoRelWindowRadiusX;
-                yGrid[counter]=tempCoRelWindowRadiusY;
+                xGrid[counter] = (-1) * tempCoRelWindowRadiusX;
+                yGrid[counter] = tempCoRelWindowRadiusY;
                 tempCoRelWindowRadiusY--;
                 counter++;
             }
             tempCoRelWindowRadiusX--;
         }
 
-        dim=dim*dim;
+        dim = dim * dim;
         int[] circleMask = new int[dim];
         int[] autoVarMask = new int[dim];
         for (int i = 0; i < dim; i++) {
-            if ((xGrid[i]*xGrid[i])+(yGrid[i]*yGrid[i])<=coRelWindowRadius*coRelWindowRadius)
-                circleMask[i]=1;
+            if ((xGrid[i] * xGrid[i]) + (yGrid[i] * yGrid[i]) <= coRelWindowRadius * coRelWindowRadius)
+                circleMask[i] = 1;
             else
-                circleMask[i]=0;
-            if ((xGrid[i]*xGrid[i])+(yGrid[i]*yGrid[i])<=autoVarRadius*autoVarRadius)
-                autoVarMask[i]=1;
+                circleMask[i] = 0;
+            if ((xGrid[i] * xGrid[i]) + (yGrid[i] * yGrid[i]) <= autoVarRadius * autoVarRadius)
+                autoVarMask[i] = 1;
             else
-                autoVarMask[i]=0;
+                autoVarMask[i] = 0;
         }
-        circleMask[(dim - 1) / 2]=0;
-        autoVarMask[(dim - 1) / 2]=0;
+        circleMask[(dim - 1) / 2] = 0;
+        autoVarMask[(dim - 1) / 2] = 0;
 
         int[] radii = new int[dim];
         double[] thetas = new double[dim];
         for (int i = 0; i < dim; i++) {
-            circleMask[i]=circleMask[i]+autoVarMask[i];
-            radii[i]=(xGrid[i]*xGrid[i])+(yGrid[i]*yGrid[i]);
-            thetas[i]=0;
+            circleMask[i] = circleMask[i] + autoVarMask[i];
+            radii[i] = (xGrid[i] * xGrid[i]) + (yGrid[i] * yGrid[i]);
+            thetas[i] = 0;
         }
 
         int xQuad, yQuad, xC, yC, quad;
         for (int x = 0; x < dim; x++) {
             xC = xGrid[x];
             yC = yGrid[x];
-            if (xC >= 0) xQuad=1; else xQuad=0;
-            if (yC >= 0) yQuad=1; else yQuad=0;
+            if (xC >= 0) xQuad = 1;
+            else xQuad = 0;
+            if (yC >= 0) yQuad = 1;
+            else yQuad = 0;
             quad = xQuad * 2 + yQuad;
             switch (quad) {
                 case 0:
                     if (xC == 0)
                         thetas[x] = Math.PI;
                     else
-                        thetas[x] = 1.5 * Math.PI - Math.atan((double)yC / xC);
+                        thetas[x] = 1.5 * Math.PI - Math.atan((double) yC / xC);
                     break;
                 case 1:
                     if (xC == 0)
                         thetas[x] = 0;
                     else
-                        thetas[x] = 1.5 * Math.PI - Math.atan((double)yC / xC);
+                        thetas[x] = 1.5 * Math.PI - Math.atan((double) yC / xC);
                     break;
                 case 2:
                     if (xC == 0)
                         thetas[x] = Math.PI;
                     else
-                        thetas[x] = 0.5 * Math.PI - Math.atan((double)yC / xC);
+                        thetas[x] = 0.5 * Math.PI - Math.atan((double) yC / xC);
                     break;
                 case 3:
                     if (xC == 0)
                         thetas[x] = 0;
                     else
-                        thetas[x] = 0.5 * Math.PI - Math.atan((double)yC / xC);
+                        thetas[x] = 0.5 * Math.PI - Math.atan((double) yC / xC);
                     break;
             }
         }
 
-        double thetaInterval=2*Math.PI/numThetaIntervals;
+        double thetaInterval = 2 * Math.PI / numThetaIntervals;
         int[] thetaIndexes = new int[dim];
         for (int i = 0; i < dim; i++) {
-            thetaIndexes[i]= (int)Math.floor((double) thetas[i] / thetaInterval); // 0 indexed
+            thetaIndexes[i] = (int) Math.floor((double) thetas[i] / thetaInterval); // 0 indexed
         }
-        double radiiInterval=Math.log(1 + coRelWindowRadius)/numRadiiIntervals;
+        double radiiInterval = Math.log(1 + coRelWindowRadius) / numRadiiIntervals;
 
         double[] radiiQuants = new double[numRadiiIntervals];
         double num;
-        for (int i = 1; i <= numRadiiIntervals-1; i++) {
+        for (int i = 1; i <= numRadiiIntervals - 1; i++) {
             num = Math.exp(i * radiiInterval) - 1;
-            radiiQuants[i-1] = num*num;
+            radiiQuants[i - 1] = num * num;
         }
-        radiiQuants[numRadiiIntervals-1]=coRelWindowRadius*coRelWindowRadius;
+        radiiQuants[numRadiiIntervals - 1] = coRelWindowRadius * coRelWindowRadius;
 
         int[] radiiIndexes = new int[dim];
         for (int i = 0; i < dim; i++) {
-            radiiIndexes[i]=0;
+            radiiIndexes[i] = 0;
             for (int k = 0; k < radiiQuants.length; k++) {
-                if (radii[i]<=radiiQuants[k])
+                if (radii[i] <= radiiQuants[k])
                     radiiIndexes[i]++;
             }
-            radiiIndexes[i]=radiiIndexes[i]-1;
+            radiiIndexes[i] = radiiIndexes[i] - 1;
         }
 
         int[] binIndexes = new int[dim];
         for (int i = 0; i < dim; i++) {
-            binIndexes[i]=thetaIndexes[i]*radiiQuants.length+radiiIndexes[i];
+            binIndexes[i] = thetaIndexes[i] * radiiQuants.length + radiiIndexes[i];
         }
 
         LinkedList<Integer> nonzero = new LinkedList<Integer>();
         for (int i = 0; i < dim; i++) {
-            if (circleMask[i]>0) nonzero.add(i);
+            if (circleMask[i] > 0) nonzero.add(i);
         }
 
         int[] xGridVN = new int[nonzero.size()];
@@ -212,31 +214,31 @@ public class SelfSimilaritiesOrigExtractor implements LocalFeatureExtractor {
         int pointer;
         for (int i = 0; i < nonzero.size(); i++) {
             pointer = nonzero.get(i);
-            xGridVN[i]=xGrid[pointer];
-            yGridVN[i]=yGrid[pointer];
-            circleMaskVN[i]=circleMask[pointer];
-            binIndexesVN[i]=binIndexes[pointer];
+            xGridVN[i] = xGrid[pointer];
+            yGridVN[i] = yGrid[pointer];
+            circleMaskVN[i] = circleMask[pointer];
+            binIndexesVN[i] = binIndexes[pointer];
         }
 
         int[] coRelCircleOffsets = new int[nonzero.size()];
         LinkedList<Integer> autoVarianceIndices = new LinkedList<Integer>();
         for (int i = 0; i < nonzero.size(); i++) {
-            coRelCircleOffsets[i]=xGridVN[i]*interiorH+yGridVN[i];
-            if (circleMaskVN[i]==2) autoVarianceIndices.add(i);
+            coRelCircleOffsets[i] = xGridVN[i] * interiorH + yGridVN[i];
+            if (circleMaskVN[i] == 2) autoVarianceIndices.add(i);
         }
 
-        int totalBins = numRadiiIntervals*numThetaIntervals;
+        int totalBins = numRadiiIntervals * numThetaIntervals;
         int[][] binIndices = new int[totalBins][];
         LinkedList<Integer> myList;
         int[] tempList;
         for (int i = 0; i < totalBins; i++) {
             myList = new LinkedList<Integer>();
             for (int j = 0; j < binIndexesVN.length; j++) {
-                if (binIndexesVN[j]==i) myList.add(j);
+                if (binIndexesVN[j] == i) myList.add(j);
             }
             tempList = new int[myList.size()];
             for (int j = 0; j < myList.size(); j++) {
-                tempList[j]=myList.get(j);
+                tempList[j] = myList.get(j);
             }
             binIndices[i] = tempList;
         }
@@ -244,18 +246,18 @@ public class SelfSimilaritiesOrigExtractor implements LocalFeatureExtractor {
         int numAutoVarianceIndices = autoVarianceIndices.size();
         int numSSDs = coRelCircleOffsets.length;
 
-        double[][] simMaps= new double[(((NUMrows-marg*2-1)/density)+1)*(((NUMcols-marg*2-1)/density)+1)][totalBins];
-        int[] allXCoords = new int[(((NUMrows-marg*2-1)/density)+1)*(((NUMcols-marg*2-1)/density)+1)];
-        int[] allYCoords = new int[(((NUMrows-marg*2-1)/density)+1)*(((NUMcols-marg*2-1)/density)+1)];
+        double[][] simMaps = new double[(((NUMrows - marg * 2 - 1) / density) + 1) * (((NUMcols - marg * 2 - 1) / density) + 1)][totalBins];
+        int[] allXCoords = new int[(((NUMrows - marg * 2 - 1) / density) + 1) * (((NUMcols - marg * 2 - 1) / density) + 1)];
+        int[] allYCoords = new int[(((NUMrows - marg * 2 - 1) / density) + 1) * (((NUMcols - marg * 2 - 1) / density) + 1)];
         double[] ssdTraveller = new double[xGridVN.length];
         int diff;
-        counter=0;
+        counter = 0;
         int fromI = marg - NUMradius;
-        int toI = NUMcols-marg-NUMradius;
+        int toI = NUMcols - marg - NUMradius;
         int fromJ = marg - NUMradius;
-        int toJ = NUMrows-marg-NUMradius;
-        for (int i = fromI; i < toI; i+=density) {
-            for (int j = fromJ; j < toJ; j+=density) {
+        int toJ = NUMrows - marg - NUMradius;
+        for (int i = fromI; i < toI; i += density) {
+            for (int j = fromJ; j < toJ; j += density) {
                 allXCoords[counter] = i;
                 allYCoords[counter] = j;
                 ssdTraveller = new double[xGridVN.length];
@@ -312,11 +314,12 @@ public class SelfSimilaritiesOrigExtractor implements LocalFeatureExtractor {
         double mySize = size + coRelWindowRadius * 2;
         SelfSimilaritiesOrigFeature feat;
         for (int i = 0; i < indsOkay.size(); i++) {
-            newMaps= new double[totalBins];
+            newMaps = new double[totalBins];
             max = simMaps[indsOkay.get(i)][0];
             for (int j = 0; j < totalBins; j++) {
-                newMaps[j] =  simMaps[indsOkay.get(i)][j];
-                if (simMaps[indsOkay.get(i)][j]>max) max = simMaps[indsOkay.get(i)][j]; //Takes the max along the columns
+                newMaps[j] = simMaps[indsOkay.get(i)][j];
+                if (simMaps[indsOkay.get(i)][j] > max)
+                    max = simMaps[indsOkay.get(i)][j]; //Takes the max along the columns
             }
             for (int j = 0; j < totalBins; j++) {
                 newMaps[j] = newMaps[j] / max;

@@ -90,7 +90,7 @@ public class ImageMask {
      */
     public boolean getAccess(int idx) {
         if (idx < accessible.length &&
-                accessible[idx] == NO_ACCESS) {
+            accessible[idx] == NO_ACCESS) {
             accessible[idx] = ACCESS;
             return true;
         }

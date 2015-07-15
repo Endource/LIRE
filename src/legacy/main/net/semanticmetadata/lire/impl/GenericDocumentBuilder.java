@@ -82,7 +82,6 @@ public class GenericDocumentBuilder extends AbstractDocumentBuilder {
     public static final String HASH_FIELD_SUFFIX = "_hash";
 
 
-
     static {
         // Let's try to read the hash functions right here and we don't have to care about it right now.
         try {
@@ -174,7 +173,7 @@ public class GenericDocumentBuilder extends AbstractDocumentBuilder {
      *
      * @param descriptorClass has to implement {@link net.semanticmetadata.lire.imageanalysis.LireFeature}
      * @param hashing         set to true is you want to create an additional field for hashes based on BitSampling.
-     * @param mode the hashing mode you want to use. default is bit sampling, but there is also a vector based LSH version.
+     * @param mode            the hashing mode you want to use. default is bit sampling, but there is also a vector based LSH version.
      */
     public GenericDocumentBuilder(Class<? extends LireFeature> descriptorClass, boolean hashing, HashingMode mode) {
         this.descriptorClass = descriptorClass;

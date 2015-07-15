@@ -17,7 +17,7 @@
  * We kindly ask you to refer the any or one of the following publications in
  * any publication mentioning or employing Lire:
  *
- * Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval –
+ * Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval ï¿½
  * An Extensible Java CBIR Library. In proceedings of the 16th ACM International
  * Conference on Multimedia, pp. 1085-1088, Vancouver, Canada, 2008
  * URL: http://doi.acm.org/10.1145/1459359.1459577
@@ -47,7 +47,7 @@ package net.semanticmetadata.lire.searchers.forevaluations;
  * which are the respective versions of GenericFastImageSearcher and ImageSearcherUsingWSs, but altered in order to perform better for
  * running quick evaluation tests in "small" databases. The difference from the main searchers is that the hits, hold also the images' paths
  * and there is no need to search for the document in the index in order to find the path of the image.
- *
+ * <p>
  * When to use those searchers:
  * With "small" databases.
  * When there are a lot of fields in an index.

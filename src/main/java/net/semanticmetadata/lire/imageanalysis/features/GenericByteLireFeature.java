@@ -44,6 +44,7 @@ import net.semanticmetadata.lire.utils.SerializationUtils;
 
 /**
  * Generic double[] based feature implementation.
+ *
  * @author Mathias Lux, mathias@juggle.at, 27.09.13 17:00
  */
 public class GenericByteLireFeature implements LireFeature {
@@ -91,7 +92,8 @@ public class GenericByteLireFeature implements LireFeature {
     @Override
     public double getDistance(LireFeature feature) {
         // it is assumed that the histograms are of equal length.
-        if (! (feature instanceof GenericByteLireFeature)) throw new UnsupportedOperationException("This is not a GenericByteLireFeature object.");
+        if (!(feature instanceof GenericByteLireFeature))
+            throw new UnsupportedOperationException("This is not a GenericByteLireFeature object.");
         assert ((GenericByteLireFeature) feature).data.length == data.length;
         return MetricsUtils.distL1(((GenericByteLireFeature) feature).data, data);
     }
@@ -110,6 +112,7 @@ public class GenericByteLireFeature implements LireFeature {
 
     /**
      * Casts input to byte[].
+     *
      * @param doubleData
      */
     public void setData(double[] doubleData) {

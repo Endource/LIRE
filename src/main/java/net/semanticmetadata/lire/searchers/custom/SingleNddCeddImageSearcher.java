@@ -54,9 +54,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * A ImageSearcher that retrieves just the first result, caches the whole index and optimizes search time by 
- * bundling searches. Please note that as soon as the instance is created, changes in the index are not 
- * reflected.  
+ * A ImageSearcher that retrieves just the first result, caches the whole index and optimizes search time by
+ * bundling searches. Please note that as soon as the instance is created, changes in the index are not
+ * reflected.
  *
  * @author Mathias Lux, mathias@juggle.at
  */
@@ -82,18 +82,18 @@ public class SingleNddCeddImageSearcher extends AbstractImageSearcher {
     /**
      * Creates a new ImageSearcher for searching just one single image based on CEDD from a RAM cached data set.
      *
-     * @param reader the index reader pointing to the index. It will be cached first, so changes will not be reflected in this instance. 
+     * @param reader the index reader pointing to the index. It will be cached first, so changes will not be reflected in this instance.
      */
     public SingleNddCeddImageSearcher(IndexReader reader) {
         init(reader);
     }
 
     /**
-     * Creates a new ImageSearcher for searching just one single image based on CEDD from a RAM cached data set. 
+     * Creates a new ImageSearcher for searching just one single image based on CEDD from a RAM cached data set.
      * Set approximate to true if you want to speed up search and loose accuracy.
      *
-     * @param reader the index reader pointing to the index. It will be cached first, so changes will not be reflected in this instance.
-     * @param approximate set to true if you want to trade accuracy to speed, setting to true is faster (~ double speed), but less accurate                             
+     * @param reader      the index reader pointing to the index. It will be cached first, so changes will not be reflected in this instance.
+     * @param approximate set to true if you want to trade accuracy to speed, setting to true is faster (~ double speed), but less accurate
      */
     public SingleNddCeddImageSearcher(IndexReader reader, boolean approximate) {
         this.halfDimensions = approximate;
@@ -102,6 +102,7 @@ public class SingleNddCeddImageSearcher extends AbstractImageSearcher {
 
     /**
      * Eventually to be used with other LireFeature classes.
+     *
      * @param reader
      * @param approximate
      * @param descriptorClass
@@ -159,6 +160,7 @@ public class SingleNddCeddImageSearcher extends AbstractImageSearcher {
 
     /**
      * Reduces dimensions of CEDD to half while normalizing the vector.
+     *
      * @param doubleHistogram
      * @return
      */

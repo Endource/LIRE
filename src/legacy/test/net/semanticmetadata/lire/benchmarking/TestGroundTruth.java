@@ -86,11 +86,11 @@ public class TestGroundTruth extends TestCase {
     private String path = "E:\\Eval-WIPO\\";
     //    private File truth = new File("E:\\Eval-WIPO\\filtered.txt");
     private File[] truths = {
-            new File(path + "landrover.txt"),
-            new File(path + "lidl.txt"),
-            new File(path + "puma.txt"),
-            new File(path + "sony.txt"),
-            new File(path + "swoosh.txt"),
+        new File(path + "landrover.txt"),
+        new File(path + "lidl.txt"),
+        new File(path + "puma.txt"),
+        new File(path + "sony.txt"),
+        new File(path + "swoosh.txt"),
     };
 
     public void testAll() throws IOException {
@@ -248,7 +248,7 @@ public class TestGroundTruth extends TestCase {
             ap50 += p50 / count;
         }
         System.out.printf("%s\t%3.2f\t%3.2f\t%3.2f\t%3.2f\t%3.2f\n", prefix, ap5 / (double) truths.length, ap10 / (double) truths.length,
-                ap20 / (double) truths.length, ap30 / (double) truths.length, ap50 / (double) truths.length);
+            ap20 / (double) truths.length, ap30 / (double) truths.length, ap50 / (double) truths.length);
     }
 
     public static void saveImageResultsToPng(String prefix, ImageSearchHits hits, String queryImage) throws IOException {

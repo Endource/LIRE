@@ -43,7 +43,7 @@ import java.util.List;
 
 /**
  * This interface specifies the format for returning found duplicates.<br>
- * <p/>
+ * <p>
  * This file is part of the Caliph and Emir project: http://www.SemanticMetadata.net
  * <br>Date: 04.08.2006
  * <br>Time: 10:20:20

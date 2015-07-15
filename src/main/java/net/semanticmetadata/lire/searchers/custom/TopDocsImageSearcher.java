@@ -60,7 +60,7 @@ import java.util.logging.Logger;
  * This file is part of the Caliph and Emir project: http://www.SemanticMetadata.net
  * <br>Date: 01.02.2006
  * <br>Time: 00:17:02
- *
+ * <p>
  * TODO: revisit for performance, feature caching, etc.
  *
  * @author Mathias Lux, mathias@juggle.at

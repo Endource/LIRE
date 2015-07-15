@@ -95,7 +95,7 @@ public class CEDD implements GlobalFeature {
     // signature changed by mlux
     @Override
     public void extract(BufferedImage image) {
-        image= ImageUtils.get8BitRGBImage(image);
+        image = ImageUtils.get8BitRGBImage(image);
         Fuzzy10Bin Fuzzy10 = new Fuzzy10Bin(false);
         Fuzzy24Bin Fuzzy24 = new Fuzzy24Bin(false);
         RGB2HSV HSVConverter = new RGB2HSV();
@@ -116,7 +116,6 @@ public class CEDD implements GlobalFeature {
         int[][] ImageGridBlue = new int[width][height];
 
 
-
 //please double check from here
         int NumberOfBlocks = -1;
 
@@ -128,23 +127,19 @@ public class CEDD implements GlobalFeature {
         int Step_X = 2;
         int Step_Y = 2;
 
-        if (NumberOfBlocks > 0)
-        {
-            Step_X =  (int)Math.floor(width / Math.sqrt(NumberOfBlocks));
-            Step_Y = (int)Math.floor(height / Math.sqrt(NumberOfBlocks));
+        if (NumberOfBlocks > 0) {
+            Step_X = (int) Math.floor(width / Math.sqrt(NumberOfBlocks));
+            Step_Y = (int) Math.floor(height / Math.sqrt(NumberOfBlocks));
 
-            if ((Step_X % 2) != 0)
-            {
+            if ((Step_X % 2) != 0) {
                 Step_X = Step_X - 1;
             }
-            if ((Step_Y % 2) != 0)
-            {
+            if ((Step_Y % 2) != 0) {
                 Step_Y = Step_Y - 1;
             }
 
 
         }
-
 
 
 // to here
@@ -167,7 +162,7 @@ public class CEDD implements GlobalFeature {
                 ImageGridBlue[x][y] = (pixel) & 0xff;
                 //int mean = (int) (0.114 * ImageGridBlue[x][y] + 0.587 * ImageGridGreen[x][y] + 0.299 * ImageGridRed[x][y]);
 //                ImageGrid[x][y] = (0.114f * ImageGridBlue[x][y] + 0.587f * ImageGridGreen[x][y] + 0.299f * ImageGridRed[x][y]);
-                ImageGrid[x][y] = (0.299f * ((pixel >> 16) & 0xff) +  0.587f * ((pixel >> 8) & 0xff) + 0.114f * ((pixel) & 0xff)  );
+                ImageGrid[x][y] = (0.299f * ((pixel >> 16) & 0xff) + 0.587f * ((pixel >> 8) & 0xff) + 0.114f * ((pixel) & 0xff));
 
             }
         }
@@ -188,15 +183,13 @@ public class CEDD implements GlobalFeature {
         int TempSum = 0;
         double Max = 0;
 
-        int TemoMAX_X = Step_X * (int)Math.floor(image.getWidth() >> 1);
-        int TemoMAX_Y = Step_Y * (int)Math.floor(image.getHeight() >> 1);
+        int TemoMAX_X = Step_X * (int) Math.floor(image.getWidth() >> 1);
+        int TemoMAX_Y = Step_Y * (int) Math.floor(image.getHeight() >> 1);
 
-        if (NumberOfBlocks > 0)
-        {
-            TemoMAX_X = Step_X * (int)Math.sqrt(NumberOfBlocks);
-            TemoMAX_Y = Step_Y * (int)Math.sqrt(NumberOfBlocks);
+        if (NumberOfBlocks > 0) {
+            TemoMAX_X = Step_X * (int) Math.sqrt(NumberOfBlocks);
+            TemoMAX_Y = Step_Y * (int) Math.sqrt(NumberOfBlocks);
         }
-
 
 
 //to here
@@ -241,21 +234,23 @@ public class CEDD implements GlobalFeature {
                         TempSum++;
 
                         if (j < (x + Step_X / 2) && i < (y + Step_Y / 2)) PixelsNeighborhood.Area1 += (ImageGrid[j][i]);
-                        if (j >= (x + Step_X / 2) && i < (y + Step_Y / 2)) PixelsNeighborhood.Area2 += (ImageGrid[j][i]);
-                        if (j < (x + Step_X / 2) && i >= (y + Step_Y / 2)) PixelsNeighborhood.Area3 += (ImageGrid[j][i]);
-                        if (j >= (x + Step_X / 2) && i >= (y + Step_Y / 2)) PixelsNeighborhood.Area4 += (ImageGrid[j][i]);
+                        if (j >= (x + Step_X / 2) && i < (y + Step_Y / 2))
+                            PixelsNeighborhood.Area2 += (ImageGrid[j][i]);
+                        if (j < (x + Step_X / 2) && i >= (y + Step_Y / 2))
+                            PixelsNeighborhood.Area3 += (ImageGrid[j][i]);
+                        if (j >= (x + Step_X / 2) && i >= (y + Step_Y / 2))
+                            PixelsNeighborhood.Area4 += (ImageGrid[j][i]);
 
                     }
                 }
 
-                PixelsNeighborhood.Area1 = (int)(PixelsNeighborhood.Area1 * (4.0 / (Step_X * Step_Y)));
+                PixelsNeighborhood.Area1 = (int) (PixelsNeighborhood.Area1 * (4.0 / (Step_X * Step_Y)));
 
-                PixelsNeighborhood.Area2 = (int)(PixelsNeighborhood.Area2 * (4.0 / (Step_X * Step_Y)));
+                PixelsNeighborhood.Area2 = (int) (PixelsNeighborhood.Area2 * (4.0 / (Step_X * Step_Y)));
 
-                PixelsNeighborhood.Area3 = (int)(PixelsNeighborhood.Area3 * (4.0 / (Step_X * Step_Y)));
+                PixelsNeighborhood.Area3 = (int) (PixelsNeighborhood.Area3 * (4.0 / (Step_X * Step_Y)));
 
-                PixelsNeighborhood.Area4 = (int)(PixelsNeighborhood.Area4 * (4.0 / (Step_X * Step_Y)));
-
+                PixelsNeighborhood.Area4 = (int) (PixelsNeighborhood.Area4 * (4.0 / (Step_X * Step_Y)));
 
 
                 MaskValues.Mask1 = Math.abs(PixelsNeighborhood.Area1 * 2 + PixelsNeighborhood.Area2 * -2 + PixelsNeighborhood.Area3 * -2 + PixelsNeighborhood.Area4 * 2);
@@ -465,7 +460,7 @@ public class CEDD implements GlobalFeature {
                 if (histogram[i] != 0) position = -1;
             }
         }
-        if (position<0) position = 143;
+        if (position < 0) position = 143;
         // find out the actual length. two values in one byte, so we have to round up.
         int length = (position + 1) / 2;
         if ((position + 1) % 2 == 1) length = position / 2 + 1;

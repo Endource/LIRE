@@ -55,10 +55,9 @@ import java.awt.image.WritableRaster;
  * Simple 64 bin Opponent Histogram, based on the Opponent color space as described in van de Sande, Gevers & Snoek (2010)
  * "Evaluating Color Descriptors for Object and Scene Recognition", IEEE PAMI (see BibTeX in the source code).
  *
- *
  * @author Mathias Lux, mathias@juggle.at
- * Date: 18.12.12
- * Time: 11:53
+ *         Date: 18.12.12
+ *         Time: 11:53
  */
 
 /*
@@ -97,14 +96,14 @@ public class OpponentHistogram implements GlobalFeature {
             histogram[i] = 0;
         }
         WritableRaster raster = bimg.getRaster();
-        int[] px = new int[3*(raster.getHeight()-2)];
+        int[] px = new int[3 * (raster.getHeight() - 2)];
         int colorPos;
         for (int x = 1; x < raster.getWidth() - 1; x++) {
-            raster.getPixels(x, 1, 1, raster.getHeight()-2, px);
+            raster.getPixels(x, 1, 1, raster.getHeight() - 2, px);
             for (int y = 0; y < raster.getHeight() - 2; y++) {
-                o1 = (double) (px[y*3] - px[y*3+1]) / sq2;
-                o2 = (double) (px[y*3] + px[y*3+1] - 2 * px[y*3+2]) / sq6;
-                o3 = (double) (px[y*3] + px[y*3+1] + px[y*3+2]) / sq3;
+                o1 = (double) (px[y * 3] - px[y * 3 + 1]) / sq2;
+                o2 = (double) (px[y * 3] + px[y * 3 + 1] - 2 * px[y * 3 + 2]) / sq6;
+                o3 = (double) (px[y * 3] + px[y * 3 + 1] + px[y * 3 + 2]) / sq3;
                 // Normalize ... easier to handle.
                 o1 = (o1 + 255d / sq2) / (510d / sq2);
                 o2 = (o2 + 510d / sq6) / (1020d / sq6);
@@ -143,7 +142,7 @@ public class OpponentHistogram implements GlobalFeature {
     @Override
     public void setByteArrayRepresentation(byte[] in, int offset, int length) {
         for (int i = 0; i < length; i++) {
-            histogram[i] = in[i+offset];
+            histogram[i] = in[i + offset];
         }
     }
 
@@ -167,6 +166,7 @@ public class OpponentHistogram implements GlobalFeature {
      * Jeffrey Divergence or Jensen-Shannon divergence (JSD) from
      * Deselaers, T.; Keysers, D. & Ney, H. Features for image retrieval:
      * an experimental comparison Inf. Retr., Kluwer Academic Publishers, 2008, 11, 77-107
+     *
      * @param h1
      * @param offset1
      * @param length1
@@ -184,9 +184,9 @@ public class OpponentHistogram implements GlobalFeature {
 //        return (float) sum;
         tmpSum = 0;
         for (int i = 0; i < length1; i++) {
-            tmpVal = (double) (h1[i+offset1] + h2[i+offset2]);
-            tmpSum += (h1[i+offset1] > 0 ? ((double) h1[i+offset1] / 2d) * Math.log((2d * h1[i+offset1]) / tmpVal) : 0) +
-                    (h2[i+offset2] > 0 ? ((double) h2[i+offset2] / 2d) * Math.log((2d * h2[i+offset2]) / tmpVal) : 0);
+            tmpVal = (double) (h1[i + offset1] + h2[i + offset2]);
+            tmpSum += (h1[i + offset1] > 0 ? ((double) h1[i + offset1] / 2d) * Math.log((2d * h1[i + offset1]) / tmpVal) : 0) +
+                (h2[i + offset2] > 0 ? ((double) h2[i + offset2] / 2d) * Math.log((2d * h2[i + offset2]) / tmpVal) : 0);
         }
         return tmpSum;
     }

@@ -61,21 +61,21 @@ public class KMeans {
     }
 
     public void addFeature(double[] feature) {
-        if (!hasNaNs(feature)){
+        if (!hasNaNs(feature)) {
             features.add(feature);
             countAllFeatures++;
         }
     }
 
     public void init() {
-        if (features.size() < numClusters *2) {
+        if (features.size() < numClusters * 2) {
             System.err.println("WARNING: Please note that the number of local features, in this case " + features.size() + ", is" +
-                    "smaller than the recommended minimum number, which is two times the number of visual words, in your case 2*" + numClusters +
-                    ". Please adapt your data and either use images with more local features or more images for creating the visual vocabulary.");
+                "smaller than the recommended minimum number, which is two times the number of visual words, in your case 2*" + numClusters +
+                ". Please adapt your data and either use images with more local features or more images for creating the visual vocabulary.");
         }
         if (features.size() < numClusters + 1) {
             System.err.println("CRITICAL: The number of features is smaller than the number of clusters. This cannot work as there has to be at least one " +
-                    "feature per cluster. Aborting process now.");
+                "feature per cluster. Aborting process now.");
             System.out.println("features: " + features.size());
             System.out.println("clusters: " + numClusters);
             System.exit(1);
@@ -83,7 +83,7 @@ public class KMeans {
         // find first clusters:
         clusters = new Cluster[numClusters];
         Set<Integer> medians = selectInitialMedians(numClusters);
-        assert(medians.size() == numClusters); // this has to be the same ...
+        assert (medians.size() == numClusters); // this has to be the same ...
         Iterator<Integer> mediansIterator = medians.iterator();
         double[] descriptor;
         for (int i = 0; i < clusters.length; i++) {
@@ -177,7 +177,7 @@ public class KMeans {
             } else if (cluster.members.size() < 1) {
                 System.err.println("** There is NO member in cluster " + i);
                 // fill it with a random member?!?
-                int index = (int) Math.floor(Math.random()*features.size());
+                int index = (int) Math.floor(Math.random() * features.size());
                 System.arraycopy(features.get(index), 0, clusters[i].mean, 0, clusters[i].mean.length);
             }
         }

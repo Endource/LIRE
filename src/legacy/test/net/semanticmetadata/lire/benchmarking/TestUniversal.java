@@ -326,8 +326,7 @@ public class TestUniversal extends TestCase {
 //        computeMAP(new GenericFastImageSearcher(1000, GenericDoubleLireFeature.class, DocumentBuilder.FIELD_NAME_SIFT + DocumentBuilder.FIELD_NAME_VLAD_VECTOR, true, reader), "Sift VLAD", reader);
     }
 
-    public void performWSs (String fieldName, String prefix, IndexReader reader) throws IOException
-    {
+    public void performWSs(String fieldName, String prefix, IndexReader reader) throws IOException {
         computeMAP(new ImageSearcherUsingWSs(1000, GenericDoubleLireFeature.class, fieldName, true, reader, false, false, false), prefix, reader);
         computeMAP(new ImageSearcherUsingWSs(1000, GenericDoubleLireFeature.class, fieldName, true, reader, false, false, true), prefix, reader);
         computeMAP(new ImageSearcherUsingWSs(1000, GenericDoubleLireFeature.class, fieldName, true, reader, false, true, false), prefix, reader);
@@ -343,17 +342,17 @@ public class TestUniversal extends TestCase {
         double errorRate = 0;
         double map = 0;
         double p10 = 0;
-        int errorCount=0;
+        int errorCount = 0;
         // Needed for check whether the document is deleted.
         Bits liveDocs = MultiFields.getLiveDocs(reader);
         PrintWriter fw;
         if (searcher.toString().contains("ImageSearcherUsingWSs")) {
             (new File("eval/" + db + "/" + prefix.replace(' ', '_') + "/" + clusters + "/")).mkdirs();
             fw = new PrintWriter(new File("eval/" + db + "/" + prefix.replace(' ', '_') + "/" + clusters + "/" + prefix.replace(' ', '_') + "-" + db + clusters + searcher.toString().split("\\s+")[searcher.toString().split("\\s+").length - 1] + ".txt"));
-        }else {
+        } else {
             (new File("eval/" + db + "/")).mkdirs();
-            if (clusters>0)
-                fw = new PrintWriter(new File("eval/" + db + "/" + prefix.replace(' ', '_') + "-" + db + clusters +".txt"));
+            if (clusters > 0)
+                fw = new PrintWriter(new File("eval/" + db + "/" + prefix.replace(' ', '_') + "-" + db + clusters + ".txt"));
             else
                 fw = new PrintWriter(new File("eval/" + db + "/" + prefix.replace(' ', '_') + "-" + db + "Global.txt")); //forGlobal
         }
@@ -396,7 +395,7 @@ public class TestUniversal extends TestCase {
                 avgPrecision /= (double) (1d + queries.get(fileName).size());
 //                avgPrecision /= (double) (queries.get(fileName).size());
 
-                if (!(found - queries.get(fileName).size() == 1)){
+                if (!(found - queries.get(fileName).size() == 1)) {
                     // some of the results have not been found. We have to deal with it ...
                     errorCount++;
                 }
@@ -417,10 +416,10 @@ public class TestUniversal extends TestCase {
 //        System.out.print(prefix);
         String s;
         if (searcher.toString().contains("ImageSearcherUsingWSs"))
-            s = String.format("%s\t%.4f\t%.4f\t%.4f\t(%s)", prefix, map, p10, errorRate, searcher.toString().split("\\s+")[searcher.toString().split("\\s+").length-1]);
+            s = String.format("%s\t%.4f\t%.4f\t%.4f\t(%s)", prefix, map, p10, errorRate, searcher.toString().split("\\s+")[searcher.toString().split("\\s+").length - 1]);
         else
             s = String.format("%s\t%.4f\t%.4f\t%.4f", prefix, map, p10, errorRate);
-        if (errorCount>0) {
+        if (errorCount > 0) {
             // some of the results have not been found. We have to deal with it ...
             //System.err.println("Did not find result ;(  (" + errorCount + ")");
             s += "\t~~\tDid not find result ;(\t(" + errorCount + ")";

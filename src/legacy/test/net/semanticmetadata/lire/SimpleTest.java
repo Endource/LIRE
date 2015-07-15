@@ -65,8 +65,8 @@ import java.io.IOException;
 public class SimpleTest extends TestCase {
 
     String indexPath = "simple_test_idx";
-        private String imageDirectory = "testdata/wang-1000";
-//    private String imageDirectory = "D:\\Temp\\imagew\\source_images";
+    private String imageDirectory = "testdata/wang-1000";
+    //    private String imageDirectory = "D:\\Temp\\imagew\\source_images";
     private SimpleBuilder simpleBuilder;
 
     @Override
@@ -96,7 +96,7 @@ public class SimpleTest extends TestCase {
         IndexReader reader = DirectoryReader.open(FSDirectory.open(new File(indexPath)));
         ImageSearcher is = new GenericFastImageSearcher(1, GenericDoubleLireFeature.class, (new SimpleBuilder()).getFieldName(SimpleBuilder.KeypointDetector.Random, new CEDD()) + DocumentBuilder.FIELD_NAME_BOVW_VECTOR, true, reader);
         is = new SingleNddCeddImageSearcher(reader, false, GenericDoubleLireFeature.class, (new SimpleBuilder()).getFieldName(SimpleBuilder.KeypointDetector.Random, new CEDD()) + DocumentBuilder.FIELD_NAME_BOVW_VECTOR);
-        
+
         String queryFile = "testdata/wang-1000/99.jpg";
 //        String queryFile = "D:\\Temp\\imagew\\source_images\\04560283.jpg";
         SimpleFeatureBOVWBuilder simpleBovwBuilder = new SimpleFeatureBOVWBuilder(reader, new CEDD(), SimpleBuilder.KeypointDetector.Random, 500, 512);

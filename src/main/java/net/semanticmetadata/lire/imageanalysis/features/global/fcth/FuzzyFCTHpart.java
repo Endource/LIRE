@@ -64,14 +64,14 @@ public class FuzzyFCTHpart {
     public double[] EActivation = new double[2];
 
     public int[][] RulesDefinition = {
-            {0, 0, 0, 0},
-            {0, 0, 1, 1},
-            {0, 1, 0, 2},
-            {0, 1, 1, 3},
-            {1, 0, 0, 4},
-            {1, 0, 1, 5},
-            {1, 1, 0, 6},
-            {1, 1, 1, 7}};
+        {0, 0, 0, 0},
+        {0, 0, 1, 1},
+        {0, 1, 0, 2},
+        {0, 1, 1, 3},
+        {1, 0, 0, 4},
+        {1, 0, 1, 5},
+        {1, 1, 0, 6},
+        {1, 1, 1, 7}};
 
     public FuzzyFCTHpart() {
         for (int R = 0; R < 8; R++) {

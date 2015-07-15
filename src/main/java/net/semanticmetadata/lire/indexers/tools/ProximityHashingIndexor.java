@@ -57,7 +57,7 @@ import java.util.*;
  * The Indexor (yes, I know the hashFunctionsFileName sounds weird, but it should match the Extractor class, and not
  * the Lucene Indexing classes) reads data files created by the {@link Extractor}. They are added to
  * a given index. Note that the index is not overwritten, but the documents are appended.
- *
+ * <p>
  * This one implements the proximity approach "metric spaces" based on the work of Giuseppe Amato.
  * See Gennaro, Claudio, et al. "An approach to content-based image retrieval based on the Lucene search engine
  * library." Research and Advanced Technology for Digital Libraries. Springer Berlin Heidelberg, 2010. 55-66.
@@ -78,7 +78,7 @@ public class ProximityHashingIndexor {
 
     // determines which feature is going to be hashed.
     protected Class featureClass = CEDD.class;
-    private TreeSet<SimpleResult> hashingResultScoreDocs =  new TreeSet<SimpleResult>();
+    private TreeSet<SimpleResult> hashingResultScoreDocs = new TreeSet<SimpleResult>();
     private double maxDistance;
     private double tmpScore;
     int maximumHits = 50; // decides when the list of representatives / stars is cut off. 50 is good enough for large data sets.
@@ -147,22 +147,22 @@ public class ProximityHashingIndexor {
      */
     protected static void printHelp() {
         System.out.println("Help for the Indexor class.\n" +
-                "===========================\n" +
-                "This help text is shown if you start the Indexor with the '-h' option.\n" +
-                "\n" +
-                "Usage\n" +
-                "=====\n" +
-                "$> Indexor -i <input-file> -l <index-directory>\n" +
-                "\n" +
-                "or \n" +
-                "\n" +
-                "$> Indexor -c <file-list> -l <index-directory>\n" +
-                "\n" +
-                "with \n" +
-                "\n" +
-                "<input-file> ... \t\ta single output file of Extractor.\n" +
-                "<index-directory> ...\tthe index to write the data to (it's appended).\n" +
-                "<file-list> ...\t\t\ta file containing data files one per line.\n");
+            "===========================\n" +
+            "This help text is shown if you start the Indexor with the '-h' option.\n" +
+            "\n" +
+            "Usage\n" +
+            "=====\n" +
+            "$> Indexor -i <input-file> -l <index-directory>\n" +
+            "\n" +
+            "or \n" +
+            "\n" +
+            "$> Indexor -c <file-list> -l <index-directory>\n" +
+            "\n" +
+            "with \n" +
+            "\n" +
+            "<input-file> ... \t\ta single output file of Extractor.\n" +
+            "<index-directory> ...\tthe index to write the data to (it's appended).\n" +
+            "<file-list> ...\t\t\ta file containing data files one per line.\n");
     }
 
 

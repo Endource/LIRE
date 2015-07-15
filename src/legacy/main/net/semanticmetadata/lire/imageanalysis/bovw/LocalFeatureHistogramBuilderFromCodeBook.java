@@ -78,7 +78,7 @@ public abstract class LocalFeatureHistogramBuilderFromCodeBook {
     DecimalFormat df = (DecimalFormat) NumberFormat.getNumberInstance();
     private ProgressMonitor pm = null;
 
-//    protected String localFeatureFieldName = DocumentBuilder.FIELD_NAME_SURF;
+    //    protected String localFeatureFieldName = DocumentBuilder.FIELD_NAME_SURF;
 //    protected String visualWordsFieldName = DocumentBuilder.FIELD_NAME_SURF_VISUAL_WORDS;
 //    protected String localFeatureHistFieldName = DocumentBuilder.FIELD_NAME_SURF_LOCAL_FEATURE_HISTOGRAM;
     protected String localFeatureFieldName = DocumentBuilder.FIELD_NAME_SURF;
@@ -259,6 +259,7 @@ public abstract class LocalFeatureHistogramBuilderFromCodeBook {
 
     /**
      * Weighting the feature vector for better results. Options are term frequency as well as the employed norm function.
+     *
      * @param histogram
      * @return
      */
@@ -277,7 +278,6 @@ public abstract class LocalFeatureHistogramBuilderFromCodeBook {
 //        if (normalizeHistogram) result = MetricsUtils.normalizeL2(result);
 //        return result;
 //    }
-
     private void quantize(double[] histogram) {
         double max = 0;
         for (int i = 0; i < histogram.length; i++) {
@@ -290,8 +290,6 @@ public abstract class LocalFeatureHistogramBuilderFromCodeBook {
 
     /**
      * Find the appropriate cluster for a given feature.
-     *
-     *
      *
      * @param f
      * @param clusterList
@@ -435,8 +433,7 @@ public abstract class LocalFeatureHistogramBuilderFromCodeBook {
         }
     }
 
-    private void createVisualWords(Document d, LireFeature f)
-    {
+    private void createVisualWords(Document d, LireFeature f) {
         double[] tmpHist = new double[numClusters];
         IndexableField[] fields = d.getFields(localFeatureFieldName);
         // remove the fields if they are already there ...

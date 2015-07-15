@@ -62,15 +62,17 @@ import java.util.*;
  * @author Mathias Lux, mathias@juggle.at
  * @author Nektarios Anagnostopoulos, nek.anag@gmail.com
  */
-public class SimpleExtractor implements LocalFeatureExtractor{
-    public enum KeypointDetector {CVSURF, CVSIFT, Random, GaussRandom};
+public class SimpleExtractor implements LocalFeatureExtractor {
+    public enum KeypointDetector {CVSURF, CVSIFT, Random, GaussRandom}
+
+    ;
 
     private static final String Detector_CVSURF = "detCVSURF";
     private static final String Detector_CVSIFT = "detCVSIFT";
     private static final String Detector_RANDOM = "detRnd";
     private static final String Detector_GAUSSRANDOM = "detGRnd";
 
-    private final int[] sizeLookUp = new int[] {40, (int) (40 * 1.6), (int) (40 * 2.3), 40 * 3};
+    private final int[] sizeLookUp = new int[]{40, (int) (40 * 1.6), (int) (40 * 2.3), 40 * 3};
     private String fieldName, featureName;
 
     private Class<? extends GlobalFeature> globalFeatureClass;
@@ -93,12 +95,12 @@ public class SimpleExtractor implements LocalFeatureExtractor{
         if (kpdetector == KeypointDetector.CVSURF) {
             cvSurfExtractor = new CvSurfExtractor();
             featureName = DocumentBuilder.FIELD_NAME_SIMPLE + " using " + globalFeature.getFeatureName() + " and the CVSURF Detector";
-        } else if (kpdetector == KeypointDetector.CVSIFT){
+        } else if (kpdetector == KeypointDetector.CVSIFT) {
             cvSiftExtractor = new CvSiftExtractor();
             featureName = DocumentBuilder.FIELD_NAME_SIMPLE + " using " + globalFeature.getFeatureName() + " and the CVSIFT Detector";
-        } else if (kpdetector == KeypointDetector.Random){
+        } else if (kpdetector == KeypointDetector.Random) {
             featureName = DocumentBuilder.FIELD_NAME_SIMPLE + " using " + globalFeature.getFeatureName() + " and a Random keypoint Detector";
-        } else if (kpdetector == KeypointDetector.GaussRandom){
+        } else if (kpdetector == KeypointDetector.GaussRandom) {
             featureName = DocumentBuilder.FIELD_NAME_SIMPLE + " using " + globalFeature.getFeatureName() + " and a GaussRandom keypoint Detector";
         } else
             throw new UnsupportedOperationException("Something was wrong in setting the desired detector");
@@ -114,11 +116,11 @@ public class SimpleExtractor implements LocalFeatureExtractor{
         return SimpleFeature.class;
     }
 
-    public Class<? extends GlobalFeature> getGlobalFeatureClass(){
+    public Class<? extends GlobalFeature> getGlobalFeatureClass() {
         return globalFeatureClass;
     }
 
-    public KeypointDetector getKpdetector () {
+    public KeypointDetector getKpdetector() {
         return kpdetector;
     }
 
@@ -127,17 +129,13 @@ public class SimpleExtractor implements LocalFeatureExtractor{
     public void extract(BufferedImage image) {
         if (kpdetector == KeypointDetector.CVSURF) {
             useCVSURF(image);
-        }
-        else if (kpdetector == KeypointDetector.CVSIFT){
+        } else if (kpdetector == KeypointDetector.CVSIFT) {
             useCVSIFT(image);
-        }
-        else if (kpdetector == KeypointDetector.Random){
+        } else if (kpdetector == KeypointDetector.Random) {
             useRandom(image);
-        }
-        else if (kpdetector == KeypointDetector.GaussRandom){
+        } else if (kpdetector == KeypointDetector.GaussRandom) {
             useGaussRandom(image);
-        }
-        else
+        } else
             throw new UnsupportedOperationException("Something was wrong in setting the desired detector");
     }
 
@@ -181,11 +179,11 @@ public class SimpleExtractor implements LocalFeatureExtractor{
 
     private void createNextRandomPoint(int[] myKeypoint, int width, int height, Random random) {
         myKeypoint[2] = sizeLookUp[random.nextInt(4)];
-        myKeypoint[0] = random.nextInt(width-myKeypoint[2]);
-        myKeypoint[1] = random.nextInt(height-myKeypoint[2]);
+        myKeypoint[0] = random.nextInt(width - myKeypoint[2]);
+        myKeypoint[1] = random.nextInt(height - myKeypoint[2]);
     }
 
-    private LinkedList<keypoint> createGaussRndPts(int width, int height, int samples){
+    private LinkedList<keypoint> createGaussRndPts(int width, int height, int samples) {
         Random ran = new Random();
 
         double seedWidth = (width / 4) - 10;
@@ -203,12 +201,10 @@ public class SimpleExtractor implements LocalFeatureExtractor{
             heightLimit = height - sizeLimit;
 
             //TODO: change do...while
-            do
-            {
+            do {
                 x = (int) (ran.nextGaussian() * seedWidth + meanWidth);
             } while (!((x > sizeLimit) && (x < widthLimit)));
-            do
-            {
+            do {
                 y = (int) (ran.nextGaussian() * seedHeight + meanHeight);
             } while (!((y > sizeLimit) && (y < heightLimit)));
 
@@ -220,39 +216,29 @@ public class SimpleExtractor implements LocalFeatureExtractor{
         return keypointsList;
     }
 
-    public static String getDetector(KeypointDetector detector)
-    {
+    public static String getDetector(KeypointDetector detector) {
         if (detector == KeypointDetector.CVSURF) {
             return Detector_CVSURF;
-        }
-        else if (detector == KeypointDetector.CVSIFT){
+        } else if (detector == KeypointDetector.CVSIFT) {
             return Detector_CVSIFT;
-        }
-        else if (detector == KeypointDetector.Random){
+        } else if (detector == KeypointDetector.Random) {
             return Detector_RANDOM;
-        }
-        else if (detector == KeypointDetector.GaussRandom){
+        } else if (detector == KeypointDetector.GaussRandom) {
             return Detector_GAUSSRANDOM;
-        }
-        else
+        } else
             throw new UnsupportedOperationException("Something was wrong in returning the used detector");
     }
 
-    public static KeypointDetector getDetector(String detector)
-    {
+    public static KeypointDetector getDetector(String detector) {
         if (detector.equals(Detector_CVSURF)) {
             return KeypointDetector.CVSURF;
-        }
-        else if (detector.equals(Detector_CVSIFT)){
+        } else if (detector.equals(Detector_CVSIFT)) {
             return KeypointDetector.CVSIFT;
-        }
-        else if (detector.equals(Detector_RANDOM)){
+        } else if (detector.equals(Detector_RANDOM)) {
             return KeypointDetector.Random;
-        }
-        else if (detector.equals(Detector_GAUSSRANDOM)){
+        } else if (detector.equals(Detector_GAUSSRANDOM)) {
             return KeypointDetector.GaussRandom;
-        }
-        else
+        } else
             throw new UnsupportedOperationException("Something was wrong in returning the used detector");
     }
 
@@ -260,18 +246,16 @@ public class SimpleExtractor implements LocalFeatureExtractor{
         return fieldName;
     }
 
-    public String getFeatureName(){
+    public String getFeatureName() {
         return featureName;
     }
 
-    private class keypoint
-    {
+    private class keypoint {
         private int X;
         private int Y;
         private int Size;
 
-        public keypoint(int x, int y, int size)
-        {
+        public keypoint(int x, int y, int size) {
             this.X = x;
             this.Y = y;
             this.Size = size;

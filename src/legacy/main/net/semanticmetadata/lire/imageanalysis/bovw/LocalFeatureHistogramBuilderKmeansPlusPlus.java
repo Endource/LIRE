@@ -320,8 +320,6 @@ public abstract class LocalFeatureHistogramBuilderKmeansPlusPlus {
     /**
      * Find the appropriate cluster for a given feature.
      *
-     *
-     *
      * @param f
      * @param clusterList
      * @return the index of the cluster.

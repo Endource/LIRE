@@ -135,7 +135,7 @@ public class ClassifierTest extends TestCase {
 
         //int[] featureSpace = {144, 80, 192, 33, 630, 168, 60, 192, 18, 64, 64, 64};    //size of feature vector per feature
         //int[] featureSpace = {144, 60, 64, 64, 168, 64, 630, 192, 192, 18, 192, 80};
-        int [] featureSpace = new int[classArray.length];
+        int[] featureSpace = new int[classArray.length];
         double[] featuresInformationGain = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};       //for information gain. musst contain the same value of zeros as fiedls and class array have features
 
         //get the length of the feature spaces
@@ -156,8 +156,8 @@ public class ClassifierTest extends TestCase {
                 inf.read(tempf, 0, tmpf);
                 f.setByteArrayRepresentation(tempf, 0, tmpf);
                 //System.out.println(f.getFeatureVector().length+f.getClass().getSimpleName());
-                for (int z=0;z<classArray.length;z++){
-                    if(f.getClass().getSimpleName().equals(classArray[z]))
+                for (int z = 0; z < classArray.length; z++) {
+                    if (f.getClass().getSimpleName().equals(classArray[z]))
                         featureSpace[z] = f.getFeatureVector().length;
 
                 }
@@ -213,7 +213,7 @@ public class ClassifierTest extends TestCase {
         //Starts the classification
         try {
             if (useIndexSearch)
-                testClassifyNCombinedFeaturesMulti(0, 220, locationSaveResultsFile, numberOfNeighbours, locationOfIndex, locationOfImages, locationOfTestset, 0, reducedFieldsArray, reducedClassArray, numberOfCombinations, class1, class2, informationGainThreshold,"TestSet");
+                testClassifyNCombinedFeaturesMulti(0, 220, locationSaveResultsFile, numberOfNeighbours, locationOfIndex, locationOfImages, locationOfTestset, 0, reducedFieldsArray, reducedClassArray, numberOfCombinations, class1, class2, informationGainThreshold, "TestSet");
             else
                 testClassifyNCombinedFeaturesMulti(0, 220, locationSaveResultsFile, numberOfNeighbours, locationOfIndex, locationOfImages, locationOfTestset, 0, reducedFieldsArray, reducedClassArray, numberOfCombinations, class1, class2, informationGainThreshold);
 
@@ -600,8 +600,8 @@ public class ClassifierTest extends TestCase {
                 String fileName = "classifieresults-" + System.currentTimeMillis() / 1000 + ".html";
                 BufferedWriter bw = new BufferedWriter(new FileWriter(fileName));
                 bw.write("<html>\n" +
-                        "<head><title>Classification Results</title></head>\n" +
-                        "<body bgcolor=\"#FFFFFF\">\n");
+                    "<head><title>Classification Results</title></head>\n" +
+                    "<body bgcolor=\"#FFFFFF\">\n");
                 bw.write("<table>");
 
                 // int elems = Math.min(filesHTML.size(),50);
@@ -620,7 +620,7 @@ public class ClassifierTest extends TestCase {
                     //  s = new File(s).getAbsolutePath();
                     // System.out.println(s);
                     bw.write("<td><a href=\"" + s + "\"><img style=\"max-width:220px;border:medium solid " + colorF + ";\"src=\"" + s + "\" border=\"" + 5 + "\" style=\"border: 3px\n" +
-                            "black solid;\"></a></td>\n");
+                        "black solid;\"></a></td>\n");
                     if (d % 3 == 2) bw.write("</tr>");
                 }
                 if (elems % 3 != 0) {
@@ -634,7 +634,7 @@ public class ClassifierTest extends TestCase {
                 }
 
                 bw.write("</table></body>\n" +
-                        "</html>");
+                    "</html>");
                 bw.close();
             }
             //   } // kfor
@@ -794,62 +794,62 @@ public class ClassifierTest extends TestCase {
 
 
             IndexReader ir1 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(0))));
-            irt1 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(0)+"TestSet")));
+            irt1 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(0) + "TestSet")));
             //  ImageSearcher bis1 = new GenericFastImageSearcher(k, (Class<?>) lireFeatureList.get(0).getClass(), (String) featureNameList.get(0), true, ir1);
             GenericFastImageSearcher bis1 = new GenericFastImageSearcher(k, (Class<?>) lireFeatureList.get(0).getClass(), (String) featureNameList.get(0), true, ir1);
             if (combs > 1) {
                 ir2 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(1))));
-                irt2 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(1)+"TestSet")));
+                irt2 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(1) + "TestSet")));
                 bis2 = new GenericFastImageSearcher(k, (Class<?>) lireFeatureList.get(1).getClass(), (String) featureNameList.get(1), true, ir2);
             }
             if (combs > 2) {
                 ir3 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(2))));
-                irt3 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(2)+"TestSet")));
+                irt3 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(2) + "TestSet")));
                 bis3 = new GenericFastImageSearcher(k, (Class<?>) lireFeatureList.get(2).getClass(), (String) featureNameList.get(2), true, ir3);
             }
             if (combs > 3) {
                 ir4 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(3))));
-                irt4 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(3)+"TestSet")));
+                irt4 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(3) + "TestSet")));
                 bis4 = new GenericFastImageSearcher(k, (Class<?>) lireFeatureList.get(3).getClass(), (String) featureNameList.get(3), true, ir4);
             }
             if (combs > 4) {
                 ir5 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(4))));
-                irt5 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(4)+"TestSet")));
+                irt5 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(4) + "TestSet")));
                 bis5 = new GenericFastImageSearcher(k, (Class<?>) lireFeatureList.get(4).getClass(), (String) featureNameList.get(4), true, ir5);
             }
             if (combs > 5) {
                 ir6 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(5))));
-                irt6 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(5)+"TestSet")));
+                irt6 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(5) + "TestSet")));
                 bis6 = new GenericFastImageSearcher(k, (Class<?>) lireFeatureList.get(5).getClass(), (String) featureNameList.get(5), true, ir6);
             }
             if (combs > 6) {
                 ir7 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(6))));
-                irt7 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(6)+"TestSet")));
+                irt7 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(6) + "TestSet")));
                 bis7 = new GenericFastImageSearcher(k, (Class<?>) lireFeatureList.get(6).getClass(), (String) featureNameList.get(6), true, ir7);
             }
             if (combs > 7) {
                 ir8 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(7))));
-                irt8 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(7)+"TestSet")));
+                irt8 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(7) + "TestSet")));
                 bis8 = new GenericFastImageSearcher(k, (Class<?>) lireFeatureList.get(7).getClass(), (String) featureNameList.get(7), true, ir8);
             }
             if (combs > 8) {
                 ir9 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(8))));
-                irt9 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(8)+"TestSet")));
+                irt9 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(8) + "TestSet")));
                 bis9 = new GenericFastImageSearcher(k, (Class<?>) lireFeatureList.get(8).getClass(), (String) featureNameList.get(8), true, ir9);
             }
             if (combs > 9) {
                 ir10 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(9))));
-                irt10 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(9)+"TestSet")));
+                irt10 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(9) + "TestSet")));
                 bis10 = new GenericFastImageSearcher(k, (Class<?>) lireFeatureList.get(9).getClass(), (String) featureNameList.get(9), true, ir10);
             }
             if (combs > 10) {
                 ir11 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(10))));
-                irt11 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(10)+"TestSet")));
+                irt11 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(10) + "TestSet")));
                 bis11 = new GenericFastImageSearcher(k, (Class<?>) lireFeatureList.get(10).getClass(), (String) featureNameList.get(10), true, ir11);
             }
             if (combs > 11) {
                 ir12 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(11))));
-                irt12 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(11)+"TestSet")));
+                irt12 = DirectoryReader.open(MMapDirectory.open(new File((String) indexLocationList.get(11) + "TestSet")));
                 bis12 = new GenericFastImageSearcher(k, (Class<?>) lireFeatureList.get(11).getClass(), (String) featureNameList.get(11), true, ir12);
             }
 
@@ -869,7 +869,7 @@ public class ClassifierTest extends TestCase {
             int count = 0, countCorrect = 0;
             double countTp = 0, countFp = 0, countTn = 0, countFn = 0;      //F1 Metric
             long ms = System.currentTimeMillis();
-            for (int x = 0; x <  irt1.numDocs();x++){
+            for (int x = 0; x < irt1.numDocs(); x++) {
 
                 //  while ((line = br.readLine()) != null) {
 
@@ -1071,8 +1071,8 @@ public class ClassifierTest extends TestCase {
                 String fileName = "classifieresults-" + System.currentTimeMillis() / 1000 + ".html";
                 BufferedWriter bw = new BufferedWriter(new FileWriter(fileName));
                 bw.write("<html>\n" +
-                        "<head><title>Classification Results</title></head>\n" +
-                        "<body bgcolor=\"#FFFFFF\">\n");
+                    "<head><title>Classification Results</title></head>\n" +
+                    "<body bgcolor=\"#FFFFFF\">\n");
                 bw.write("<table>");
 
                 // int elems = Math.min(filesHTML.size(),50);
@@ -1092,7 +1092,7 @@ public class ClassifierTest extends TestCase {
                     //  s = new File(s).getAbsolutePath();
                     // System.out.println(s);
                     bw.write("<td><a href=\"" + s + "\"><img style=\"max-width:220px;border:medium solid " + colorF + ";\"src=\"" + s + "\" border=\"" + 5 + "\" style=\"border: 3px\n" +
-                            "black solid;\"></a></td>\n");
+                        "black solid;\"></a></td>\n");
                     if (d % 3 == 2) bw.write("</tr>");
                 }
                 if (elems % 3 != 0) {
@@ -1106,7 +1106,7 @@ public class ClassifierTest extends TestCase {
                 }
 
                 bw.write("</table></body>\n" +
-                        "</html>");
+                    "</html>");
                 bw.close();
             }
             //   } // kfor
@@ -1406,8 +1406,8 @@ public class ClassifierTest extends TestCase {
                 String fileName = "classifieresults-" + System.currentTimeMillis() / 1000 + ".html";
                 BufferedWriter bw = new BufferedWriter(new FileWriter(fileName));
                 bw.write("<html>\n" +
-                        "<head><title>Classification Results</title></head>\n" +
-                        "<body bgcolor=\"#FFFFFF\">\n");
+                    "<head><title>Classification Results</title></head>\n" +
+                    "<body bgcolor=\"#FFFFFF\">\n");
                 bw.write("<table>");
 
                 // int elems = Math.min(filesHTML.size(),50);
@@ -1426,7 +1426,7 @@ public class ClassifierTest extends TestCase {
                     //  s = new File(s).getAbsolutePath();
                     // System.out.println(s);
                     bw.write("<td><a href=\"" + s + "\"><img style=\"max-width:220px;border:medium solid " + colorF + ";\"src=\"" + s + "\" border=\"" + 5 + "\" style=\"border: 3px\n" +
-                            "black solid;\"></a></td>\n");
+                        "black solid;\"></a></td>\n");
                     if (i % 3 == 2) bw.write("</tr>");
                 }
                 if (elems % 3 != 0) {
@@ -1440,7 +1440,7 @@ public class ClassifierTest extends TestCase {
                 }
 
                 bw.write("</table></body>\n" +
-                        "</html>");
+                    "</html>");
                 bw.close();
             }
             //   } // kfor
@@ -1726,8 +1726,8 @@ public class ClassifierTest extends TestCase {
                 String fileName = "classifieresults-" + System.currentTimeMillis() / 1000 + ".html";
                 BufferedWriter bw = new BufferedWriter(new FileWriter(fileName));
                 bw.write("<html>\n" +
-                        "<head><title>Classification Results</title></head>\n" +
-                        "<body bgcolor=\"#FFFFFF\">\n");
+                    "<head><title>Classification Results</title></head>\n" +
+                    "<body bgcolor=\"#FFFFFF\">\n");
                 bw.write("<table>");
 
                 // int elems = Math.min(filesHTML.size(),50);
@@ -1746,7 +1746,7 @@ public class ClassifierTest extends TestCase {
                     //  s = new File(s).getAbsolutePath();
                     // System.out.println(s);
                     bw.write("<td><a href=\"" + s + "\"><img style=\"max-width:220px;border:medium solid " + colorF + ";\"src=\"" + s + "\" border=\"" + 5 + "\" style=\"border: 3px\n" +
-                            "black solid;\"></a></td>\n");
+                        "black solid;\"></a></td>\n");
                     if (i % 3 == 2) bw.write("</tr>");
                 }
                 if (elems % 3 != 0) {
@@ -1760,7 +1760,7 @@ public class ClassifierTest extends TestCase {
                 }
 
                 bw.write("</table></body>\n" +
-                        "</html>");
+                    "</html>");
                 bw.close();
             }
             //   } // kfor
@@ -2103,8 +2103,8 @@ public class ClassifierTest extends TestCase {
                 String fileName = "classifieresults-" + System.currentTimeMillis() / 1000 + ".html";
                 BufferedWriter bw = new BufferedWriter(new FileWriter(fileName));
                 bw.write("<html>\n" +
-                        "<head><title>Classification Results</title></head>\n" +
-                        "<body bgcolor=\"#FFFFFF\">\n");
+                    "<head><title>Classification Results</title></head>\n" +
+                    "<body bgcolor=\"#FFFFFF\">\n");
                 bw.write("<table>");
 
                 // int elems = Math.min(filesHTML.size(),50);
@@ -2123,7 +2123,7 @@ public class ClassifierTest extends TestCase {
                     //  s = new File(s).getAbsolutePath();
                     // System.out.println(s);
                     bw.write("<td><a href=\"" + s + "\"><img style=\"max-width:220px;border:medium solid " + colorF + ";\"src=\"" + s + "\" border=\"" + 5 + "\" style=\"border: 3px\n" +
-                            "black solid;\"></a></td>\n");
+                        "black solid;\"></a></td>\n");
                     if (i % 3 == 2) bw.write("</tr>");
                 }
                 if (elems % 3 != 0) {
@@ -2137,7 +2137,7 @@ public class ClassifierTest extends TestCase {
                 }
 
                 bw.write("</table></body>\n" +
-                        "</html>");
+                    "</html>");
                 bw.close();
             }
             //   } // kfor
@@ -2451,8 +2451,8 @@ public class ClassifierTest extends TestCase {
                 String fileName = "classifieresults-" + System.currentTimeMillis() / 1000 + ".html";
                 BufferedWriter bw = new BufferedWriter(new FileWriter(fileName));
                 bw.write("<html>\n" +
-                        "<head><title>Classification Results</title></head>\n" +
-                        "<body bgcolor=\"#FFFFFF\">\n");
+                    "<head><title>Classification Results</title></head>\n" +
+                    "<body bgcolor=\"#FFFFFF\">\n");
                 bw.write("<table>");
 
                 // int elems = Math.min(filesHTML.size(),50);
@@ -2471,7 +2471,7 @@ public class ClassifierTest extends TestCase {
                     //  s = new File(s).getAbsolutePath();
                     // System.out.println(s);
                     bw.write("<td><a href=\"" + s + "\"><img style=\"max-width:220px;border:medium solid " + colorF + ";\"src=\"" + s + "\" border=\"" + 5 + "\" style=\"border: 3px\n" +
-                            "black solid;\"></a></td>\n");
+                        "black solid;\"></a></td>\n");
                     if (i % 3 == 2) bw.write("</tr>");
                 }
                 if (elems % 3 != 0) {
@@ -2485,7 +2485,7 @@ public class ClassifierTest extends TestCase {
                 }
 
                 bw.write("</table></body>\n" +
-                        "</html>");
+                    "</html>");
                 bw.close();
             }
             //   } // kfor
@@ -2870,8 +2870,8 @@ public class ClassifierTest extends TestCase {
             String fileName = "classifieresults-" + System.currentTimeMillis() / 1000 + ".html";
             BufferedWriter bw = new BufferedWriter(new FileWriter(fileName));
             bw.write("<html>\n" +
-                    "<head><title>Classification Results</title></head>\n" +
-                    "<body bgcolor=\"#FFFFFF\">\n");
+                "<head><title>Classification Results</title></head>\n" +
+                "<body bgcolor=\"#FFFFFF\">\n");
             bw.write("<table>");
 
             // int elems = Math.min(filesHTML.size(),50);
@@ -2890,7 +2890,7 @@ public class ClassifierTest extends TestCase {
                 //  s = new File(s).getAbsolutePath();
                 // System.out.println(s);
                 bw.write("<td><a href=\"" + s + "\"><img style=\"max-width:220px;border:medium solid " + colorF + ";\"src=\"" + s + "\" border=\"" + 5 + "\" style=\"border: 3px\n" +
-                        "black solid;\"></a></td>\n");
+                    "black solid;\"></a></td>\n");
                 if (i % 3 == 2) bw.write("</tr>");
             }
             if (elems % 3 != 0) {
@@ -2904,7 +2904,7 @@ public class ClassifierTest extends TestCase {
             }
 
             bw.write("</table></body>\n" +
-                    "</html>");
+                "</html>");
             bw.close();
         }
         //   } // kfor
@@ -3022,7 +3022,7 @@ public class ClassifierTest extends TestCase {
 
     // FEATURE SELECTION PART
     //Do the feature selection, returns a double array with the scores
-    private static HashMap<String, Double> getFeaturesInformationGainScore(String photosLocation, String locationOfTrainSet, String locationExtracorFile, String[] classArray, int[] featureSpace, double[] featureInformationGain, HashMap<String, Integer> featureSpaceHashMap,HashMap<String, Double> featureInformationGainHashMap) throws IOException, ClassNotFoundException, IllegalAccessException, InstantiationException {
+    private static HashMap<String, Double> getFeaturesInformationGainScore(String photosLocation, String locationOfTrainSet, String locationExtracorFile, String[] classArray, int[] featureSpace, double[] featureInformationGain, HashMap<String, Integer> featureSpaceHashMap, HashMap<String, Double> featureInformationGainHashMap) throws IOException, ClassNotFoundException, IllegalAccessException, InstantiationException {
 
         //Configurations
         String storeToFile = "wekaTemp.arff";
@@ -3134,7 +3134,7 @@ public class ClassifierTest extends TestCase {
     }
 
     //Does the information gain algorithm and return a list of total information gain scores
-    private static HashMap<String, Double> calculateInformationGain(String wekaFileLocation, double[] featureInformationGain, int featureSpace[], HashMap<String, Integer> featureSpaceHashMap, ArrayList<String> featureOrder,HashMap<String, Double> featureInformationGainHashMap) {
+    private static HashMap<String, Double> calculateInformationGain(String wekaFileLocation, double[] featureInformationGain, int featureSpace[], HashMap<String, Integer> featureSpaceHashMap, ArrayList<String> featureOrder, HashMap<String, Double> featureInformationGainHashMap) {
 
         Instances data = null;
         try {
@@ -3178,7 +3178,7 @@ public class ClassifierTest extends TestCase {
             //     System.out.println(rankedAttribuesArray[i][1]);
             // data.attribute((int) rankedAttribuesArray[i][0]).name().substring(0,data.attribute((int) rankedAttribuesArray[i][0]).name().indexOf("_"));
             // featureInformationGain[currentFeature] = featureInformationGain[currentFeature] + rankedAttribuesArray[i][1];
-            featureInformationGainHashMap.put(featureOrder.get(currentFeature),featureInformationGainHashMap.get(featureOrder.get(currentFeature))+rankedAttribuesArray[i][1]);
+            featureInformationGainHashMap.put(featureOrder.get(currentFeature), featureInformationGainHashMap.get(featureOrder.get(currentFeature)) + rankedAttribuesArray[i][1]);
         }
 
         //Caalculate the mean of the information gain (better comparable)
@@ -3188,7 +3188,7 @@ public class ClassifierTest extends TestCase {
 
         //Calculate the mean of the information gain (better comparable)
         for (int i = 0; i < featureOrder.size(); i++) {
-            featureInformationGainHashMap.put(featureOrder.get(i),(featureInformationGainHashMap.get(featureOrder.get(i))/featureSpaceHashMap.get(featureOrder.get(i)))*100);
+            featureInformationGainHashMap.put(featureOrder.get(i), (featureInformationGainHashMap.get(featureOrder.get(i)) / featureSpaceHashMap.get(featureOrder.get(i))) * 100);
         }
 
         // for(int i=0;i<0;i++){
@@ -3196,7 +3196,7 @@ public class ClassifierTest extends TestCase {
         // }
         System.out.println("Scoring finished, starting with classification! Scores: ");
         for (int i = 0; i < featureOrder.size(); i++) {
-            System.out.println(featureOrder.get(i)+" "+ featureInformationGainHashMap.get(featureOrder.get(i)));
+            System.out.println(featureOrder.get(i) + " " + featureInformationGainHashMap.get(featureOrder.get(i)));
             // featureInformationGainHashMap.put(featureOrder.get(i),(featureInformationGainHashMap.get(featureOrder.get(i))/featureSpaceHashMap.get(featureOrder.get(i)))*100);
         }
         // return featureInformationGain;
@@ -3278,8 +3278,6 @@ public class ClassifierTest extends TestCase {
 
 
     }
-
-
 
 
 }

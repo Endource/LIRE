@@ -41,16 +41,16 @@ package net.semanticmetadata.lire.imageanalysis.features.local.sift;
 
 /**
  * single octave of a discrete {@link FloatArray2DScaleSpace}
- * <p/>
+ * <p>
  * This class is optimized for the Difference Of Gaussian detector used in
  * David Lowe's SIFT-algorithm \citep{Loew04}.
- * <p/>
+ * <p>
  * The scale space itself consists of an arbitrary number of octaves.  This
  * number is implicitly defined by the minimal image size {@link #MIN_SIZE}.
  * Octaves contain overlapping scales of the scalespace.  Thus it is possible
  * to execute several operations that depend on adjacent scales within one
  * octave.
- * <p/>
+ * <p>
  * BibTeX:
  * <pre>
  * &#64;article{Lowe04,
@@ -63,18 +63,18 @@ package net.semanticmetadata.lire.imageanalysis.features.local.sift;
  *   pages   = {91--110},
  * }
  * </pre>
- * <p/>
+ * <p>
  * License: GPL
- * <p/>
+ * <p>
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License 2
  * as published by the Free Software Foundation.
- * <p/>
+ * <p>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * <p/>
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
@@ -98,14 +98,14 @@ public class FloatArray2DScaleOctave {
 
     /**
      * steps per octave
-     * <p/>
+     * <p>
      * an octave consists of STEPS + 3 images to be
      */
     public int STEPS = 1;
 
     /**
      * sigma of gaussian kernels corresponding to the steps of the octave
-     * <p/>
+     * <p>
      * the first member is the sigma of the gaussian kernel that is assumed to
      * be the generating kernel of the first gaussian image instance of the
      * octave
@@ -182,9 +182,9 @@ public class FloatArray2DScaleOctave {
      * @param initial_sigma inital gaussian sigma
      */
     public FloatArray2DScaleOctave(
-            FloatArray2D img,
-            int steps,
-            float initial_sigma) {
+        FloatArray2D img,
+        int steps,
+        float initial_sigma) {
         state = State.EMPTY;
 
         width = img.width;
@@ -210,8 +210,8 @@ public class FloatArray2DScaleOctave {
             //System.out.println( "sigma[" + i + "] = " + SIGMA[ i ] + "; sigma_diff[" + i + "] = " + SIGMA_DIFF[ i ] );
 
             KERNEL_DIFF[i] = Filter.createGaussianKernel1D(
-                    SIGMA_DIFF[i],
-                    true);
+                SIGMA_DIFF[i],
+                true);
         }
         l = new FloatArray2D[1];
         l[0] = img;
@@ -221,17 +221,17 @@ public class FloatArray2DScaleOctave {
 
     /**
      * Constructor
-     * <p/>
+     * <p>
      * faster initialisation with precomputed gaussian kernels
      *
      * @param img           image being the first gaussian instance of the scale octave
      * @param initial_sigma inital gaussian sigma
      */
     public FloatArray2DScaleOctave(
-            FloatArray2D img,
-            float[] sigma,
-            float[] sigma_diff,
-            float[][] kernel_diff) {
+        FloatArray2D img,
+        float[] sigma,
+        float[] sigma_diff,
+        float[][] kernel_diff) {
         state = State.EMPTY;
 
         width = img.width;
@@ -254,7 +254,7 @@ public class FloatArray2DScaleOctave {
 
     /**
      * build only the gaussian image with 2 * INITIAL_SIGMA
-     * <p/>
+     * <p>
      * Use this method for the partial creation of an octaved scale space
      * without creating each scale octave.  Like proposed by Lowe
      * \citep{Lowe04}, you can use this image to build the next scale octave.
@@ -321,7 +321,7 @@ public class FloatArray2DScaleOctave {
     /**
      * downsample {@link src} by simply using every second pixel into
      * {@link dst}
-     * <p/>
+     * <p>
      * For efficiency reasons, the dimensions of {@link dst} are not checked,
      * that is, you have to take care, that
      * dst.width == src.width / 2 + src.width % 2 &&
@@ -345,7 +345,7 @@ public class FloatArray2DScaleOctave {
 
     /**
      * upsample {@link src} by linearly interpolating into {@link dst}
-     * <p/>
+     * <p>
      * For efficiency reasons, the dimensions of {@link dst} are not checked,
      * that is, you have to take care, that
      * src.width == dst.width / 2 + dst.width % 2 &&

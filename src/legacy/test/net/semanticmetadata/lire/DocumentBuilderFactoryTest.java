@@ -53,9 +53,9 @@ import java.io.IOException;
  * @author Mathias Lux, mathias@juggle.at
  */
 public class DocumentBuilderFactoryTest extends TestCase {
-	
+
     @SuppressWarnings("unused")
-	private void testBuilder(DocumentBuilder builder) {
+    private void testBuilder(DocumentBuilder builder) {
         assertNotNull(builder);
         try {
             String identifier = "img01.JPG";

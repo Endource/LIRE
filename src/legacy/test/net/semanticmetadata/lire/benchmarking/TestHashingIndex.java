@@ -75,9 +75,9 @@ import java.util.Iterator;
 
 public class TestHashingIndex extends TestCase {
     private String dataSetImageList = "D:\\Java\\Projects\\Lire\\testdata\\flickrphotos.lst";
-//    private String dataSetImageList = "D:\\DataSets\\Flickrphotos\\imageList.txt";
+    //    private String dataSetImageList = "D:\\DataSets\\Flickrphotos\\imageList.txt";
     private String dataSetDataOut = "D:\\Java\\Projects\\Lire\\testdata\\flickrphotos.out";
-//    private String dataSetDataOut = "D:\\DataSets\\Flickrphotos\\imageList.out";
+    //    private String dataSetDataOut = "D:\\DataSets\\Flickrphotos\\imageList.out";
     private String testIndex = "C:/Temp/idx-test-hashing";
 
     public void testExtractFeatures() {
@@ -199,7 +199,7 @@ public class TestHashingIndex extends TestCase {
             for (int q = 0; q < maxQueries; q++) {
                 ms = System.currentTimeMillis();
                 ImageSearchHits hashedHits = hashed.search(reader.document(q + queryOffset), reader);
-                assert(hashedHits.length()<=numResults);
+                assert (hashedHits.length() <= numResults);
                 msSum += System.currentTimeMillis() - ms;
                 HashSet<Integer> t = new HashSet<Integer>(hashedHits.length());
                 HashSet<Integer> h = new HashSet<Integer>(hashedHits.length());

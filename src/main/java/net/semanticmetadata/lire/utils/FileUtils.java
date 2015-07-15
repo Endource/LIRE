@@ -68,7 +68,10 @@ import java.util.zip.ZipOutputStream;
  * @author Nektarios Anagnostopoulos, nek.anag@gmail.com
  */
 public class FileUtils {
-    enum FileTypes {JPG, GIF, TIF, PNG, PDF, UNKNOWN};
+    enum FileTypes {JPG, GIF, TIF, PNG, PDF, UNKNOWN}
+
+    ;
+
     /**
      * Returns all jpg images from a directory in an array.
      *
@@ -178,6 +181,7 @@ public class FileUtils {
 
     /**
      * Puts results into a HTML file.
+     *
      * @param prefix
      * @param hits
      * @param queryImage
@@ -189,8 +193,8 @@ public class FileUtils {
         String fileName = "results-" + prefix + "-" + l + ".html";
         BufferedWriter bw = new BufferedWriter(new FileWriter(fileName));
         bw.write("<html>\n" +
-                "<head><title>Search Results</title></head>\n" +
-                "<body bgcolor=\"#FFFFFF\">\n");
+            "<head><title>Search Results</title></head>\n" +
+            "<body bgcolor=\"#FFFFFF\">\n");
         bw.write("<h3>query</h3>\n");
         bw.write("<a href=\"file://" + queryImage + "\"><img src=\"file://" + queryImage + "\"></a><p>\n");
         bw.write("<h3>results</h3>\n");
@@ -198,13 +202,14 @@ public class FileUtils {
             bw.write(hits.score(i) + " - <a href=\"file://" + reader.document(hits.documentID(i)).getValues(DocumentBuilder.FIELD_NAME_IDENTIFIER)[0] + "\"><img src=\"file://" + reader.document(hits.documentID(i)).getValues(DocumentBuilder.FIELD_NAME_IDENTIFIER)[0] + "\"></a><p>\n");
         }
         bw.write("</body>\n" +
-                "</html>");
+            "</html>");
         bw.close();
         return fileName;
     }
 
     /**
      * Puts results into a HTML file.
+     *
      * @param prefix
      * @param hits
      * @param reader
@@ -217,8 +222,8 @@ public class FileUtils {
         String fileName = "results-" + prefix + "-" + l + ".html";
         BufferedWriter bw = new BufferedWriter(new FileWriter(fileName));
         bw.write("<html>\n" +
-                "<head><title>Search Results</title></head>\n" +
-                "<body bgcolor=\"#FFFFFF\">\n");
+            "<head><title>Search Results</title></head>\n" +
+            "<body bgcolor=\"#FFFFFF\">\n");
         bw.write("<h3>query</h3>\n");
         bw.write("<a href=\"file://" + queryImage + "\"><img src=\"file://" + queryImage + "\"></a><p>\n");
         bw.write("<h3>results</h3>\n");
@@ -226,7 +231,7 @@ public class FileUtils {
             bw.write(hits.scoreDocs[i].score + " - <a href=\"file://" + reader.document(hits.scoreDocs[i].doc).get("descriptorImageIdentifier") + "\"><img src=\"file://" + reader.document(hits.scoreDocs[i].doc).get("descriptorImageIdentifier") + "\"></a><p>\n");
         }
         bw.write("</body>\n" +
-                "</html>");
+            "</html>");
         bw.close();
         return fileName;
     }
@@ -344,6 +349,7 @@ public class FileUtils {
 
     /**
      * Identifies the type of image based on the magic bytes at the beginning of the file.
+     *
      * @param file the File to test.
      * @return the file type by enumeration FileTypes.
      * @throws IOException
@@ -377,7 +383,7 @@ public class FileUtils {
                 return FileTypes.UNKNOWN;
             }
         } finally {
-            if(in != null) {
+            if (in != null) {
                 in.close();
             }
         }
@@ -386,6 +392,7 @@ public class FileUtils {
     /**
      * Just opens an image with Java and reports if false if there are problems. This method can be used
      * to check for JPG etc. that are not supported by the employed Java version.
+     *
      * @param f the file to check.
      * @return true if no exceptions are thrown bey the decoder.
      */
@@ -417,14 +424,15 @@ public class FileUtils {
 
     /**
      * Reads a whole file into a StringBuffer based on java.nio
-     * @param file the file to open.
+     *
+     * @param file          the file to open.
      * @param stringBuilder to write the File to.
      * @throws IOException
      */
     public static void readWholeFile(File file, StringBuilder stringBuilder) throws IOException {
-        long length =file.length();
+        long length = file.length();
         MappedByteBuffer in = new FileInputStream(file).getChannel().map(
-                FileChannel.MapMode.READ_ONLY, 0, length);
+            FileChannel.MapMode.READ_ONLY, 0, length);
         int i = 0;
         while (i < length)
             stringBuilder.append((char) in.get(i++));
@@ -433,13 +441,14 @@ public class FileUtils {
 
     /**
      * Reads a whole file into a StringBuffer based on java.nio
+     *
      * @param file the file to open.
      * @throws IOException
      */
     public static byte[] readFileToByteArray(File file) throws IOException {
         int length = (int) file.length();
         MappedByteBuffer in = new FileInputStream(file).getChannel().map(
-                FileChannel.MapMode.READ_ONLY, 0, length);
+            FileChannel.MapMode.READ_ONLY, 0, length);
         int i = 0;
         byte[] result = new byte[length];
         while (i < length)

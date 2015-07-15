@@ -82,64 +82,64 @@ import java.util.Iterator;
  */
 public class GeneralTest extends TestCase {
     private String[] testFiles = new String[]{
-            "img01.JPG", "img02.JPG", "img03.JPG", "img04.JPG", "img05.JPG",
-            "img06.JPG", "img07.JPG", "img08.JPG", "error.jpg", "91561.lire.jpg", "91561.jpg"};
+        "img01.JPG", "img02.JPG", "img03.JPG", "img04.JPG", "img05.JPG",
+        "img06.JPG", "img07.JPG", "img08.JPG", "error.jpg", "91561.lire.jpg", "91561.jpg"};
     private String testFilesPath = "./src/test/resources/images/";
     private String indexPath = "test-index";
     private String testExtensive = "./testdata/wang-1000";
     public Class[] featureClasses = new Class[]{
-            CEDD.class,
-            FCTH.class,
-            JCD.class,
-            AutoColorCorrelogram.class,
-            ColorLayout.class,
-            EdgeHistogram.class,
-            Gabor.class,
-            JpegCoefficientHistogram.class,
-            ScalableColor.class,
-            SimpleColorHistogram.class,
-            OpponentHistogram.class,
-            LocalBinaryPatterns.class,
-            RotationInvariantLocalBinaryPatterns.class,
-            BinaryPatternsPyramid.class,
-            LuminanceLayout.class,
-            Tamura.class,
-            FuzzyColorHistogram.class,
-            PHOG.class
+        CEDD.class,
+        FCTH.class,
+        JCD.class,
+        AutoColorCorrelogram.class,
+        ColorLayout.class,
+        EdgeHistogram.class,
+        Gabor.class,
+        JpegCoefficientHistogram.class,
+        ScalableColor.class,
+        SimpleColorHistogram.class,
+        OpponentHistogram.class,
+        LocalBinaryPatterns.class,
+        RotationInvariantLocalBinaryPatterns.class,
+        BinaryPatternsPyramid.class,
+        LuminanceLayout.class,
+        Tamura.class,
+        FuzzyColorHistogram.class,
+        PHOG.class
     };
 
     private DocumentBuilder[] builders = new DocumentBuilder[]{
-            DocumentBuilderFactory.getCEDDDocumentBuilder(),
-            DocumentBuilderFactory.getFCTHDocumentBuilder(),
-            DocumentBuilderFactory.getJCDDocumentBuilder(),
-            DocumentBuilderFactory.getAutoColorCorrelogramDocumentBuilder(),
-            DocumentBuilderFactory.getColorLayoutBuilder(),
-            DocumentBuilderFactory.getEdgeHistogramBuilder(),  // 5
-            DocumentBuilderFactory.getGaborDocumentBuilder(),
-            DocumentBuilderFactory.getJpegCoefficientHistogramDocumentBuilder(), // 7
-            DocumentBuilderFactory.getScalableColorBuilder(),
-            DocumentBuilderFactory.getColorHistogramDocumentBuilder(),
-            DocumentBuilderFactory.getTamuraDocumentBuilder(),              // 10
-            DocumentBuilderFactory.getOpponentHistogramDocumentBuilder(),   // 11
-            DocumentBuilderFactory.getJointHistogramDocumentBuilder(),       // 12
-            new GenericDocumentBuilder(PHOG.class, "phog")
+        DocumentBuilderFactory.getCEDDDocumentBuilder(),
+        DocumentBuilderFactory.getFCTHDocumentBuilder(),
+        DocumentBuilderFactory.getJCDDocumentBuilder(),
+        DocumentBuilderFactory.getAutoColorCorrelogramDocumentBuilder(),
+        DocumentBuilderFactory.getColorLayoutBuilder(),
+        DocumentBuilderFactory.getEdgeHistogramBuilder(),  // 5
+        DocumentBuilderFactory.getGaborDocumentBuilder(),
+        DocumentBuilderFactory.getJpegCoefficientHistogramDocumentBuilder(), // 7
+        DocumentBuilderFactory.getScalableColorBuilder(),
+        DocumentBuilderFactory.getColorHistogramDocumentBuilder(),
+        DocumentBuilderFactory.getTamuraDocumentBuilder(),              // 10
+        DocumentBuilderFactory.getOpponentHistogramDocumentBuilder(),   // 11
+        DocumentBuilderFactory.getJointHistogramDocumentBuilder(),       // 12
+        new GenericDocumentBuilder(PHOG.class, "phog")
     };
 
     private ImageSearcher[] searchers = new ImageSearcher[]{
-            ImageSearcherFactory.createCEDDImageSearcher(10),
-            ImageSearcherFactory.createFCTHImageSearcher(10),
-            ImageSearcherFactory.createJCDImageSearcher(10),
-            ImageSearcherFactory.createAutoColorCorrelogramImageSearcher(10),
-            ImageSearcherFactory.createColorLayoutImageSearcher(10),
-            ImageSearcherFactory.createEdgeHistogramImageSearcher(10),
-            ImageSearcherFactory.createGaborImageSearcher(10),
-            ImageSearcherFactory.createJpegCoefficientHistogramImageSearcher(10),
-            ImageSearcherFactory.createScalableColorImageSearcher(10),
-            ImageSearcherFactory.createColorHistogramImageSearcher(10),
-            ImageSearcherFactory.createTamuraImageSearcher(10),
-            ImageSearcherFactory.createOpponentHistogramSearcher(10),
-            ImageSearcherFactory.createJointHistogramImageSearcher(10),
-            new GenericFastImageSearcher(10, PHOG.class, "phog")
+        ImageSearcherFactory.createCEDDImageSearcher(10),
+        ImageSearcherFactory.createFCTHImageSearcher(10),
+        ImageSearcherFactory.createJCDImageSearcher(10),
+        ImageSearcherFactory.createAutoColorCorrelogramImageSearcher(10),
+        ImageSearcherFactory.createColorLayoutImageSearcher(10),
+        ImageSearcherFactory.createEdgeHistogramImageSearcher(10),
+        ImageSearcherFactory.createGaborImageSearcher(10),
+        ImageSearcherFactory.createJpegCoefficientHistogramImageSearcher(10),
+        ImageSearcherFactory.createScalableColorImageSearcher(10),
+        ImageSearcherFactory.createColorHistogramImageSearcher(10),
+        ImageSearcherFactory.createTamuraImageSearcher(10),
+        ImageSearcherFactory.createOpponentHistogramSearcher(10),
+        ImageSearcherFactory.createJointHistogramImageSearcher(10),
+        new GenericFastImageSearcher(10, PHOG.class, "phog")
     };
 
     public void testExtractionAndMetric() throws IOException, IllegalAccessException, InstantiationException {
@@ -302,7 +302,7 @@ public class GeneralTest extends TestCase {
             ImageSearchHits hits = searchers[featureIndex].search(reader.document(queryDocID), reader);
             for (int j = 0; j < hits.length(); j++) {
                 String fileName = hits.doc(j).getValues(
-                        DocumentBuilder.FIELD_NAME_IDENTIFIER)[0];
+                    DocumentBuilder.FIELD_NAME_IDENTIFIER)[0];
                 System.out.println(hits.score(j) + ": \t" + fileName);
             }
 //        FileUtils.saveImageResultsToHtml("GeneralTest_testSearchIndexLarge_", hits, reader.document(10).getValues(DocumentBuilder.FIELD_NAME_IDENTIFIER)[0]);
@@ -464,7 +464,7 @@ public class GeneralTest extends TestCase {
                 assertEquals(f2.getDistance(f1), 0d, 0.000000001);
                 f2.setByteArrayRepresentation(f1.getByteArrayRepresentation());
                 assertEquals(f2.getDistance(f1), 0d, 0.000000001);
-                byte[] tmp = new byte[1024*100];
+                byte[] tmp = new byte[1024 * 100];
                 Arrays.fill(tmp, (byte) 0x000F);
                 byte[] bytes = f1.getByteArrayRepresentation();
                 System.arraycopy(bytes, 0, tmp, 12, bytes.length);

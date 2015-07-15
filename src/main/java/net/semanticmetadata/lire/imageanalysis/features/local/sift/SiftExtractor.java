@@ -59,7 +59,7 @@ import java.util.List;
  *
  * @author Mathias Lux, mathias@juggle.at
  */
-public class SiftExtractor implements LocalFeatureExtractor{
+public class SiftExtractor implements LocalFeatureExtractor {
     // steps
     int steps = 3;
     // initial sigma

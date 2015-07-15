@@ -17,7 +17,7 @@
  * We kindly ask you to refer the any or one of the following publications in
  * any publication mentioning or employing Lire:
  *
- * Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval –
+ * Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval ï¿½
  * An Extensible Java CBIR Library. In proceedings of the 16th ACM International
  * Conference on Multimedia, pp. 1085-1088, Vancouver, Canada, 2008
  * URL: http://doi.acm.org/10.1145/1459359.1459577
@@ -61,11 +61,11 @@ import java.util.List;
  */
 public class CvSiftExtractor implements LocalFeatureExtractor {
     //Default: int nfeatures=0, int nOctaveLayers=3, double contrastThreshold=0.04, double edgeThreshold=10, double sigma=1.6
-    private int nfeatures=0;
-    private int nOctaveLayers=3;
-    private double contrastThreshold=0.04;
-    private double edgeThreshold=10;
-    private double sigma=1.6;
+    private int nfeatures = 0;
+    private int nOctaveLayers = 3;
+    private double contrastThreshold = 0.04;
+    private double edgeThreshold = 10;
+    private double sigma = 1.6;
 
     LinkedList<CvSiftFeature> features = null;
 
@@ -74,22 +74,22 @@ public class CvSiftExtractor implements LocalFeatureExtractor {
 
 //    private boolean passingParams = false;
 
-    public CvSiftExtractor(){
+    public CvSiftExtractor() {
         init();
     }
 
-    public CvSiftExtractor(int features, int OctaveLayers, double contrastThres, double edgeThres, double sgm){
-        this.nfeatures=features;
-        this.nOctaveLayers=OctaveLayers;
-        this.contrastThreshold=contrastThres;
-        this.edgeThreshold=edgeThres;
-        this.sigma=sgm;
+    public CvSiftExtractor(int features, int OctaveLayers, double contrastThres, double edgeThres, double sgm) {
+        this.nfeatures = features;
+        this.nOctaveLayers = OctaveLayers;
+        this.contrastThreshold = contrastThres;
+        this.edgeThreshold = edgeThres;
+        this.sigma = sgm;
 //        this.passingParams = true;
         init();
     }
 
-    private void init(){
-        System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
+    private void init() {
+        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 
         detector = FeatureDetector.create(FeatureDetector.SIFT);
         extractor = DescriptorExtractor.create(DescriptorExtractor.SIFT);
@@ -131,9 +131,9 @@ public class CvSiftExtractor implements LocalFeatureExtractor {
         byte[] data = ((DataBufferByte) img.getRaster().getDataBuffer()).getData();
         Mat matRGB = new Mat(img.getHeight(), img.getWidth(), CvType.CV_8UC3);
         matRGB.put(0, 0, data);
-        Mat matGray = new Mat(img.getHeight(),img.getWidth(),CvType.CV_8UC1);
+        Mat matGray = new Mat(img.getHeight(), img.getWidth(), CvType.CV_8UC1);
         Imgproc.cvtColor(matRGB, matGray, Imgproc.COLOR_BGR2GRAY);              //TODO: RGB or BGR?
-        byte[] dataGray = new byte[matGray.rows()*matGray.cols()*(int)(matGray.elemSize())];
+        byte[] dataGray = new byte[matGray.rows() * matGray.cols() * (int) (matGray.elemSize())];
         matGray.get(0, 0, dataGray);
 
         detector.detect(matGray, keypoints);
@@ -145,13 +145,12 @@ public class CvSiftExtractor implements LocalFeatureExtractor {
         CvSiftFeature feat;
         double[] desc;
         int cols, rows = myKeys.size();
-        for (int i=0; i<rows; i++) {
+        for (int i = 0; i < rows; i++) {
             cols = (descriptors.row(i)).cols();
             desc = new double[cols];
             key = myKeys.get(i);
-            for(int j=0; j < cols; j++)
-            {
-                desc[j]=descriptors.get(i, j)[0];
+            for (int j = 0; j < cols; j++) {
+                desc[j] = descriptors.get(i, j)[0];
             }
             feat = new CvSiftFeature(key.pt.x, key.pt.y, key.size, desc);
             features.add(feat);
@@ -167,9 +166,9 @@ public class CvSiftExtractor implements LocalFeatureExtractor {
         byte[] data = ((DataBufferByte) img.getRaster().getDataBuffer()).getData();
         Mat matRGB = new Mat(img.getHeight(), img.getWidth(), CvType.CV_8UC3);
         matRGB.put(0, 0, data);
-        Mat matGray = new Mat(img.getHeight(),img.getWidth(),CvType.CV_8UC1);
+        Mat matGray = new Mat(img.getHeight(), img.getWidth(), CvType.CV_8UC1);
         Imgproc.cvtColor(matRGB, matGray, Imgproc.COLOR_BGR2GRAY);              //TODO: RGB or BGR?
-        byte[] dataGray = new byte[matGray.rows()*matGray.cols()*(int)(matGray.elemSize())];
+        byte[] dataGray = new byte[matGray.rows() * matGray.cols() * (int) (matGray.elemSize())];
         matGray.get(0, 0, dataGray);
 
         detector.detect(matGray, keypoints);
@@ -187,9 +186,8 @@ public class CvSiftExtractor implements LocalFeatureExtractor {
         return myKeypoints;
     }
 
-    public String getParameters()
-    {
-        return "nfeatures: "+nfeatures+" nOctaveLayers: "+nOctaveLayers+" contrastThreshold: "+contrastThreshold+" edgeThreshold: "+edgeThreshold+" sigma: "+sigma;
+    public String getParameters() {
+        return "nfeatures: " + nfeatures + " nOctaveLayers: " + nOctaveLayers + " contrastThreshold: " + contrastThreshold + " edgeThreshold: " + edgeThreshold + " sigma: " + sigma;
     }
 
 }

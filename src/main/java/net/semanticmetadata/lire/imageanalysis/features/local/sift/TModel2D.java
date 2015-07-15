@@ -137,7 +137,7 @@ public class TModel2D extends Model {
 
     /**
      * change the model a bit
-     * <p/>
+     * <p>
      * estimates the necessary amount of shaking for each single dimensional
      * distance in the set of matches
      *
@@ -146,9 +146,9 @@ public class TModel2D extends Model {
      * @param center  local pivot point for centered shakes (e.g. rotation)
      */
     final public void shake(
-            Collection<PointMatch> matches,
-            float scale,
-            float[] center) {
+        Collection<PointMatch> matches,
+        float scale,
+        float[] center) {
         double xd = 0.0;
         double yd = 0.0;
 
@@ -168,8 +168,8 @@ public class TModel2D extends Model {
         }
 
         affine.translate(
-                rnd.nextGaussian() * (float) xd * scale,
-                rnd.nextGaussian() * (float) yd);
+            rnd.nextGaussian() * (float) xd * scale,
+            rnd.nextGaussian() * (float) yd);
     }
 
     /**
@@ -177,11 +177,11 @@ public class TModel2D extends Model {
      * containing a high number of outliers using RANSAC
      */
     static public TModel2D estimateModel(
-            List<PointMatch> candidates,
-            Collection<PointMatch> inliers,
-            int iterations,
-            float epsilon,
-            float min_inliers) {
+        List<PointMatch> candidates,
+        Collection<PointMatch> inliers,
+        int iterations,
+        float epsilon,
+        float min_inliers) {
         inliers.clear();
 
         if (candidates.size() < MIN_SET_SIZE) {
@@ -208,9 +208,9 @@ public class TModel2D extends Model {
                 is_good = m.test(candidates, temp_inliers, epsilon, min_inliers);
             }
             if (
-                    is_good &&
-                            m.betterThan(model) &&
-                            temp_inliers.size() >= 3 * MIN_SET_SIZE) // now at least 3 matches required
+                is_good &&
+                    m.betterThan(model) &&
+                    temp_inliers.size() >= 3 * MIN_SET_SIZE) // now at least 3 matches required
             {
                 model = m.clone();
                 inliers.clear();
@@ -227,15 +227,15 @@ public class TModel2D extends Model {
     /**
      * estimate the transformation model for a set of feature correspondences
      * containing a high number of outliers using RANSAC
-     * <p/>
+     * <p>
      * increase the error as long as not more inliers occur
      */
     static public TModel2D estimateBestModel(
-            List<PointMatch> candidates,
-            Collection<PointMatch> inliers,
-            float min_epsilon,
-            float max_epsilon,
-            float min_inlier_ratio) {
+        List<PointMatch> candidates,
+        Collection<PointMatch> inliers,
+        float min_epsilon,
+        float max_epsilon,
+        float min_inlier_ratio) {
         inliers.clear();
         TModel2D model = null;
         float epsilon = 0.0f;
@@ -248,11 +248,11 @@ public class TModel2D extends Model {
                 epsilon += min_epsilon;
                 // 1000 iterations lead to a probability of < 0.01% that only bad data values were found
                 m = estimateModel(
-                        candidates,                    //!< point correspondence candidates
-                        temp_inliers,
-                        1000,                        //!< iterations
-                        epsilon,                    //!< maximal alignment error for a good point pair when fitting the model
-                        min_inlier_ratio);            //!< minimal partition (of 1.0) of inliers
+                    candidates,                    //!< point correspondence candidates
+                    temp_inliers,
+                    1000,                        //!< iterations
+                    epsilon,                    //!< maximal alignment error for a good point pair when fitting the model
+                    min_inlier_ratio);            //!< minimal partition (of 1.0) of inliers
 
                 if (m != null) {
                     int num_inliers = temp_inliers.size();

@@ -44,6 +44,7 @@ import net.semanticmetadata.lire.utils.SerializationUtils;
 
 /**
  * Generic double[] based feature implementation.
+ *
  * @author Mathias Lux, mathias@juggle.at, 27.09.13 17:00
  */
 public class GenericDoubleLireFeature implements LireFeature {
@@ -90,7 +91,7 @@ public class GenericDoubleLireFeature implements LireFeature {
     @Override
     public double getDistance(LireFeature feature) {
         // it is assumed that the histograms are of equal length.
-        assert(feature.getFeatureVector().length == data.length);
+        assert (feature.getFeatureVector().length == data.length);
         return MetricsUtils.distL2(feature.getFeatureVector(), data);
     }
 

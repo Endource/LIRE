@@ -112,10 +112,10 @@ public class ImageUtils {
         int toX = Math.min(fromX + width, image.getWidth());
         int toY = Math.min(fromY + height, image.getHeight());
         // create smaller image
-        BufferedImage cropped = new BufferedImage(toX-fromX, toY-fromY, BufferedImage.TYPE_INT_RGB);
+        BufferedImage cropped = new BufferedImage(toX - fromX, toY - fromY, BufferedImage.TYPE_INT_RGB);
         // fast scale (Java 1.4 & 1.5)
         Graphics g = cropped.getGraphics();
-        g.drawImage(image,0, 0, cropped.getWidth(), cropped.getHeight(), fromX, fromY, toX, toY, null);
+        g.drawImage(image, 0, 0, cropped.getWidth(), cropped.getHeight(), fromX, fromY, toX, toY, null);
         return cropped;
     }
 
@@ -253,7 +253,7 @@ public class ImageUtils {
                 int xx = x - radius / 2;
                 int yy = y - radius / 2;
                 kernel[off] = (float) Math.pow(Math.E, -(xx * xx + yy * yy)
-                        / (2 * (sigma * sigma)));
+                    / (2 * (sigma * sigma)));
                 sum += kernel[off];
             }
         }
@@ -280,9 +280,9 @@ public class ImageUtils {
             for (int y = 0; y < img1.getHeight(); y++) {
                 r1.getPixel(x, y, tmp1);
                 r2.getPixel(x, y, tmp2);
-                tmp1[0] = Math.abs(tmp1[0]-tmp2[0]);
+                tmp1[0] = Math.abs(tmp1[0] - tmp2[0]);
                 // System.out.println("tmp1 = " + tmp1[0]);
-                if (tmp1[0]>5) tmp1[0] =255;
+                if (tmp1[0] > 5) tmp1[0] = 255;
                 r1.setPixel(x, y, tmp1);
             }
         }

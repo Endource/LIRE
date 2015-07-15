@@ -40,25 +40,25 @@ package net.semanticmetadata.lire.imageanalysis.features.local.sift;
 
 /**
  * a generic n-dimensional point location
- * <p/>
+ * <p>
  * keeps local coordinates final, application of a model changes the world
  * coordinates of the point
- * <p/>
+ * <p>
  * License: GPL
- * <p/>
+ * <p>
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License 2
  * as published by the Free Software Foundation.
- * <p/>
+ * <p>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * <p/>
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- * <p/>
+ * <p>
  * NOTE:
  * The SIFT-method is protected by U.S. Patent 6,711,293: "Method and
  * apparatus for identifying scale invariant features in an image and use of
@@ -92,7 +92,7 @@ public class Point {
 
     /**
      * Constructor
-     * <p/>
+     * <p>
      * sets this.l to the given float[] reference
      *
      * @param l reference to the local coordinates of the point
@@ -105,7 +105,7 @@ public class Point {
 
     /**
      * apply a model to the point
-     * <p/>
+     * <p>
      * transfers the local coordinates to new world coordinates
      */
     final public void apply(Model model) {

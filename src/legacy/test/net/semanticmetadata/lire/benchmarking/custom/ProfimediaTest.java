@@ -67,13 +67,13 @@ public class ProfimediaTest extends TestCase {
     private String testExtensive = "./testdata/Profimedia/png";
     private ChainedDocumentBuilder builder;
     String[] queries = new String[]{
-            "1", "292", "575", "872", "1133", "1441", "1566", "1747", "2141", "2282", "2562", "2882", "3237", "3489", "3717", "3935", "4023", "4140", "4349", "4659", "4932", "5136", "5301", "5586", "5661", "5848", "6045", "6218", "6447", "6612", "6720", "6911", "7047", "7322", "7675", "7913", "8092", "8305", "8611", "8914", "9183", "9443", "9737", "9922", "10088", "10279", "10403", "10609", "10824", "11071", "11186", "11291", "11394", "11613", "11931", "12097", "12347", "12647", "12821", "13184", "13359", "13467", "13735", "13854", "14098", "14364", "14949", "15138", "15344", "15578", "15839", "15964", "16169", "16443", "16549", "16709", "17109", "17432", "17606", "17945", "18129", "18526", "18704", "18870", "19038", "19329", "19561", "19819", "20021", "20151", "20403", "20566", "20713", "20933", "21182", "21352", "21575", "21629", "21874", "21992"
+        "1", "292", "575", "872", "1133", "1441", "1566", "1747", "2141", "2282", "2562", "2882", "3237", "3489", "3717", "3935", "4023", "4140", "4349", "4659", "4932", "5136", "5301", "5586", "5661", "5848", "6045", "6218", "6447", "6612", "6720", "6911", "7047", "7322", "7675", "7913", "8092", "8305", "8611", "8914", "9183", "9443", "9737", "9922", "10088", "10279", "10403", "10609", "10824", "11071", "11186", "11291", "11394", "11613", "11931", "12097", "12347", "12647", "12821", "13184", "13359", "13467", "13735", "13854", "14098", "14364", "14949", "15138", "15344", "15578", "15839", "15964", "16169", "16443", "16549", "16709", "17109", "17432", "17606", "17945", "18129", "18526", "18704", "18870", "19038", "19329", "19561", "19819", "20021", "20151", "20403", "20566", "20713", "20933", "21182", "21352", "21575", "21629", "21874", "21992"
     };
 
     //    private final Class feature = JCD.class;
     private Class[] features = new Class[]{
-            JCD.class, CEDD.class, AutoColorCorrelogram.class, PHOG.class, OpponentHistogram.class,
-            EdgeHistogram.class, ScalableColor.class, ColorLayout.class, FCTH.class, FuzzyOpponentHistogram.class, JpegCoefficientHistogram.class
+        JCD.class, CEDD.class, AutoColorCorrelogram.class, PHOG.class, OpponentHistogram.class,
+        EdgeHistogram.class, ScalableColor.class, ColorLayout.class, FCTH.class, FuzzyOpponentHistogram.class, JpegCoefficientHistogram.class
 
     };
 
@@ -103,7 +103,7 @@ public class ProfimediaTest extends TestCase {
             File out = new File(features[f].getName() + "_profimedia.csv");
             BufferedWriter bw = new BufferedWriter(new FileWriter(out));
             for (int i = 0; i < queries.length; i++) {
-                if (i%50==0) System.out.print(".");
+                if (i % 50 == 0) System.out.print(".");
                 String query = queries[i];
                 BufferedImage queryImage = ImageIO.read(new File(testExtensive + "/" + query + ".png"));
                 ImageSearchHits hits = s.search(queryImage, reader);

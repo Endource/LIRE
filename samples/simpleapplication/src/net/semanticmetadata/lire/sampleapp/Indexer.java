@@ -64,6 +64,7 @@ import java.util.Iterator;
 
 /**
  * Simple class showing the process of indexing
+ *
  * @author Mathias Lux, mathias@juggle.at and Nektarios Anagnostopoulos, nek.anag@gmail.com
  */
 public class Indexer {

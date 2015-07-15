@@ -262,8 +262,8 @@ public class TestGeneral extends TestCase {
     private void saveToHtml(String prefix, ImageSearchHits hits, String queryImage) throws IOException {
         BufferedWriter bw = new BufferedWriter(new FileWriter("results - " + prefix + ".html"));
         bw.write("<html>\n" +
-                "<head><title>Search Results</title></head>\n" +
-                "<body bgcolor=\"#FFFFFF\">\n");
+            "<head><title>Search Results</title></head>\n" +
+            "<body bgcolor=\"#FFFFFF\">\n");
         bw.write("<h3>query</h3>\n");
         bw.write("<a href=\"file://" + queryImage + "\"><img src=\"file://" + queryImage + "\"></a><p>\n");
         bw.write("<h3>results</h3>\n");
@@ -271,7 +271,7 @@ public class TestGeneral extends TestCase {
             bw.write("<a href=\"file://" + hits.doc(i).get("descriptorImageIdentifier") + "\"><img src=\"file://" + hits.doc(i).get("descriptorImageIdentifier") + "\"></a><p>\n");
         }
         bw.write("</body>\n" +
-                "</html>");
+            "</html>");
         bw.close();
     }
 

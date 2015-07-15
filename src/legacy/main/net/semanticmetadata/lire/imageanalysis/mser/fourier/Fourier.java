@@ -212,61 +212,61 @@ public class Fourier {
 */
         // gerades F
         Point2D.Double[] EF =
-                {
-                        new Point2D.Double(0 / 2., 0 / 2.),
-                        new Point2D.Double(2 / 2., 0 / 2.),
-                        new Point2D.Double(2 / 2., 5 / 2.),
-                        new Point2D.Double(5 / 2., 5 / 2.),
-                        new Point2D.Double(5 / 2., 7 / 2.),
-                        new Point2D.Double(2 / 2., 7 / 2.),
-                        new Point2D.Double(2 / 2., 9 / 2.),
-                        new Point2D.Double(7 / 2., 9 / 2.),
-                        new Point2D.Double(7 / 2., 11 / 2.),
-                        new Point2D.Double(0 / 2., 11 / 2.),
-                        new Point2D.Double(0 / 2., 0 / 2.) // X(N) == X(0))
-                };
+            {
+                new Point2D.Double(0 / 2., 0 / 2.),
+                new Point2D.Double(2 / 2., 0 / 2.),
+                new Point2D.Double(2 / 2., 5 / 2.),
+                new Point2D.Double(5 / 2., 5 / 2.),
+                new Point2D.Double(5 / 2., 7 / 2.),
+                new Point2D.Double(2 / 2., 7 / 2.),
+                new Point2D.Double(2 / 2., 9 / 2.),
+                new Point2D.Double(7 / 2., 9 / 2.),
+                new Point2D.Double(7 / 2., 11 / 2.),
+                new Point2D.Double(0 / 2., 11 / 2.),
+                new Point2D.Double(0 / 2., 0 / 2.) // X(N) == X(0))
+            };
 
         testFourier(EF, 5);
 
         // falsches F
         Point2D.Double[] EF2 =
-                {
-                        new Point2D.Double(0 / 2., 0 / 2.),
-                        new Point2D.Double(2 / 2., 0 / 2.),
-                        new Point2D.Double(2 / 2., 5 / 2.),
-                        new Point2D.Double(5 / 2., 5 / 2.),
-                        new Point2D.Double(5 / 2., 7 / 2.),
-                        new Point2D.Double(2 / 2., 7 / 2.),
-                        new Point2D.Double(2 / 2., 9 / 2.),
-                        new Point2D.Double(7 / 2., 9 / 2.),
-                        new Point2D.Double(5 / 2., 11 / 2.),
-                        new Point2D.Double(0 / 2., 11 / 2.),
-                        new Point2D.Double(0 / 2., 0 / 2.) // X(N) == X(0))
-                };
+            {
+                new Point2D.Double(0 / 2., 0 / 2.),
+                new Point2D.Double(2 / 2., 0 / 2.),
+                new Point2D.Double(2 / 2., 5 / 2.),
+                new Point2D.Double(5 / 2., 5 / 2.),
+                new Point2D.Double(5 / 2., 7 / 2.),
+                new Point2D.Double(2 / 2., 7 / 2.),
+                new Point2D.Double(2 / 2., 9 / 2.),
+                new Point2D.Double(7 / 2., 9 / 2.),
+                new Point2D.Double(5 / 2., 11 / 2.),
+                new Point2D.Double(0 / 2., 11 / 2.),
+                new Point2D.Double(0 / 2., 0 / 2.) // X(N) == X(0))
+            };
 
         testFourier(EF2, 5);
 
         // schiefes F
         EF = new Point2D.Double[]
-                {
-                        new Point2D.Double(0 / 2., 0 / 2.),
-                        new Point2D.Double(2 / 2., 0 / 2.),
-                        new Point2D.Double(2 / 2., 5 / 2.),
-                        new Point2D.Double(5 / 2., 5 / 2.),
-                        new Point2D.Double(5 / 2., 7 / 2.),
-                        new Point2D.Double(2 / 2., 7 / 2.),
-                        new Point2D.Double(2 / 2., 9 / 2.),
-                        new Point2D.Double(7 / 2., 9 / 2.),
-                        new Point2D.Double(7 / 2., 11 / 2.),
-                        new Point2D.Double(0 / 2., 11 / 2.),
-                        new Point2D.Double(0 / 2., 0 / 2.) // X(N) == X(0))
-                };
+            {
+                new Point2D.Double(0 / 2., 0 / 2.),
+                new Point2D.Double(2 / 2., 0 / 2.),
+                new Point2D.Double(2 / 2., 5 / 2.),
+                new Point2D.Double(5 / 2., 5 / 2.),
+                new Point2D.Double(5 / 2., 7 / 2.),
+                new Point2D.Double(2 / 2., 7 / 2.),
+                new Point2D.Double(2 / 2., 9 / 2.),
+                new Point2D.Double(7 / 2., 9 / 2.),
+                new Point2D.Double(7 / 2., 11 / 2.),
+                new Point2D.Double(0 / 2., 11 / 2.),
+                new Point2D.Double(0 / 2., 0 / 2.) // X(N) == X(0))
+            };
 
         double[][] A =
-                {{3., 1.}, {2., 3.}
+            {{3., 1.}, {2., 3.}
 //                        new Point2D.Double(3.,1.),
 //                        new Point2D.Double(2.,3.)
-                };
+            };
         // create new Points with MatrixMultiplication
 
         Point2D.Double[] EF3 = matMult(A, EF);
@@ -275,19 +275,19 @@ public class Fourier {
 
         // schiefes F anderer Aufpunkt
         EF = new Point2D.Double[]
-                {
-                        new Point2D.Double(2 / 2., 5 / 2.),
-                        new Point2D.Double(5 / 2., 5 / 2.),
-                        new Point2D.Double(5 / 2., 7 / 2.),
-                        new Point2D.Double(2 / 2., 7 / 2.),
-                        new Point2D.Double(2 / 2., 9 / 2.),
-                        new Point2D.Double(7 / 2., 9 / 2.),
-                        new Point2D.Double(7 / 2., 11 / 2.),
-                        new Point2D.Double(0 / 2., 11 / 2.),
-                        new Point2D.Double(0 / 2., 0 / 2.),
-                        new Point2D.Double(2 / 2., 0 / 2.),
-                        new Point2D.Double(2 / 2., 5 / 2.) // X(N) == X(0))
-                };
+            {
+                new Point2D.Double(2 / 2., 5 / 2.),
+                new Point2D.Double(5 / 2., 5 / 2.),
+                new Point2D.Double(5 / 2., 7 / 2.),
+                new Point2D.Double(2 / 2., 7 / 2.),
+                new Point2D.Double(2 / 2., 9 / 2.),
+                new Point2D.Double(7 / 2., 9 / 2.),
+                new Point2D.Double(7 / 2., 11 / 2.),
+                new Point2D.Double(0 / 2., 11 / 2.),
+                new Point2D.Double(0 / 2., 0 / 2.),
+                new Point2D.Double(2 / 2., 0 / 2.),
+                new Point2D.Double(2 / 2., 5 / 2.) // X(N) == X(0))
+            };
 
         EF3 = matMult(A, EF);
 
@@ -316,10 +316,10 @@ public class Fourier {
 
         for (int i = 0; i < result.length; i++) {
             result[i] =
-                    new Point2D.Double(
-                            a11 * points[i].x + a12 * points[i].y,
-                            a21 * points[i].x + a22 * points[i].y
-                    );
+                new Point2D.Double(
+                    a11 * points[i].x + a12 * points[i].y,
+                    a21 * points[i].x + a22 * points[i].y
+                );
 
 
         }
@@ -387,7 +387,7 @@ public class Fourier {
 
     /**
      * @param s rotation symmetry (1 if not symmetrical at all)
-     *          <p/>
+     *          <p>
      *          Formel auf Seite 20 ME-08-01.pdf , xTilde
      */
     public void createInvariants2(int s) {
@@ -509,13 +509,13 @@ public class Fourier {
 
             // ((U(k)V(p)* - V(k)U(p)*)/(U(p)V(p)*-V(p)U(p)*)
             Q[i] = U.times(VpStar).minus(V.times(UpStar))
-                    .divides(Det);
+                .divides(Det);
 
             a[i] = Q[i];
 
             // ((U(k)V(p)* - V(k)U(p)*)/(U(p)V(p)*-V(p)U(p)*)
             Q[i] = U.conjugate().times(VpStar).minus(V.conjugate().times(UpStar))
-                    .divides(Det);
+                .divides(Det);
 
             b[i] = Q[i];
         }

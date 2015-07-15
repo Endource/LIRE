@@ -45,30 +45,30 @@ import java.util.Random;
 /**
  * Abstract class for arbitrary geometric transformation models to be applied
  * to points in n-dimensional space.
- * <p/>
+ * <p>
  * Provides methods for generic optimization and model extraction algorithms.
  * Currently, RANSAC and Monte-Carlo minimization implemented.  Needs revision...
- * <p/>
+ * <p>
  * TODO A model is planned to be a generic transformation pipeline to be
  * applied to images, volumes or arbitrary sets of n-dimensional points.  E.g.
  * lens transformation of camera images, pose and location of mosaic tiles,
  * non-rigid bending of confocal stacks etc.
- * <p/>
+ * <p>
  * License: GPL
- * <p/>
+ * <p>
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License 2
  * as published by the Free Software Foundation.
- * <p/>
+ * <p>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * <p/>
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- * <p/>
+ * <p>
  * NOTE:
  * The SIFT-method is protected by U.S. Patent 6,711,293: "Method and
  * apparatus for identifying scale invariant features in an image and use of
@@ -143,7 +143,7 @@ abstract public class Model {
 
     /**
      * test the model for a set of point correspondence candidates
-     * <p/>
+     * <p>
      * clears inliers and fills it with the fitting subset of candidates
      *
      * @param candidates  set of point correspondence candidates
@@ -152,10 +152,10 @@ abstract public class Model {
      * @param min_inliers minimal ratio of inliers (0.0 => 0%, 1.0 => 100%)
      */
     public boolean test(
-            Collection<PointMatch> candidates,
-            Collection<PointMatch> inliers,
-            double epsilon,
-            double min_inlier_ratio) {
+        Collection<PointMatch> candidates,
+        Collection<PointMatch> inliers,
+        double epsilon,
+        double min_inlier_ratio) {
         inliers.clear();
 
         for (PointMatch m : candidates) {
@@ -186,7 +186,7 @@ abstract public class Model {
 
     /**
      * randomly change the model a bit
-     * <p/>
+     * <p>
      * estimates the necessary amount of shaking for each single dimensional
      * distance in the set of matches
      *
@@ -195,9 +195,9 @@ abstract public class Model {
      * @param center  local pivot point for centered shakes (e.g. rotation)
      */
     abstract public void shake(
-            Collection<PointMatch> matches,
-            float scale,
-            float[] center);
+        Collection<PointMatch> matches,
+        float scale,
+        float[] center);
 
     abstract public void minimize(Collection<PointMatch> matches);
 

@@ -49,6 +49,7 @@ public interface FeatureVector {
     /**
      * Convenience method to get the feature vector as double[] array. This method is used by
      * classifiers, etc.
+     *
      * @return the feature vector as a double[] array.
      */
     public double[] getFeatureVector();

@@ -44,7 +44,7 @@ package net.semanticmetadata.lire.imageanalysis.features.global.correlogram;
  * NaiveAutoCorrelogramExtraction is an implementation of the naice approach to extract auto-correlogram
  * feature vector from images (Full Neighborhood is used). It is based on Huang et al paper,
  * "Image Indexing Using Color Correlograms", CVPR1997. J Huang, S. R Kumar, M. Mitra, W. Zhu, R. Zabih
- * <p/>
+ * <p>
  * This method is very similar to MLux FullNeighbourhood algorithm, but
  * doesn't acummulate the feature frequence over different distances and
  * uses the standard normalization.
@@ -117,7 +117,7 @@ public class NaiveAutoCorrelogramExtraction implements IAutoCorrelogramFeatureEx
             //normalize the feature vector
             for (int c = 0; c < maxFeatureValue; ++c)
                 if (histogram[c] > 0)
-                    correlogram[c][di] = (float) Math.floor(16d*(correlogram[c][di] / (((float) histogram[c]) * 8.0f * d)));
+                    correlogram[c][di] = (float) Math.floor(16d * (correlogram[c][di] / (((float) histogram[c]) * 8.0f * d)));
         }
 //		System.out.println("Complexity: "+((float)totalComplexity/(H*W))+"*O(|I|)");
         return correlogram;

@@ -17,7 +17,7 @@
  * We kindly ask you to refer the any or one of the following publications in
  * any publication mentioning or employing Lire:
  *
- * Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval –
+ * Lux Mathias, Savvas A. Chatzichristofis. Lire: Lucene Image Retrieval ï¿½
  * An Extensible Java CBIR Library. In proceedings of the 16th ACM International
  * Conference on Multimedia, pp. 1085-1088, Vancouver, Canada, 2008
  * URL: http://doi.acm.org/10.1145/1459359.1459577
@@ -61,11 +61,11 @@ import java.util.List;
  */
 public class CvSurfExtractor implements LocalFeatureExtractor {
     //Default: double  hessianThreshold, int nOctaves=4, int nOctaveLayers=2, bool extended=true, bool upright=false
-    private double hessianThreshold=500.0;
-    private int nOctaves=4;
-    private int nOctaveLayers=2;
-    private int extended=1;
-    private int upright=0;
+    private double hessianThreshold = 500.0;
+    private int nOctaves = 4;
+    private int nOctaveLayers = 2;
+    private int extended = 1;
+    private int upright = 0;
 
     LinkedList<CvSurfFeature> features;
 
@@ -74,11 +74,11 @@ public class CvSurfExtractor implements LocalFeatureExtractor {
 
 //    private boolean passingParams = false;
 
-    public CvSurfExtractor(){
+    public CvSurfExtractor() {
         init();
     }
 
-    public CvSurfExtractor(double hessianThreshold, int nOctaves, int nOctaveLayers, int extended, int upright){
+    public CvSurfExtractor(double hessianThreshold, int nOctaves, int nOctaveLayers, int extended, int upright) {
         this.hessianThreshold = hessianThreshold;
         this.nOctaves = nOctaves;
         this.nOctaveLayers = nOctaveLayers;
@@ -88,8 +88,8 @@ public class CvSurfExtractor implements LocalFeatureExtractor {
         init();
     }
 
-    private void init(){
-        System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
+    private void init() {
+        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 
         detector = FeatureDetector.create(FeatureDetector.SURF);
         extractor = DescriptorExtractor.create(DescriptorExtractor.SURF);
@@ -130,9 +130,9 @@ public class CvSurfExtractor implements LocalFeatureExtractor {
         byte[] data = ((DataBufferByte) img.getRaster().getDataBuffer()).getData();
         Mat matRGB = new Mat(img.getHeight(), img.getWidth(), CvType.CV_8UC3);
         matRGB.put(0, 0, data);
-        Mat matGray = new Mat(img.getHeight(),img.getWidth(),CvType.CV_8UC1);
+        Mat matGray = new Mat(img.getHeight(), img.getWidth(), CvType.CV_8UC1);
         Imgproc.cvtColor(matRGB, matGray, Imgproc.COLOR_BGR2GRAY);              //TODO: RGB or BGR?
-        byte[] dataGray = new byte[matGray.rows()*matGray.cols()*(int)(matGray.elemSize())];
+        byte[] dataGray = new byte[matGray.rows() * matGray.cols() * (int) (matGray.elemSize())];
         matGray.get(0, 0, dataGray);
 
         detector.detect(matGray, keypoints);
@@ -144,13 +144,12 @@ public class CvSurfExtractor implements LocalFeatureExtractor {
         CvSurfFeature feat;
         double[] desc;
         int cols, rows = myKeys.size();
-        for (int i=0; i<rows; i++) {
+        for (int i = 0; i < rows; i++) {
             cols = (descriptors.row(i)).cols();
             desc = new double[cols];
             key = myKeys.get(i);
-            for(int j=0; j < cols; j++)
-            {
-                desc[j]=descriptors.get(i, j)[0];
+            for (int j = 0; j < cols; j++) {
+                desc[j] = descriptors.get(i, j)[0];
             }
             feat = new CvSurfFeature(key.pt.x, key.pt.y, key.size, desc);
             features.add(feat);
@@ -166,9 +165,9 @@ public class CvSurfExtractor implements LocalFeatureExtractor {
         byte[] data = ((DataBufferByte) img.getRaster().getDataBuffer()).getData();
         Mat matRGB = new Mat(img.getHeight(), img.getWidth(), CvType.CV_8UC3);
         matRGB.put(0, 0, data);
-        Mat matGray = new Mat(img.getHeight(),img.getWidth(),CvType.CV_8UC1);
+        Mat matGray = new Mat(img.getHeight(), img.getWidth(), CvType.CV_8UC1);
         Imgproc.cvtColor(matRGB, matGray, Imgproc.COLOR_BGR2GRAY);              //TODO: RGB or BGR?
-        byte[] dataGray = new byte[matGray.rows()*matGray.cols()*(int)(matGray.elemSize())];
+        byte[] dataGray = new byte[matGray.rows() * matGray.cols() * (int) (matGray.elemSize())];
         matGray.get(0, 0, dataGray);
 
         detector.detect(matGray, keypoints);
@@ -186,9 +185,8 @@ public class CvSurfExtractor implements LocalFeatureExtractor {
         return myKeypoints;
     }
 
-    public String getParameters()
-    {
-        return "hessianThreshold: "+hessianThreshold+" nOctaves: "+nOctaves+" nOctaveLayers: "+nOctaveLayers+" extended: "+extended+" upright: "+upright;
+    public String getParameters() {
+        return "hessianThreshold: " + hessianThreshold + " nOctaves: " + nOctaves + " nOctaveLayers: " + nOctaveLayers + " extended: " + extended + " upright: " + upright;
     }
 
 }

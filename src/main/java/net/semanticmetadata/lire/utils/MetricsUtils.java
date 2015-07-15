@@ -134,7 +134,7 @@ public class MetricsUtils {
         double sum = 0d;
         for (int i = 0; i < h1.length; i++) {
             sum += (h1[i] > 0 ? h1[i] * Math.log(2d * h1[i] / (h1[i] + h2[i])) : 0) +
-                    (h2[i] > 0 ? h2[i] * Math.log(2d * h2[i] / (h1[i] + h2[i])) : 0);
+                (h2[i] > 0 ? h2[i] * Math.log(2d * h2[i] / (h1[i] + h2[i])) : 0);
         }
         return sum;
     }
@@ -144,7 +144,7 @@ public class MetricsUtils {
         double sum = 0d;
         for (int i = 0; i < h1.length; i++) {
             sum += (h1[i] > 0 ? h1[i] * Math.log(2d * h1[i] / (h1[i] + h2[i])) : 0) +
-                    (h2[i] > 0 ? h2[i] * Math.log(2d * h2[i] / (h1[i] + h2[i])) : 0);
+                (h2[i] > 0 ? h2[i] * Math.log(2d * h2[i] / (h1[i] + h2[i])) : 0);
         }
         return sum;
     }
@@ -154,7 +154,7 @@ public class MetricsUtils {
         double sum = 0d;
         for (int i = 0; i < h1.length; i++) {
             sum += (h1[i] > 0 ? (h1[i] / 2d) * Math.log((2d * h1[i]) / (h1[i] + h2[i])) : 0) +
-                    (h2[i] > 0 ? (h2[i] / 2d) * Math.log((2d * h2[i]) / (h1[i] + h2[i])) : 0);
+                (h2[i] > 0 ? (h2[i] / 2d) * Math.log((2d * h2[i]) / (h1[i] + h2[i])) : 0);
         }
         return sum;
     }
@@ -164,7 +164,7 @@ public class MetricsUtils {
         double sum = 0d;
         for (int i = 0; i < h1.length; i++) {
             sum += (h1[i] > 0 ? (h1[i] / 2d) * Math.log((2d * h1[i]) / (h1[i] + h2[i])) : 0) +
-                    (h2[i] > 0 ? (h2[i] / 2d) * Math.log((2d * h2[i]) / (h1[i] + h2[i])) : 0);
+                (h2[i] > 0 ? (h2[i] / 2d) * Math.log((2d * h2[i]) / (h1[i] + h2[i])) : 0);
         }
         return sum;
     }
@@ -194,7 +194,7 @@ public class MetricsUtils {
             }
 
             result = (100 - 100 * (tmpCnt1 / (tmpCnt2 + tmpCnt3
-                    - tmpCnt1))); //Tanimoto
+                - tmpCnt1))); //Tanimoto
         }
         return result;
     }
@@ -224,7 +224,7 @@ public class MetricsUtils {
             }
 
             result = (100 - 100 * (tmpCnt1 / (tmpCnt2 + tmpCnt3
-                    - tmpCnt1))); //Tanimoto
+                - tmpCnt1))); //Tanimoto
         }
         return result;
     }
@@ -292,6 +292,7 @@ public class MetricsUtils {
 
     /**
      * Max normalization of a double[] histogram. // todo: make it faster and less memory consuming ...
+     *
      * @param histogram
      * @return
      */
@@ -309,6 +310,7 @@ public class MetricsUtils {
 
     /**
      * Euclidean normalization of a double[] histogram. // todo: make it faster and less memory consuming ...
+     *
      * @param histogram
      * @return
      */
@@ -330,6 +332,7 @@ public class MetricsUtils {
 
     /**
      * Euclidean normalization of a double[] histogram.  // todo: make it faster and less memory consuming ...
+     *
      * @param histogram
      * @return
      */

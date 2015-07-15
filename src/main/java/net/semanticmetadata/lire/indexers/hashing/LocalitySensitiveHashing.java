@@ -50,7 +50,7 @@ import java.util.zip.GZIPOutputStream;
  * h^i(v) = (a^i*v + b^i)/w (rounded down), with a^i from R^d and b^i in [0,w) <br/>
  * If m of the k hashes match, then we assume that the feature vectors belong to similar images. Note that m*k has to be bigger than d!<br/>
  * If a^i is drawn from a normal (Gaussian) distribution LSH approximates L2. </p>
- * <p/>
+ * <p>
  * Note that this is just to be used with bounded (normalized) descriptors.
  *
  * @author Mathias Lux, mathias@juggle.at

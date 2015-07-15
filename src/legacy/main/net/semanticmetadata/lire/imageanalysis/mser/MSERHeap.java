@@ -43,7 +43,7 @@ import java.util.Stack;
 
 /**
  * Implements a HEAP for the Image pixels.
- * <p/>
+ * <p>
  * User: Shotty
  * Date: 28.06.2010
  * Time: 23:43:50

@@ -71,9 +71,9 @@ public class PointMatch {
     }
 
     public PointMatch(
-            Point p1,
-            Point p2,
-            float weight) {
+        Point p1,
+        Point p2,
+        float weight) {
         this.p1 = p1;
         this.p2 = p2;
 
@@ -83,8 +83,8 @@ public class PointMatch {
     }
 
     public PointMatch(
-            Point p1,
-            Point p2) {
+        Point p1,
+        Point p2) {
         this.p1 = p1;
         this.p2 = p2;
 
@@ -113,10 +113,10 @@ public class PointMatch {
         ArrayList<PointMatch> list = new ArrayList<PointMatch>();
         for (PointMatch match : matches) {
             list.add(
-                    new PointMatch(
-                            match.p2,
-                            match.p1,
-                            match.weight));
+                new PointMatch(
+                    match.p2,
+                    match.p1,
+                    match.weight));
         }
         return list;
     }

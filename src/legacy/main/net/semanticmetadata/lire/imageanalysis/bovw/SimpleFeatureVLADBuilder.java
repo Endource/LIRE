@@ -8,7 +8,7 @@ import org.apache.lucene.index.IndexReader;
 /**
  * Created by Nektarios on 04/12/2014.
  */
-public class SimpleFeatureVLADBuilder extends VLADBuilder{
+public class SimpleFeatureVLADBuilder extends VLADBuilder {
     private SimpleBuilder.KeypointDetector detector;
 
     public SimpleFeatureVLADBuilder(IndexReader reader) {
@@ -44,6 +44,6 @@ public class SimpleFeatureVLADBuilder extends VLADBuilder{
         localFeatureFieldName = fname;
         vladFieldName = fname + DocumentBuilder.FIELD_NAME_VLAD;
         vladHistFieldName = fname + DocumentBuilder.FIELD_NAME_VLAD_VECTOR;
-        clusterFile = "./clusters-simpleVlad" + lireFeature.getFeatureName() + (new SimpleBuilder()).getDetector(detector).replace("det","") + ".dat";
+        clusterFile = "./clusters-simpleVlad" + lireFeature.getFeatureName() + (new SimpleBuilder()).getDetector(detector).replace("det", "") + ".dat";
     }
 }

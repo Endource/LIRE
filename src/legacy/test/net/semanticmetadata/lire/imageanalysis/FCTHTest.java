@@ -70,7 +70,7 @@ public class FCTHTest extends TestCase {
             f1.extract(image);
             System.out.println(Arrays.toString(f1.getDoubleHistogram()));
             bytes += f1.getByteArrayRepresentation().length;
-            sum += 192/2;
+            sum += 192 / 2;
             f2.setByteArrayRepresentation(f1.getByteArrayRepresentation());
 //            System.out.println(Arrays.toString(f2.getDoubleHistogram()));
             double[] h = f2.getDoubleHistogram();
@@ -79,16 +79,15 @@ public class FCTHTest extends TestCase {
                 double v = h[i];
                 if (pos == -1) {
                     if (v == 0) pos = i;
-                }
-                else if (pos > -1) {
-                    if (v!=0) pos = -1;
+                } else if (pos > -1) {
+                    if (v != 0) pos = -1;
                 }
             }
-            System.out.println("save = " + (192-pos));
+            System.out.println("save = " + (192 - pos));
             assertTrue(f2.getDistance(f1) == 0);
         }
         double save = 1d - (double) bytes / (double) sum;
-        System.out.println(save*100 + "% saved");
+        System.out.println(save * 100 + "% saved");
     }
 
     public void testRetrieval() throws Exception {

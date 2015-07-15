@@ -61,8 +61,9 @@ public class SimpleResult implements Comparable<SimpleResult> {
      * would be 0. This is tweaked with the running number of the document from the index, so duplicate documents that
      * are in the index twice, appear in the result list in the order they are found in the index. See also compareTo(...)
      * method.
-     * @param distance the actual distance to the query
-    //     * @param document the document instance form the Lucene index
+     *
+     * @param distance    the actual distance to the query
+     *                    //     * @param document the document instance form the Lucene index
      * @param indexNumber the running number from the IndexReader. Needed for sorting issues in the result TreeMap.
      */
     public SimpleResult(double distance, int indexNumber) {
@@ -96,13 +97,14 @@ public class SimpleResult implements Comparable<SimpleResult> {
      * Compare the distance values to allow sorting in a tree map. If the distance value is the same, but the document
      * is different, the index number within the index is used to distinguishing the results. Otherwise the TreeMap
      * implementation wouldn't add the result.
+     *
      * @param o the SimpleResult to compare the current one to.
      * @return -1, 0, or 1
      */
     public int compareTo(SimpleResult o) {
         int compareValue = (int) Math.signum(distance - ((SimpleResult) o).distance);
-        if (compareValue==0 && indexNumber != o.indexNumber) {
-            return (int) Math.signum(indexNumber-o.indexNumber);
+        if (compareValue == 0 && indexNumber != o.indexNumber) {
+            return (int) Math.signum(indexNumber - o.indexNumber);
         }
         return compareValue;
     }
@@ -110,9 +112,9 @@ public class SimpleResult implements Comparable<SimpleResult> {
     @Override
     public boolean equals(Object obj) {
         // it's not the same if it's not the same class.
-        if (! (obj instanceof SimpleResult)) return false;
+        if (!(obj instanceof SimpleResult)) return false;
             // it's the same if the document is the same, regardless of the distance.
 //        else return (document.equals(((SimpleResult)obj).document) && indexNumber == ((SimpleResult)obj).indexNumber);
-        else return (indexNumber == ((SimpleResult)obj).indexNumber);
+        else return (indexNumber == ((SimpleResult) obj).indexNumber);
     }
 }
