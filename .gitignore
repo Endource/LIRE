@@ -46,3 +46,7 @@ out.png
 results-*/*
 textindextest/*
 wang-index-*/*
+
+#IntelliJ
+.idea
+*.iml
