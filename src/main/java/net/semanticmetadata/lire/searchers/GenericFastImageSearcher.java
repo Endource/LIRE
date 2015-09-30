@@ -57,6 +57,7 @@ import org.apache.lucene.index.MultiFields;
 import org.apache.lucene.util.Bits;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -455,6 +456,25 @@ public class GenericFastImageSearcher extends AbstractImageSearcher {
         return 0d;
     }
 
+    /*
+    // This is an approach based on DocValues. It's extremely fast, even without caching, but I don't know if it's in
+    // RAM or not, ie. if I can fill up RAM with all documents at once.
+    public ImageSearchHits search(int doc, IndexReader reader) throws IOException {
+        SimpleImageSearchHits searchHits = null;
+        LireFeature lireFeature = extractorItem.getFeatureInstance();
+        BinaryDocValues binaryValues = MultiDocValues.getBinaryValues(reader, lireFeature.getFieldName());
+        lireFeature.setByteArrayRepresentation(binaryValues.get(doc).bytes, binaryValues.get(doc).offset, binaryValues.get(doc).length);
+        double maxDistance = findSimilar(reader, lireFeature);
+
+        if (!useSimilarityScore) {
+            searchHits = new SimpleImageSearchHits(this.docs, maxDistance);
+        } else {
+            searchHits = new SimpleImageSearchHits(this.docs, maxDistance, useSimilarityScore);
+        }
+        return searchHits;
+    }
+    */
+
     public ImageSearchHits search(Document doc, IndexReader reader) throws IOException {
         SimpleImageSearchHits searchHits = null;
 //        try {
@@ -494,7 +514,7 @@ public class GenericFastImageSearcher extends AbstractImageSearcher {
         } else if (extractorItem.isLocal()) {
             LocalDocumentBuilder localDocumentBuilder = new LocalDocumentBuilder();
             LocalFeatureExtractor localFeatureExtractor = localDocumentBuilder.extractLocalFeatures(image, (LocalFeatureExtractor) extractorItem.getExtractorInstance());
-            aggregator.createVectorRepresentation(localFeatureExtractor.getFeatures(), Cluster.readClusters(codebooksDir + "\\" + codebookName));
+            aggregator.createVectorRepresentation(localFeatureExtractor.getFeatures(), Cluster.readClusters(codebooksDir + File.separator + codebookName));
             extractorItem.getFeatureInstance().setByteArrayRepresentation(aggregator.getByteVectorRepresentation());
 
             double maxDistance = findSimilar(reader, extractorItem.getFeatureInstance());
@@ -506,7 +526,7 @@ public class GenericFastImageSearcher extends AbstractImageSearcher {
         } else if (extractorItem.isSimple()) {
             SimpleDocumentBuilder simpleDocumentBuilder = new SimpleDocumentBuilder();
             LocalFeatureExtractor localFeatureExtractor = simpleDocumentBuilder.extractLocalFeatures(image, (LocalFeatureExtractor) extractorItem.getExtractorInstance());
-            aggregator.createVectorRepresentation(localFeatureExtractor.getFeatures(), Cluster.readClusters(codebooksDir + "\\" + codebookName));
+            aggregator.createVectorRepresentation(localFeatureExtractor.getFeatures(), Cluster.readClusters(codebooksDir + File.separator + codebookName));
             extractorItem.getFeatureInstance().setByteArrayRepresentation(aggregator.getByteVectorRepresentation());
             double maxDistance = findSimilar(reader, extractorItem.getFeatureInstance());
             if (!useSimilarityScore) {

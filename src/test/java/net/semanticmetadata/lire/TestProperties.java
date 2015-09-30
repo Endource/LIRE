@@ -36,7 +36,6 @@ package net.semanticmetadata.lire;
 
 import junit.framework.TestCase;
 import net.semanticmetadata.lire.aggregators.AbstractAggregator;
-import net.semanticmetadata.lire.aggregators.BOVW;
 import net.semanticmetadata.lire.classifiers.Cluster;
 import net.semanticmetadata.lire.imageanalysis.features.Extractor;
 import net.semanticmetadata.lire.imageanalysis.features.GlobalFeature;

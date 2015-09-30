@@ -50,6 +50,8 @@ import net.semanticmetadata.lire.utils.SerializationUtils;
 import java.awt.color.ColorSpace;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorConvertOp;
+import java.awt.image.DataBufferByte;
+import java.util.Arrays;
 
 /**
  * The PHOG descriptor is described in Anna Bosch, Andrew Zisserman & Xavier Munoz (2007) "Representing shape with a
@@ -147,19 +149,21 @@ public class PHOG implements GlobalFeature {
         }
         // hysteresis ... walk along lines of strong pixels and make the weak ones strong.
         int[] tmp = {0};
+        byte[] data = ((DataBufferByte) gray.getRaster().getDataBuffer()).getData();
         for (int x = 1; x < width - 1; x++) {
             for (int y = 1; y < height - 1; y++) {
-                if (gray.getRaster().getPixel(x, y, tmp)[0] < 50) {
+                if (((int) data[(y) * width + (x)] & 0xFF) < 50) {
                     // It's a strong pixel, lets find the neighbouring weak ones.
-                    trackWeakOnes(x, y, gray);
+                    trackWeakOnes(x, y, width, data);
                 }
             }
         }
         // removing the single weak pixels.
         for (int x = 2; x < width - 2; x++) {
             for (int y = 2; y < height - 2; y++) {
-                if (gray.getRaster().getPixel(x, y, tmp)[0] > 50) {
-                    gray.getRaster().setPixel(x, y, tmp255);
+                if (((int) data[(y) * width + (x)] & 0xFF) > 50) {
+                    data[(y) * width + (x)] = (byte) 255;
+//                        gray.getRaster().setPixel(x, y, tmp255);
                 }
             }
         }
@@ -186,7 +190,7 @@ public class PHOG implements GlobalFeature {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 System.arraycopy(getHistogram(i * wstep, j * hstep, wstep, hstep, gray, gd),
-                    0, tmpHistogram, binPos * bins, bins);
+                        0, tmpHistogram, binPos * bins, bins);
                 binPos++;
             }
         }
@@ -265,20 +269,17 @@ public class PHOG implements GlobalFeature {
      *
      * @param x
      * @param y
-     * @param gray
+     * @param buffer the actual image but only its buffer.
      */
-    private void trackWeakOnes(int x, int y, BufferedImage gray) {
+    private void trackWeakOnes(int x, int y, int width, byte[] buffer) {
         for (int xx = x - 1; xx <= x + 1; xx++)
             for (int yy = y - 1; yy <= y + 1; yy++) {
-                if (isWeak(xx, yy, gray)) {
-                    gray.getRaster().setPixel(xx, yy, tmp000);
-                    trackWeakOnes(xx, yy, gray);
+                if (((int) buffer[(yy) * width + (xx)] & 0xFF) > 0 && ((int) buffer[(yy) * width + (xx)] & 0xFF) < 255) {
+                    buffer[(yy) * width + (xx)] = (byte) 0;
+//                    gray.getRaster().setPixel(xx, yy, tmp000);
+                    trackWeakOnes(xx, yy, width, buffer);
                 }
             }
-    }
-
-    private boolean isWeak(int x, int y, BufferedImage gray) {
-        return (gray.getRaster().getPixel(x, y, tmpPixel)[0] > 0 && gray.getRaster().getPixel(x, y, tmpPixel)[0] < 255);
     }
 
     private void setPixel(int x, int y, BufferedImage gray, double v) {
@@ -287,34 +288,43 @@ public class PHOG implements GlobalFeature {
         else gray.getRaster().setPixel(x, y, tmp255);
     }
 
-    private static void sobelFilter(BufferedImage gray, double[][] gx, double[][] gy) {
+    private void sobelFilter(BufferedImage gray, double[][] gx, double[][] gy) {
         int[] tmp = new int[4];
-        int tmpSumX = 0, tmpSumY = 0, pix;
+        int tmpSumX = 0, tmpSumY = 0, pix, width = gray.getWidth();
+        byte[] data = ((DataBufferByte) gray.getRaster().getDataBuffer()).getData();
         for (int x = 1; x < gray.getWidth() - 1; x++) {
             for (int y = 1; y < gray.getHeight() - 1; y++) {
                 tmpSumX = 0;
                 tmpSumY = 0;
-                pix = gray.getRaster().getPixel(x - 1, y - 1, tmp)[0];
+//                    pix = gray.getRaster().getPixel(x - 1, y - 1, tmp)[0];
+                pix = (int) data[(y - 1) * width + (x - 1)] & 0xFF;
                 tmpSumX += pix;
                 tmpSumY += pix;
-                pix = gray.getRaster().getPixel(x - 1, y, tmp)[0];
+//                    pix = gray.getRaster().getPixel(x - 1, y, tmp)[0];
+                pix = (int) data[(y) * width + (x - 1)] & 0xFF;
                 tmpSumX += 2 * pix;
-                pix = gray.getRaster().getPixel(x - 1, y + 1, tmp)[0];
+//                    pix = gray.getRaster().getPixel(x - 1, y + 1, tmp)[0];
+                pix = (int) data[(y + 1) * width + (x - 1)] & 0xFF;
                 tmpSumX += pix;
                 tmpSumY -= pix;
 
-                pix = gray.getRaster().getPixel(x + 1, y - 1, tmp)[0];
+//                    pix = gray.getRaster().getPixel(x + 1, y - 1, tmp)[0];
+                pix = (int) data[(y - 1) * width + (x + 1)] & 0xFF;
                 tmpSumX -= pix;
                 tmpSumY += pix;
-                pix = gray.getRaster().getPixel(x + 1, y, tmp)[0];
+//                    pix = gray.getRaster().getPixel(x + 1, y, tmp)[0];
+                pix = (int) data[(y) * width + (x + 1)] & 0xFF;
                 tmpSumX -= 2 * pix;
-                pix = gray.getRaster().getPixel(x + 1, y + 1, tmp)[0];
+//                    pix = gray.getRaster().getPixel(x + 1, y + 1, tmp)[0];
+                pix = (int) data[(y + 1) * width + (x + 1)] & 0xFF;
                 tmpSumX -= pix;
                 tmpSumY -= pix;
                 gx[x][y] = tmpSumX;
 
-                tmpSumY += 2 * gray.getRaster().getPixel(x, y - 1, tmp)[0];
-                tmpSumY -= 2 * gray.getRaster().getPixel(x, y + 1, tmp)[0];
+//                    tmpSumY += 2 * gray.getRaster().getPixel(x    , y - 1, tmp)[0];
+                tmpSumY += 2 * ((int) data[(y - 1) * width + (x)] & 0xFF);
+//                    tmpSumY -= 2 * gray.getRaster().getPixel(x    , y + 1, tmp)[0];
+                tmpSumY -= 2 * ((int) data[(y + 1) * width + (x)] & 0xFF);
                 gy[x][y] = tmpSumY;
 
             }
@@ -378,15 +388,10 @@ public class PHOG implements GlobalFeature {
         return MetricsUtils.distL1(histogram, ((PHOG) feature).histogram);
     }
 
-//    @Override
-//    public String getStringRepresentation() {
-//        return null;
-//    }
-//
-//    @Override
-//    public void setStringRepresentation(String s) {
-//
-//    }
+    @Override
+    public String toString() {
+        return "PHOG{" + Arrays.toString(getFeatureVector()) + "}";
+    }
 
     @Override
     public String getFeatureName() {

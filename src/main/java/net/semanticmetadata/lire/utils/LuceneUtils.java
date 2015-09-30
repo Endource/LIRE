@@ -59,9 +59,7 @@ import org.apache.lucene.store.RAMDirectory;
 import org.apache.lucene.util.BytesRef;
 import org.apache.lucene.util.Version;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
@@ -97,7 +95,7 @@ public class LuceneUtils {
      * @throws IOException
      */
     public static IndexWriter createIndexWriter(String indexPath, boolean create) throws IOException {
-        return createIndexWriter(indexPath, create, AnalyzerType.SimpleAnalyzer);                       //TODO: Simple or Standar ??
+        return createIndexWriter(indexPath, create, AnalyzerType.SimpleAnalyzer);                       //TODO: Simple or Standard ??
     }
 
     /**
@@ -136,6 +134,8 @@ public class LuceneUtils {
 
         // The config
         IndexWriterConfig config = new IndexWriterConfig(tmpAnalyzer);
+        config.setRAMBufferSizeMB(512);
+        config.setCommitOnClose(true);
         if (create)
             config.setOpenMode(IndexWriterConfig.OpenMode.CREATE); // overwrite if it exists.
         else

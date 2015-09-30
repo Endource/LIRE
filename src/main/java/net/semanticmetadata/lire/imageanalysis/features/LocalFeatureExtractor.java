@@ -34,7 +34,6 @@
 
 package net.semanticmetadata.lire.imageanalysis.features;
 
-import java.awt.image.BufferedImage;
 import java.util.List;
 
 /**

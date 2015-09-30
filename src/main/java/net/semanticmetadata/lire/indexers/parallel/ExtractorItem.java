@@ -34,15 +34,15 @@
 
 package net.semanticmetadata.lire.indexers.parallel;
 
-import net.semanticmetadata.lire.imageanalysis.features.LireFeature;
-import net.semanticmetadata.lire.imageanalysis.features.local.simple.SimpleExtractor;
 import net.semanticmetadata.lire.imageanalysis.features.Extractor;
 import net.semanticmetadata.lire.imageanalysis.features.GlobalFeature;
+import net.semanticmetadata.lire.imageanalysis.features.LireFeature;
 import net.semanticmetadata.lire.imageanalysis.features.LocalFeatureExtractor;
+import net.semanticmetadata.lire.imageanalysis.features.local.simple.SimpleExtractor;
 
 /**
  * This class is a container for all features.
- * It contains the class of the extractor, an instance of the extractor, an instance of the feature, the fieldname of the feature
+ * It contains the class of the extractor, an instance of the extractor, an instance of the feature, the field name of the feature
  * and for the simple model, the keypoint detector. (In case of global features the extractor and the feature instances, are
  * the same object).
  * Created by Nektarios on 6/5/2015.

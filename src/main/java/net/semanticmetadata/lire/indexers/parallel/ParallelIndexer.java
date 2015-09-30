@@ -34,19 +34,20 @@
 
 package net.semanticmetadata.lire.indexers.parallel;
 
-import net.semanticmetadata.lire.aggregators.*;
+import net.semanticmetadata.lire.aggregators.AbstractAggregator;
+import net.semanticmetadata.lire.aggregators.BOVW;
 import net.semanticmetadata.lire.builders.*;
-import net.semanticmetadata.lire.classifiers.*;
 import net.semanticmetadata.lire.classifiers.Cluster;
-//import net.semanticmetadata.lire.imageanalysis.features.global.ACCID;
-import net.semanticmetadata.lire.imageanalysis.features.global.CEDD;
-import net.semanticmetadata.lire.imageanalysis.features.global.FCTH;
-import net.semanticmetadata.lire.imageanalysis.features.global.JCD;
-import net.semanticmetadata.lire.imageanalysis.features.local.simple.SimpleExtractor;
+import net.semanticmetadata.lire.classifiers.KMeans;
+import net.semanticmetadata.lire.classifiers.ParallelKMeans;
 import net.semanticmetadata.lire.imageanalysis.features.Extractor;
 import net.semanticmetadata.lire.imageanalysis.features.GlobalFeature;
 import net.semanticmetadata.lire.imageanalysis.features.LocalFeature;
 import net.semanticmetadata.lire.imageanalysis.features.LocalFeatureExtractor;
+import net.semanticmetadata.lire.imageanalysis.features.global.CEDD;
+import net.semanticmetadata.lire.imageanalysis.features.global.FCTH;
+import net.semanticmetadata.lire.imageanalysis.features.global.JCD;
+import net.semanticmetadata.lire.imageanalysis.features.local.simple.SimpleExtractor;
 import net.semanticmetadata.lire.utils.FileUtils;
 import net.semanticmetadata.lire.utils.LuceneUtils;
 import org.apache.lucene.document.Document;
@@ -58,6 +59,8 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.nio.MappedByteBuffer;
+import java.nio.channels.FileChannel;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.DecimalFormat;
@@ -67,20 +70,23 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.logging.Logger;
 
+//import net.semanticmetadata.lire.imageanalysis.features.global.ACCID;
+
 /**
  * This class allows for creating indexes in a parallel manner. The class
  * at hand reads files from the disk and acts as producer, while several consumer
  * threads extract the features from the given files.
- * <p>
+ * <p/>
  * Use the methods {@link ParallelIndexer#addExtractor} to add your own features.
  * Check the source of this class -- the main method -- to get an idea.
- * <p>
+ * <p/>
  * Created by mlux on 15/04/2013.
  *
  * @author Mathias Lux, mathias@juggle.at
  * @author Nektarios Anagnostopoulos, nek.anag@gmail.com
  */
 public class ParallelIndexer implements Runnable {
+    private boolean useDocValues = false;
     private Logger log = Logger.getLogger(this.getClass().getName());
     private ProgressMonitor pm = null;
     private DecimalFormat df = (DecimalFormat) NumberFormat.getNumberInstance();
@@ -94,6 +100,7 @@ public class ParallelIndexer implements Runnable {
     private boolean sampling = false;
     private boolean appending = false;
     private boolean globalHashing = false;
+    private GlobalDocumentBuilder.HashingMode globalHashingMode = GlobalDocumentBuilder.HashingMode.BitSampling;
 
     private IndexWriter writer;
     private String imageDirectory, indexPath;
@@ -117,7 +124,9 @@ public class ParallelIndexer implements Runnable {
 
     private HashMap<String, Document> allDocuments;
 
-    private LinkedBlockingQueue<WorkItem> queue = new LinkedBlockingQueue<WorkItem>(100);
+    // Note that you can edit the queue size here. 100 is a good value, but I'd raise it to 200.
+    private int queueCapacity = 200;
+    private LinkedBlockingQueue<WorkItem> queue = new LinkedBlockingQueue<>(queueCapacity);
 
 
     public static void main(String[] args) {
@@ -314,6 +323,71 @@ public class ParallelIndexer implements Runnable {
         this.numOfThreads = numOfThreads;
         this.indexPath = indexPath;
         this.imageList = imageList;
+    }
+
+    /**
+     * Constructor for use with hashing.
+     *
+     * @param numOfThreads number of threads used for processing.
+     * @param indexPath    the directory the index witll be written to.
+     * @param imageList    the list of images, one path per line.
+     * @param hashingMode  the mode used for Hashing, use HashingMode.None if you don't want hashing.
+     */
+    public ParallelIndexer(int numOfThreads, String indexPath, File imageList, GlobalDocumentBuilder.HashingMode hashingMode) {
+        this.numOfThreads = numOfThreads;
+        this.indexPath = indexPath;
+        this.imageList = imageList;
+        if (hashingMode != GlobalDocumentBuilder.HashingMode.None) {
+            this.globalHashing = true;
+        } else this.globalHashing = false;
+        this.globalHashingMode = hashingMode;
+    }
+
+    /**
+     * Constructor for use with hashing and optional storage in DocValues instead of Lucene fields.
+     *
+     * @param numOfThreads number of threads used for processing.
+     * @param indexPath    the directory the index witll be written to.
+     * @param imageList    the list of images, one path per line.
+     * @param hashingMode  the mode used for Hashing, use HashingMode.None if you don't want hashing.
+     * @param useDocValues set to true if you want to use DocValues instead of Fields.
+     */
+    public ParallelIndexer(int numOfThreads, String indexPath, File imageList, GlobalDocumentBuilder.HashingMode hashingMode, boolean useDocValues) {
+        this.numOfThreads = numOfThreads;
+        this.indexPath = indexPath;
+        this.imageList = imageList;
+        if (hashingMode != GlobalDocumentBuilder.HashingMode.None) {
+            this.globalHashing = true;
+        } else {
+            this.globalHashing = false;
+        }
+        this.globalHashingMode = hashingMode;
+        this.useDocValues = useDocValues;
+    }
+
+    /**
+     * Constructor for use with hashing and optional storage in DocValues instead of Lucene fields.
+     *
+     * @param numOfThreads number of threads used for processing.
+     * @param indexPath    the directory the index witll be written to.
+     * @param imageList    the list of images, one path per line.
+     * @param hashingMode  the mode used for Hashing, use HashingMode.None if you don't want hashing.
+     * @param useDocValues set to true if you want to use DocValues instead of Fields.
+     * @param queueSize    the size of the reading queue to minimize disk usage.
+     */
+    public ParallelIndexer(int numOfThreads, String indexPath, File imageList, GlobalDocumentBuilder.HashingMode hashingMode, boolean useDocValues, int queueSize) {
+        this.numOfThreads = numOfThreads;
+        this.indexPath = indexPath;
+        this.imageList = imageList;
+        if (hashingMode != GlobalDocumentBuilder.HashingMode.None) {
+            this.globalHashing = true;
+        } else {
+            this.globalHashing = false;
+        }
+        this.globalHashingMode = hashingMode;
+        this.useDocValues = useDocValues;
+        queueCapacity = queueSize;
+        queue = new LinkedBlockingQueue<>(queueSize);
     }
 
     public ParallelIndexer(int numOfThreads, String indexPath, File imageList, int numOfClusters, int numOfDocsForCodebooks) {
@@ -613,7 +687,7 @@ public class ParallelIndexer implements Runnable {
         lockLists = true;
         try {
             long start = System.currentTimeMillis();
-            writer = LuceneUtils.createIndexWriter(indexPath, overWrite, LuceneUtils.AnalyzerType.StandardAnalyzer);
+            writer = LuceneUtils.createIndexWriter(indexPath, overWrite, LuceneUtils.AnalyzerType.WhitespaceAnalyzer);
             if (imageList == null) {
 //                allImages = FileUtils.getAllImages(new File(imageDirectory), true); //TODO: change to readFileLines
                 allImages = FileUtils.readFileLines(new File(imageDirectory), true);
@@ -701,16 +775,16 @@ public class ParallelIndexer implements Runnable {
         long start = System.currentTimeMillis();
         try {
             Thread p, c, m;
-            p = new Thread(new Producer(allImages));
+            p = new Thread(new Producer(allImages), "Producer");
             p.start();
             LinkedList<Thread> threads = new LinkedList<Thread>();
             for (int i = 0; i < numOfThreads; i++) {
-                c = new Thread(new Consumer());
+                c = new Thread(new Consumer(), String.format("Consumer-%02d", i + 1));
                 c.start();
                 threads.add(c);
             }
             Monitoring monitoring = new Monitoring();
-            m = new Thread(monitoring);
+            m = new Thread(monitoring, "IndexingMonitor");
             m.start();
             for (Thread thread : threads) {
                 thread.join();
@@ -868,20 +942,37 @@ public class ParallelIndexer implements Runnable {
 
         public void run() {
             File next;
-            byte[] buffer;
             for (String path : localList) {
                 next = new File(path);
                 try {
-                    buffer = Files.readAllBytes(Paths.get(path)); // JDK 7 only!
-                    path = next.getCanonicalPath();
+                    // option 1 --------------------
+//                    byte[] buffer = Files.readAllBytes(Paths.get(path)); // JDK 7 only!
+                    // option 2 --------------------
+//                    path = next.getCanonicalPath();
+//                    int fileSize = (int) next.length();
+//                    byte[] buffer = new byte[fileSize];
+//                    FileInputStream fis = new FileInputStream(next);
+//                    int tmp = fis.read(buffer);
+//                    assert(tmp == fileSize);
+//                    fis.close();
+                    // option 3 --------------------
+                    int fileSize = (int) next.length();
+                    byte[] buffer = new byte[fileSize];
+                    FileInputStream fis = new FileInputStream(next);
+                    FileChannel channel = fis.getChannel();
+                    MappedByteBuffer map = channel.map(FileChannel.MapMode.READ_ONLY, 0, fileSize);
+                    map.load();
+                    map.get(buffer);
                     queue.put(new WorkItem(path, buffer));
+                    channel.close();
+                    fis.close();
                 } catch (Exception e) {
                     System.err.println("Could not open " + path + ". " + e.getMessage());
                 }
             }
             String path = null;
             buffer = null;
-            for (int i = 0; i < numOfThreads * 3; i++) {
+            for (int i = 0; i < numOfThreads * 3; i++)  {
                 try {
                     queue.put(new WorkItem(path, buffer));
                 } catch (InterruptedException e) {
@@ -1000,7 +1091,7 @@ public class ParallelIndexer implements Runnable {
         private boolean locallyEnded;
 
         public ConsumerForGlobalSample() {
-            this.globalDocumentBuilder = new GlobalDocumentBuilder(globalHashing);
+            this.globalDocumentBuilder = new GlobalDocumentBuilder(globalHashing, globalHashingMode, useDocValues);
             for (ExtractorItem globalExtractor : GlobalExtractors) {
                 this.globalDocumentBuilder.addExtractor(globalExtractor.clone());
             }
@@ -1040,7 +1131,7 @@ public class ParallelIndexer implements Runnable {
         public Consumer() {
             this.localDocumentBuilder = new LocalDocumentBuilder(aggregator);
             this.simpleDocumentBuilder = new SimpleDocumentBuilder(aggregator);
-            this.globalDocumentBuilder = new GlobalDocumentBuilder(globalHashing);
+            this.globalDocumentBuilder = new GlobalDocumentBuilder(globalHashing, globalHashingMode, useDocValues);
 
             for (Map.Entry<ExtractorItem, LinkedList<Cluster[]>> listEntry : LocalExtractorsAndCodebooks.entrySet()) {
                 this.localDocumentBuilder.addExtractor(listEntry.getKey().clone(), listEntry.getValue());
@@ -1070,6 +1161,10 @@ public class ParallelIndexer implements Runnable {
             BufferedImage image;
             while (!locallyEnded) {
                 try {
+                    if (queue.peek()==null) {
+//                        while (queue.remainingCapacity() > 2*queueCapacity/3) Thread.sleep(1000);
+                        Thread.sleep((long) ((Math.random()/2+0.5) * 10000)); // sleep for a second if queue is empty.
+                    }
                     tmp = queue.take();
                     if (tmp.getFileName() == null) locallyEnded = true;
                     else overallCount++;

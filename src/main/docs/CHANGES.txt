@@ -1,7 +1,57 @@
 CHANGES for LIRE
 ================
 
-2015-06-16
+2015-09-22
+==========
+  - Changed MetricSpaces query mode to term boosting to reduce size of query.
+  - Added statistics to docs.
+
+2015-09-09
+==========
+  - Added three distance functions to MetricsUtils
+
+2015-09-09
+==========
+  - API change and docs on metric indexing.
+
+2015-09-09
+==========
+  - DocValues implementation and tests for indexing and search.
+  - documentation on metric spaces and docvalues.
+  - Changed the RAM buffer size of IndexWriter instances in LuceneUtils to cope with lots of small files more easily.
+
+2015-09-07
+==========
+  - pom.xml patch by Lukas Knoch
+
+2015-09-04
+==========
+  - Documentation, error message updates.
+  - implemented and tested net.semanticmetadata.lire.searchers.MetricSpacesImageSearcher, on 100k images it
+    had similar performance to in-memory search w/o the startup delay.
+
+2015-08-26
+==========
+  - Indexing based on Metric Spaces mostly finished, with some tests still to be done.
+    see MetricSpacesTest for samples.
+  - Change in file handling in ParallelIndexer, now using MappedByteBuffer / NIO.
+  - Added support for hash method selection to GlobalDocumentBuilder and ParallelIndexer
+
+2015-08-20
+==========
+  - Converted ParallelExtractor to using LinkedBlockingQueue
+
+2015-08-20
+==========
+  - Speeded up extraction of PHOG by ~ 40%.
+
+2015-08-17
+==========
+  - Added a speed fix for Extraction of FCTH and CEDD based on a diff from from
+    Michael Riegler (https://www.simula.no/people/michael) &
+    Konstantin Pogorelov (https://www.simula.no/people/konstantinvpogorelov)
+
+2015-06-17
 ==========
   - Added custom DocumentBuilder for handling metadata to ParallelIndexer.
   - Fixed LIRE demo.

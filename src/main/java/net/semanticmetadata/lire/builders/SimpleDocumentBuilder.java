@@ -34,13 +34,14 @@
 
 package net.semanticmetadata.lire.builders;
 
-import net.semanticmetadata.lire.aggregators.*;
+import net.semanticmetadata.lire.aggregators.AbstractAggregator;
 import net.semanticmetadata.lire.classifiers.Cluster;
 import net.semanticmetadata.lire.imageanalysis.features.GlobalFeature;
 import net.semanticmetadata.lire.imageanalysis.features.local.simple.SimpleExtractor;
 import net.semanticmetadata.lire.indexers.parallel.ExtractorItem;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
 
 /**
  * This class can be used as the LocalDocumentBuilder class, in order to create Lucene Documents

@@ -36,10 +36,11 @@ package net.semanticmetadata.lire.imageanalysis.features.local.selfsimilarities;
 
 import net.semanticmetadata.lire.imageanalysis.features.LocalFeature;
 import net.semanticmetadata.lire.imageanalysis.features.LocalFeatureExtractor;
-import net.semanticmetadata.lire.imageanalysis.features.local.opencvfeatures.CvSiftFeature;
 
 import java.awt.image.BufferedImage;
-import java.util.*;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Implementation based on the paper:

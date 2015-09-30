@@ -29,6 +29,10 @@ bin-test/*
 docs/*
 .flexLibProperties
 
+# Jetbrains dir
+.idea
+*.iml
+
 # Maven noise
 target/*
 
@@ -46,7 +50,3 @@ out.png
 results-*/*
 textindextest/*
 wang-index-*/*
-
-#IntelliJ
-.idea
-*.iml

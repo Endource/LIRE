@@ -49,6 +49,7 @@ import net.semanticmetadata.lire.utils.ImageUtils;
 import net.semanticmetadata.lire.utils.SerializationUtils;
 
 import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferInt;
 import java.util.Arrays;
 
 /**
@@ -74,6 +75,7 @@ public class CEDD implements GlobalFeature {
     private double Result, Temp1, Temp2, TempCount1, TempCount2, TempCount3;
     private CEDD tmpFeature;
     private double iTmp1, iTmp2;
+
 
 
     public CEDD(double Th0, double Th1, double Th2, double Th3, boolean CompactDescriptor) {
@@ -153,17 +155,23 @@ public class CEDD implements GlobalFeature {
         for (int i = 0; i < 144; i++) {
             CEDD[i] = 0;
         }
-        int pixel;
+        int pixel, r, g, b;
+
+        // extraction is based on a speedup fix from Michael Riegler & Konstantin Pogorelov
+        BufferedImage image_rgb = new BufferedImage(width, height, BufferedImage.TYPE_INT_BGR);
+        image_rgb.getGraphics().drawImage(image, 0, 0, null);
+        int[] pixels = ((DataBufferInt) image_rgb.getRaster().getDataBuffer()).getData();
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                pixel = image.getRGB(x, y);
-                ImageGridRed[x][y] = (pixel >> 16) & 0xff;
-                ImageGridGreen[x][y] = (pixel >> 8) & 0xff;
-                ImageGridBlue[x][y] = (pixel) & 0xff;
-                //int mean = (int) (0.114 * ImageGridBlue[x][y] + 0.587 * ImageGridGreen[x][y] + 0.299 * ImageGridRed[x][y]);
-//                ImageGrid[x][y] = (0.114f * ImageGridBlue[x][y] + 0.587f * ImageGridGreen[x][y] + 0.299f * ImageGridRed[x][y]);
-                ImageGrid[x][y] = (0.299f * ((pixel >> 16) & 0xff) + 0.587f * ((pixel >> 8) & 0xff) + 0.114f * ((pixel) & 0xff));
+                pixel = pixels[y * width + x];
+                b = (pixel >> 16) & 0xFF;
+                g = (pixel >> 8) & 0xFF;
+                r = (pixel) & 0xFF;
+                ImageGridRed[x][y] = r;
+                ImageGridGreen[x][y] = g;
+                ImageGridBlue[x][y] = b;
 
+                ImageGrid[x][y] = (0.114 * b + 0.587 * g + 0.299 * r);
             }
         }
 
@@ -508,5 +516,15 @@ public class CEDD implements GlobalFeature {
     @Override
     public String getFieldName() {
         return DocumentBuilder.FIELD_NAME_CEDD;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder(histogram.length * 2 + 25);
+        for (byte aData : histogram) {
+            sb.append((int) aData);
+            sb.append(' ');
+        }
+        return "CEDD{" + sb.toString().trim() + "}";
     }
 }
